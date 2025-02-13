@@ -1,3 +1,5 @@
+import Header from '@layouts/Header';
+
 export default function HomePage() {
-  return <h1>HomePage</h1>;
+  return <Header />;
 }
