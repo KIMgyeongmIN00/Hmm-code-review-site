@@ -25,4 +25,9 @@ const StInputContainer = styled.div`
     font-size: 16px;
     flex: 1;
   }
+
+  & > svg {
+    font-size: 20px;
+    margin-right: 4px;
+  }
 `;
