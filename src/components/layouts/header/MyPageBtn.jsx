@@ -7,7 +7,6 @@ export default function MyPageBtn() {
 
 const StContainer = styled(MdOutlinePerson)`
   margin: 0 30px 0 80px;
-
   background: #ffffff;
   border: 1px solid #495057;
   border-radius: 50%;
