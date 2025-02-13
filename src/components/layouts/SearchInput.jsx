@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 export default function SearchInput() {
   return (
-    <StLayout>
+    <StContainer>
       <SearchIcon />
       <input placeholder="search keyword..."></input>
-    </StLayout>
+    </StContainer>
   );
 }
 
@@ -14,7 +14,7 @@ const SearchIcon = styled(MdOutlineSearch)`
   margin: 0 5px 0 5px;
 `;
 
-const StLayout = styled.div`
+const StContainer = styled.div`
   height: 30px;
   box-sizing: border-box;
 
