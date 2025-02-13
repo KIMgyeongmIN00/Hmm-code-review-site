@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --color-point: #dec0ff;
     --color-point-light: #f5eaff;
     --color-point-dark: #b699d6;
-    --color-border: #b076f0;
+    --color-border: #b2b9C0;
 
     --round-sm: 4px;
     --round-md: 6px;
