@@ -18,7 +18,7 @@ import styled, { css } from 'styled-components';
  *    - solid: 색상이 채워진 기본 스타일
  *    - outline: 테두리만 있는 스타일
  *    - ghost: 배경이 투명한 스타일
- * @prop {string} [$color="main"] - 버튼에 적용할 테마 색상 키값
+ * @prop {string} [$color="main"] - 버튼에 적용할 테마 색상 키값 ("main" | "point")
  * @prop {string} [$size="md"] - 버튼 크기 ("sm" | "md" | "lg")
  * @prop {string} [$round="md"] - 모서리 둥글기 정도 ("sm" | "md" | "lg" | "xl")
  */
