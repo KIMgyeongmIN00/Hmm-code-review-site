@@ -23,6 +23,11 @@ const StInputContainer = styled.div`
     font-size: 20px;
     margin-right: 4px;
   }
+
+  & > svg {
+    font-size: 20px;
+    margin-right: 4px;
+  }
 `;
 const StInput = styled.input`
   border: none;

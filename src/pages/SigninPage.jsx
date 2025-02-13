@@ -11,16 +11,16 @@ export default function SigninPage() {
       <StLoginForm>
         <div>
           <label>아이디: </label>
-          <Input placeholder="Insert your email" type="text" icon={StIdIcon} />
+          <Input placeholder="Insert your email" type="text" icon={MdEmail} />
         </div>
 
         <div>
           <label>비밀번호: </label>
-          <Input placeholder="Insert your password" type="password" icon={StPassIcon} />
+          <Input placeholder="Insert your password" type="password" icon={MdOutlinePrivateConnectivity} />
         </div>
       </StLoginForm>
       <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
-        <StLoginButtonIcon />
+        <MdDoneOutline />
         로그인
       </StLoginButton>
       <Link to="/"> 회원가입이 아직인가요? </Link>
@@ -58,20 +58,10 @@ const StLoginButton = styled(Button)`
   height: 80px;
   font-size: 24px;
   margin-bottom: 12px;
-`;
 
-const StPassIcon = styled(MdOutlinePrivateConnectivity)`
-  font-size: 20px;
-  margin-right: 4px;
-`;
-
-const StIdIcon = styled(MdEmail)`
-  font-size: 20px;
-  margin-right: 4px;
-`;
-
-const StLoginButtonIcon = styled(MdDoneOutline)`
-  font-size: 32px;
-  position: relative;
-  left: -24px;
+  & > svg {
+    font-size: 32px;
+    position: relative;
+    left: -24px;
+  }
 `;
