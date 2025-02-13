@@ -15,6 +15,9 @@ const GlobalStyle = createGlobalStyle`
     --round-lg: 12px;
     --round-xl: 20px;
   }
+
+  button {
+    color: inherit;
   }
 `;
 
