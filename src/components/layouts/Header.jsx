@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import SearchInput from './SearchInput';
 import MyPageBtn from './MyPageBtn';
 
+let IsAuth = false;
+
 export default function Header() {
   return (
     <StContainer>
-      <MyPageBtn />
+      {IsAuth ? <MyPageBtn /> : <p> 로그인 / 회원가입</p>}
       <SearchInput />
     </StContainer>
   );
