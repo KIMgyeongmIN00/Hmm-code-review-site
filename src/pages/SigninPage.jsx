@@ -23,7 +23,7 @@ export default function SigninPage() {
         <StLoginButtonIcon />
         로그인
       </StLoginButton>
-      <Link to={'/'}> 회원가입이 아직인가요? </Link>
+      <Link to="/"> 회원가입이 아직인가요? </Link>
     </StContainer>
   );
 }
