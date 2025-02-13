@@ -3,7 +3,7 @@ import SearchInput from '@header/SearchInput';
 import MyPageBtn from '@header/MyPageBtn';
 import AuthBtn from '@header/AuthBtn';
 
-let IsAuth = false;
+let IsAuth = true;
 
 export default function Header() {
   return (
@@ -23,21 +23,11 @@ const StContainer = styled.div`
   height: 80px;
   border-bottom: 1px solid #b2b9c0;
 
+  gap: 20px;
+
   font-family: 'Open Sans';
   font-size: 16px;
   line-height: 24px;
 
   color: #666666;
-
-  & > p {
-    margin: 0 30px 0 80px;
-    font-family: 'Open Sans';
-    font-size: 16px;
-    line-height: 0px;
-
-    display: flex;
-    align-items: center;
-
-    color: #495057;
-  }
 `;
