@@ -16,7 +16,7 @@ export default function AuthProvider({ children }) {
         dispatch({ payload: false });
       }
     });
-    return () => subscription.unsubscribe(); // 세션을 따로 풀 일이 있을까요?
+    return () => subscription.unsubscribe();
   }, []);
 
   return <AuthContext.Provider value={{ isLogin }}>{children}</AuthContext.Provider>;
