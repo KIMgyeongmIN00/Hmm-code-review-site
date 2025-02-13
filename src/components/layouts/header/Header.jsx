@@ -8,11 +8,16 @@ let IsAuth = true;
 export default function Header() {
   return (
     <StContainer>
-      {IsAuth ? <MyPageBtn /> : <AuthBtn />}
+      <LogoImg src="/image/logo.png" />
       <SearchInput />
+      {IsAuth ? <MyPageBtn /> : <AuthBtn />}
     </StContainer>
   );
 }
+
+const LogoImg = styled.img`
+  width: 60px;
+`;
 
 const StContainer = styled.div`
   display: flex;
