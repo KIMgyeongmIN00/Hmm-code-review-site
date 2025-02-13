@@ -3,12 +3,12 @@ import SearchInput from '@header/SearchInput';
 import MyPageBtn from '@header/MyPageBtn';
 import AuthBtn from '@header/AuthBtn';
 
-let IsAuth = true;
+let IsAuth = false;
 
 export default function Header() {
   return (
     <StContainer>
-      <LogoImg src="/image/logo.png" />
+      <LogoImg src="/image/logo2.png" />
       <StWrapper>
         <SearchInput />
         {IsAuth ? <MyPageBtn /> : <AuthBtn />}
@@ -19,7 +19,8 @@ export default function Header() {
 
 const LogoImg = styled.img`
   margin: 0 0 0 40px;
-  width: 60px;
+  width: 100px;
+  height: 75px;
 `;
 
 const StContainer = styled.div`
