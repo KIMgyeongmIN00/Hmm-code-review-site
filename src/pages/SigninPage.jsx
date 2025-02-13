@@ -3,6 +3,37 @@ import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icon
 import Button from '@commons/Button';
 import { Link } from 'react-router-dom';
 
+export default function SigninPage() {
+  return (
+    <StContainer>
+      <h2>signin page</h2>
+      <StLoginForm>
+        <div>
+          <p>아이디: </p>
+          <StInputContainer>
+            <StIdIcon />
+            <input type="text" placeholder="Insert your email" />
+          </StInputContainer>
+        </div>
+
+        <div>
+          <p>비밀번호: </p>
+          <StInputContainer>
+            <StPassIcon />
+            <input type="text" placeholder="Insert your password" />
+          </StInputContainer>
+        </div>
+      </StLoginForm>
+
+      <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
+        <StLoginButtonIcon />
+        로그인
+      </StLoginButton>
+      <Link to={'/'}> 회원가입이 아직인가요? </Link>
+    </StContainer>
+  );
+}
+
 const StContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -70,34 +101,3 @@ const StLoginButtonIcon = styled(MdDoneOutline)`
   position: relative;
   left: -30px;
 `;
-
-export default function SigninPage() {
-  return (
-    <StContainer>
-      <h2>signin page</h2>
-      <StLoginForm>
-        <div>
-          <p>아이디: </p>
-          <StInputContainer>
-            <StIdIcon />
-            <input type="text" placeholder="Insert your email" />
-          </StInputContainer>
-        </div>
-
-        <div>
-          <p>비밀번호: </p>
-          <StInputContainer>
-            <StPassIcon />
-            <input type="text" placeholder="Insert your password" />
-          </StInputContainer>
-        </div>
-      </StLoginForm>
-
-      <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
-        <StLoginButtonIcon />
-        로그인
-      </StLoginButton>
-      <Link to={'/'}> 회원가입이 아직인가요? </Link>
-    </StContainer>
-  );
-}
