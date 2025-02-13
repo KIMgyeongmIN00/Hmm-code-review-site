@@ -1,21 +1,19 @@
 import styled from 'styled-components';
-import { MdOutlineSearch } from 'react-icons/md';
+import SearchInput from './SearchInput';
 
 export default function Header() {
   return (
-    <StLayout>
-      Header
-      <div>
-        <MdOutlineSearch />
-        <input placeholder="search keyword..."></input>
-      </div>
+    <StContainer>
       <p>로그인 / 회원가입</p>
-    </StLayout>
+      <SearchInput />
+    </StContainer>
   );
 }
 
-const StLayout = styled.div`
+const StContainer = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
   background: #ffffff;
   width: 100%;
   height: 80px;
@@ -29,26 +27,8 @@ const StLayout = styled.div`
 
   color: #666666;
 
-  & > div {
-    height: 30px;
-    box-sizing: border-box;
-
-    background: #ffffff;
-    border: 1px solid #b2b9c0;
-    border-radius: 6px;
-
-    display: flex;
-    align-items: center;
-    & > input {
-      border-width: 0;
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
   & > p {
+    margin: 0 30px 0 80px;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
