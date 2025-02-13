@@ -19,8 +19,8 @@ export default function Header() {
 
 const LogoImg = styled.img`
   margin: 0 0 0 40px;
-  width: 100px;
-  height: 75px;
+  width: 80px;
+  height: 60px;
 `;
 
 const StContainer = styled.div`
