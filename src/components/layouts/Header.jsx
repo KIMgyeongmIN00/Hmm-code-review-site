@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MdOutlineSearch } from 'react-icons/md';
 
 export default function Header() {
   return (
