@@ -33,8 +33,6 @@ const StContainer = styled.div`
   & > p {
     margin: 0 30px 0 80px;
     font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 0px;
 
