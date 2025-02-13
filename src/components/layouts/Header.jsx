@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import SearchInput from './SearchInput';
+import MyPageBtn from './MyPageBtn';
 
 export default function Header() {
   return (
     <StContainer>
-      <p>로그인 / 회원가입</p>
+      <MyPageBtn />
       <SearchInput />
     </StContainer>
   );
