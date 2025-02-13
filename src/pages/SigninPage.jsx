@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icons/md';
 import Button from '@commons/Button';
+import Input from '@commons/Input';
 import { Link } from 'react-router-dom';
 
 export default function SigninPage() {
@@ -10,21 +11,14 @@ export default function SigninPage() {
       <StLoginForm>
         <div>
           <label>아이디: </label>
-          <StInputContainer>
-            <StIdIcon />
-            <input type="text" placeholder="Insert your email" />
-          </StInputContainer>
+          <Input placeholder="Insert your email" type="text" icon={StIdIcon} />
         </div>
 
         <div>
           <label>비밀번호: </label>
-          <StInputContainer>
-            <StPassIcon />
-            <input type="text" placeholder="Insert your password" />
-          </StInputContainer>
+          <Input placeholder="Insert your password" type="password" icon={StPassIcon} />
         </div>
       </StLoginForm>
-
       <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
         <StLoginButtonIcon />
         로그인
@@ -55,23 +49,6 @@ const StLoginForm = styled.form`
   flex-direction: column;
   margin: 50px;
   height: 350px;
-`;
-
-const StInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  border: 2px solid var(--color-border);
-  border-radius: var(--round-md);
-  padding: 4px 8px;
-  width: 320px;
-  height: 30px;
-
-  & > input {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    flex: 1;
-  }
 `;
 
 const StLoginButton = styled(Button)`
