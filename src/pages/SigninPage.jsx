@@ -9,7 +9,7 @@ export default function SigninPage() {
       <h2>signin page</h2>
       <StLoginForm>
         <div>
-          <p>아이디: </p>
+          <label>아이디: </label>
           <StInputContainer>
             <StIdIcon />
             <input type="text" placeholder="Insert your email" />
@@ -17,7 +17,7 @@ export default function SigninPage() {
         </div>
 
         <div>
-          <p>비밀번호: </p>
+          <label>비밀번호: </label>
           <StInputContainer>
             <StPassIcon />
             <input type="text" placeholder="Insert your password" />
@@ -43,7 +43,7 @@ const StContainer = styled.div`
   height: 1000px;
   margin: 0 auto;
 
-  & p {
+  & label {
     margin: 0;
   }
 `;
@@ -60,9 +60,9 @@ const StLoginForm = styled.form`
 const StInputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--round-md);
+  padding: 4px 8px;
   width: 320px;
   height: 30px;
 
@@ -71,33 +71,30 @@ const StInputContainer = styled.div`
     outline: none;
     font-size: 16px;
     flex: 1;
-    border-color: gray;
-    border-radius: var(--round-md);
   }
 `;
 
 const StLoginButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 350px;
+  text-align: center;
+  line-height: normal;
+  width: 360px;
   height: 80px;
   font-size: 24px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 `;
 
 const StPassIcon = styled(MdOutlinePrivateConnectivity)`
   font-size: 20px;
-  margin-right: 5px;
+  margin-right: 4px;
 `;
 
 const StIdIcon = styled(MdEmail)`
   font-size: 20px;
-  margin-right: 5px;
+  margin-right: 4px;
 `;
 
 const StLoginButtonIcon = styled(MdDoneOutline)`
-  font-size: 30px;
+  font-size: 32px;
   position: relative;
-  left: -30px;
+  left: -24px;
 `;
