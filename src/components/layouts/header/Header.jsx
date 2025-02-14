@@ -3,7 +3,7 @@ import SearchInput from '@layouts/header/SearchInput';
 import HomeMyPageBtn from '@layouts/header/MyPageBtn';
 import HomeAuthBtn from '@layouts/header/AuthBtn';
 
-let IsAuth = true;
+let isAuth = true;
 
 export default function Header() {
   return (
@@ -11,7 +11,7 @@ export default function Header() {
       <LogoImg src="/image/logo.png" />
       <StWrapper>
         <SearchInput />
-        {IsAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
+        {isAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
       </StWrapper>
     </StContainer>
   );
