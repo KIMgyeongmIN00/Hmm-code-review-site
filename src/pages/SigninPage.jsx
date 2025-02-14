@@ -37,9 +37,6 @@ const StContainer = styled.div`
   height: 880px;
   margin: 0 auto;
   border: 2px solid var(--color-border);
-  & label {
-    margin: 0;
-  }
 `;
 
 const StLoginForm = styled.form`
