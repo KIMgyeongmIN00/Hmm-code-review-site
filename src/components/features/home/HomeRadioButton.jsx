@@ -43,6 +43,8 @@ const sortConstants = {
   SORT_COMMENT: 'comment'
 };
 
+Object.freeze(sortConstants);
+
 const StRadioGroupContainer = styled.div`
   display: flex;
   flex-direction: row;
