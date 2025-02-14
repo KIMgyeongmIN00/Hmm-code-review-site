@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import HomeRadioButton from '@features/home/HomeRadioButton';
 
 export default function HomeFilterTab() {
   return (
     <StFilterContainer>
       <p>HomeFilter1</p>
       <p>HomeFilter2</p>
-      <input type="radio"></input>
+      <HomeRadioButton />
     </StFilterContainer>
   );
 }
