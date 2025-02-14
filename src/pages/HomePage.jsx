@@ -1,5 +1,3 @@
-import IconButton from '@/components/commons/IconButton';
-
 export default function HomePage() {
   return (
     <div>
