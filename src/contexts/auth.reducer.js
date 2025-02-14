@@ -1,3 +1,12 @@
 export default function authReducer(state, action) {
-  return action.payload;
+  switch (action.type) {
+    case 'login':
+      state = true;
+      break;
+
+    case 'logout':
+      state = false;
+      break;
+  }
+  return state;
 }
