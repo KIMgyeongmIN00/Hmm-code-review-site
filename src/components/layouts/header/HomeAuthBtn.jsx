@@ -16,9 +16,6 @@ export default function HomeAuthBtn() {
 }
 
 const StContainer = styled.div`
-  height: 40px;
-  margin: 0 10px 0 0;
   display: flex;
-  flex-wrap: row;
   align-items: center;
 `;
