@@ -52,7 +52,7 @@ const StRadioContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid;
+  border: 1px solid var(--color-border);
   border-radius: var(--round-sm);
   margin: 0 20px 0 0;
   overflow: hidden;
@@ -74,11 +74,11 @@ const StRadioLabel = styled.label`
   cursor: pointer;
 
   &:not(:last-of-type) {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid var(--color-border);
   }
 
   &:hover {
-    background-color: #eee;
+    background-color: var(--color-hover);
   }
 
   ${StRadioButton}:checked + & {
