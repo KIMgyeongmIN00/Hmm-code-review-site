@@ -11,9 +11,9 @@ export default function AuthProvider({ children }) {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        dispatch({ payload: true });
+        dispatch({ type: 'login' });
       } else {
-        dispatch({ payload: false });
+        dispatch({ type: 'logout' });
       }
     });
     return () => subscription.unsubscribe();
