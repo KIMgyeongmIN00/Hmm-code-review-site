@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
+import SigninPage from '@pages/signinPage';
 import SelectBox from '../components/commons/SelectBox';
 
 const publicRoutes = [
@@ -8,8 +9,8 @@ const publicRoutes = [
 		element: <HomePage />,
 	},
 	{
-		path: '/select',
-		element: <SelectBox />,
+		path: '/signin',
+		element: <SigninPage />,
 	},
 ];
 
