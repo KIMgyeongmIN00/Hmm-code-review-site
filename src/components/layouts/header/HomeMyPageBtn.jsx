@@ -19,8 +19,8 @@ export default function HomeMyPageBtn() {
 
 const StModalBox = styled.div`
   position: absolute;
-  top: 30px;
-  right: 10px;
+  top: 40px;
+  right: 5px;
   width: 120px;
   height: 100px;
   padding: 10px;
@@ -58,8 +58,8 @@ const StMypageIcon = styled(MdOutlinePerson)`
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border: 1px solid var(--color-main-light);
   border-radius: var(--round-full);
 `;
