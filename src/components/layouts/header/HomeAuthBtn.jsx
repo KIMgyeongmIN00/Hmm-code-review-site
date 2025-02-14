@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import Button from '@commons/Button';
 import ButtonLink from '@commons/ButtonLink';
 
-export default function AuthBtn() {
+export default function HomeAuthBtn() {
   return (
     <StContainer>
       <ButtonLink $variant="ghost" $size="sm">
