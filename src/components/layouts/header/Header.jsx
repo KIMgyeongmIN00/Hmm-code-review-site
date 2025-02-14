@@ -3,7 +3,7 @@ import SearchInput from '@layouts/header/SearchInput';
 import HomeMyPageBtn from '@layouts/header/HomeMyPageBtn';
 import HomeAuthBtn from '@layouts/header/HomeAuthBtn';
 
-let isAuth = true;
+let isAuth = false;
 
 export default function Header() {
   return (
