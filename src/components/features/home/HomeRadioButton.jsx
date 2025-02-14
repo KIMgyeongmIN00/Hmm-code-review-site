@@ -5,13 +5,38 @@ import styled from 'styled-components';
 export default function HomeRadioButton() {
   const [sort, setSort] = useState('latest');
 
+  const sortChanged = function (e) {
+    setSort(e.target.value);
+  };
+
   return (
     <StRadioContainer>
-      <StRadioButton id="latest" type="radio"></StRadioButton>
+      <StRadioButton
+        id="latest"
+        name="sort"
+        type="radio"
+        value="latest"
+        checked={sort === 'latest'}
+        onChange={sortChanged}
+      ></StRadioButton>
       <StRadioLabel htmlFor="latest">최신순</StRadioLabel>
-      <StRadioButton id="like" type="radio"></StRadioButton>
+      <StRadioButton
+        id="like"
+        name="sort"
+        type="radio"
+        value="like"
+        checked={sort === 'like'}
+        onChange={sortChanged}
+      ></StRadioButton>
       <StRadioLabel htmlFor="like">좋아요순</StRadioLabel>
-      <StRadioButton id="comment" type="radio"></StRadioButton>
+      <StRadioButton
+        id="comment"
+        name="sort"
+        type="radio"
+        value="comment"
+        checked={sort === 'comment'}
+        onChange={sortChanged}
+      ></StRadioButton>
       <StRadioLabel htmlFor="comment">댓글순</StRadioLabel>
     </StRadioContainer>
   );
@@ -29,4 +54,10 @@ const StRadioButton = styled.input`
   display: none;
 `;
 
-const StRadioLabel = styled.label``;
+const StRadioLabel = styled.label`
+  ${StRadioButton}:checked + & {
+    background-color: #d1d5da;
+    color: #333;
+    font-weight: 700;
+  }
+`;
