@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from './Button';
 
 /**
@@ -21,16 +21,31 @@ import Button from './Button';
 function IconButton({ activeIcon: ActiveIcon, inActiveIcon: InActiveIcon, onClick, ...props }) {
   const [isActive, setIsActive] = useState(false);
 
-  function handleLikeClickHandler() {
+  function onClickIconHandler() {
     setIsActive((prev) => !prev);
   }
 
   return (
-    <StButton onClick={handleLikeClickHandler} {...props}>
+    <StButton onClick={onClickIconHandler} {...props}>
       {isActive ? <ActiveIcon /> : <InActiveIcon />}
     </StButton>
   );
 }
+
+const sizeStyle = {
+  sm: css`
+    height: var(--height-sm);
+    width: var(--height-sm);
+  `,
+  md: css`
+    height: var(--height-md);
+    width: var(--height-md);
+  `,
+  lg: css`
+    height: var(--height-lg);
+    width: var(--height-lg);
+  `
+};
 
 const StButton = styled(Button)`
   display: flex;
@@ -39,8 +54,7 @@ const StButton = styled(Button)`
   padding: 4px;
 
   svg {
-    width: 20px;
-    height: 20px;
+    ${({ $size }) => sizeStyle[$size]}
     transition: color 0.3s ease;
   }
 `;
