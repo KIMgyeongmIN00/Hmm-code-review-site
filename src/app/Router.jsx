@@ -6,14 +6,6 @@ import RootLayout from '../components/layouts/RootLayout';
 const publicRoutes = [
 	{
 		path: '/',
-		element: <HomePage />,
-	},
-	{
-		path: '/signin',
-		element: <SigninPage />,
-	},
-	{
-		path: '/',
 		element: <RootLayout />,
 		children: [
 			{
