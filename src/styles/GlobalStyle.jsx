@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
     --round-md: 6px;
     --round-lg: 12px;
     --round-xl: 20px;
+
+    --height-sm: 20px;
+    --height-md: 32px;
+    --height-lg: 48px;
+
   }
 
   a {

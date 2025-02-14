@@ -1,10 +1,15 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
+import SigninPage from '@pages/signinPage';
 
 const publicRoutes = [
   {
     path: '/',
     element: <HomePage />
+  },
+  {
+    path: '/signin',
+    element: <SigninPage />
   }
 ];
 
