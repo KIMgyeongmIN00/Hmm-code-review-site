@@ -20,7 +20,6 @@ function SelectBox({
 	options = [],
 	size = 'md',
 	onChange,
-	className,
 }) {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +34,7 @@ function SelectBox({
 	};
 
 	return (
-		<SelectContainer className={className}>
+		<SelectContainer>
 			<SelectTrigger
 				$isPlaceholder={!value}
 				onClick={handleTriggerClick}
@@ -111,6 +110,7 @@ const SelectTrigger = styled.div`
 	${({ $size }) => sizeHeight[$size]}
     ${({ $isPlaceholder }) => css`
 		& > p {
+			user-select: none;
 			color: ${$isPlaceholder
 				? 'var(--color-main-light)'
 				: 'var(--color-black)'};
