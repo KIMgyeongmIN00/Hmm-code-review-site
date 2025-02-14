@@ -5,7 +5,17 @@ import SelectBox from '@/components/commons/SelectBox';
 export default function HomeFilterTab() {
   return (
     <StFilterContainer>
-      <StFilterSelectBox />
+      <StFilterSelectBox
+        placeholder="언어 선택"
+        options={[
+          { id: 1, name: 'C++' },
+          { id: 2, name: 'JavaScript' },
+          { id: 3, name: 'Python' },
+          { id: 4, name: 'Kotlin' },
+          { id: 5, name: 'Java' }
+        ]}
+        size="sm"
+      />
       <HomeRadioButton />
     </StFilterContainer>
   );
@@ -23,4 +33,6 @@ const StFilterContainer = styled.div`
   background-color: green;
 `;
 
-const StFilterSelectBox = styled(SelectBox)``;
+const StFilterSelectBox = styled(SelectBox)`
+  /* height: var(--height-md); */
+`;
