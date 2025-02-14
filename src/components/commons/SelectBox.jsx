@@ -2,6 +2,26 @@ import { useState } from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import styled, { css } from 'styled-components';
 
+/**
+ * SelectBox 컴포넌트
+ *
+ * @component
+ * @example
+ * // 기본 SelectBox
+ * <SelectBox
+ *   value={selectedValue}
+ *   placeholder="선택해주세요"
+ *   options={[{ id: 1, name: '옵션1' }, { id: 2, name: '옵션2' }]}
+ *   onChange={handleChange}
+ * />
+ *
+ * @prop {string} [value] - 선택된 값
+ * @prop {string} [placeholder="선택해주세요"] - 선택되지 않았을 때 표시할 텍스트
+ * @prop {Array} [options=[]] - 선택 가능한 옵션 목록 (각 옵션은 { id, name } 형태의 객체)
+ * @prop {string} [size="md"] - SelectBox 크기 ("sm" | "md" | "lg")
+ * @prop {function} [onChange] - 선택된 값이 변경될 때 호출되는 함수
+ */
+
 function SelectBox({ value, placeholder = '선택해주세요', options = [], size = 'md', onChange }) {
  const [isOpen, setIsOpen] = useState(false);
 
