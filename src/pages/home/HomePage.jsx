@@ -4,15 +4,13 @@ import HomePost from '@features/home/HomePost';
 
 export default function HomePage() {
   return (
-    <>
-      <StMainContainer>
-        <HomeFilterTab />
-        <HomePost />
-      </StMainContainer>
-    </>
+    <StHomePageContainer>
+      <HomeFilterTab />
+      <HomePost />
+    </StHomePageContainer>
   );
 }
-const StMainContainer = styled.div`
+const StHomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
