@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SearchInput from '@layouts/header/SearchInput';
-import MyPageBtn from '@layouts/header/MyPageBtn';
-import AuthBtn from '@layouts/header/AuthBtn';
+import HomeMyPageBtn from '@layouts/header/MyPageBtn';
+import HomeAuthBtn from '@layouts/header/AuthBtn';
 
 let IsAuth = true;
 
@@ -11,7 +11,7 @@ export default function Header() {
       <LogoImg src="/image/logo2.png" />
       <StWrapper>
         <SearchInput />
-        {IsAuth ? <MyPageBtn /> : <AuthBtn />}
+        {IsAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
       </StWrapper>
     </StContainer>
   );

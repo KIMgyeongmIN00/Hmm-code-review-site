@@ -2,7 +2,7 @@ import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Button from '@commons/Button';
 
-export default function MyPageBtn() {
+export default function HomeMyPageBtn() {
   return (
     <StContainer>
       <StMypageIcon />
