@@ -5,10 +5,6 @@ import styled from 'styled-components';
 export default function HomeRadioButton() {
   const [sort, setSort] = useState('latest');
 
-  const sortChanged = function (e) {
-    setSort(e.target.value);
-  };
-
   return (
     <StRadioContainer>
       <StRadioButton
@@ -17,7 +13,7 @@ export default function HomeRadioButton() {
         type="radio"
         value={sortConstants.SORT_LATEST}
         checked={sort === sortConstants.SORT_LATEST}
-        onChange={sortChanged}
+        onChange={(e) => setSort(e.target.value)}
       ></StRadioButton>
       <StRadioLabel htmlFor={sortConstants.SORT_LATEST}>최신순</StRadioLabel>
       <StRadioButton
@@ -26,7 +22,7 @@ export default function HomeRadioButton() {
         type="radio"
         value={sortConstants.SORT_LIKE}
         checked={sort === sortConstants.SORT_LIKE}
-        onChange={sortChanged}
+        onChange={(e) => setSort(e.target.value)}
       ></StRadioButton>
       <StRadioLabel htmlFor={sortConstants.SORT_LIKE}>좋아요순</StRadioLabel>
       <StRadioButton
@@ -35,7 +31,7 @@ export default function HomeRadioButton() {
         type="radio"
         value={sortConstants.SORT_COMMENT}
         checked={sort === sortConstants.SORT_COMMENT}
-        onChange={sortChanged}
+        onChange={(e) => setSort(e.target.value)}
       ></StRadioButton>
       <StRadioLabel htmlFor={sortConstants.SORT_COMMENT}>댓글순</StRadioLabel>
     </StRadioContainer>
