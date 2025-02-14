@@ -17,7 +17,7 @@ const StInputContainer = styled.div`
   border-radius: var(--round-md);
   padding: 4px 8px;
   width: 320px;
-  height: 30px;
+  height: var(--height-md);
 
   & > svg {
     font-size: 20px;
