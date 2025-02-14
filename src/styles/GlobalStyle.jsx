@@ -9,17 +9,21 @@ const GlobalStyle = createGlobalStyle`
     --color-point-light: #f5eaff;
     --color-point-dark: #b699d6;
     --color-border: #b2b9C0;
+    --color-white: white;
+    --color-black: black;
     --color-hover: #f5f5f5;
 
     --round-sm: 4px;
     --round-md: 6px;
     --round-lg: 12px;
     --round-xl: 20px;
+    --round-full: 100%;
 
     --height-sm: 20px;
     --height-md: 32px;
     --height-lg: 48px;
 
+    --width-max: 1200px;
     --font-size-sm: 12px;
     --font-size-md: 16px;
     --font-size-lg: 24px;
