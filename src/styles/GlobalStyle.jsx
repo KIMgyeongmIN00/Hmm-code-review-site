@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --color-point-light: #f5eaff;
     --color-point-dark: #b699d6;
     --color-border: #b2b9C0;
+    --color-hover: #f5f5f5;
 
     --round-sm: 4px;
     --round-md: 6px;
@@ -18,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     --height-sm: 20px;
     --height-md: 32px;
     --height-lg: 48px;
+
+    --font-size-sm: 12px;
+    --font-size-md: 16px;
+    --font-size-lg: 24px;
 
   }
 

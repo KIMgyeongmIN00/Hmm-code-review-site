@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import SelectBox from '../components/commons/SelectBox';
 
 export default function HomePage() {
@@ -15,12 +16,18 @@ export default function HomePage() {
 			name: 'Java',
 		},
 	];
+	const [value, setValue] = useState('');
 
 	return (
 		<h1>
 			HomePage
 			<div>
-				<SelectBox options={MOCK} placeholder={'선택해주세요'} />
+				<SelectBox
+					value={value}
+					onChange={setValue}
+					options={MOCK}
+					placeholder={'선택해주세요'}
+				/>
 			</div>
 		</h1>
 	);
