@@ -5,7 +5,7 @@ export default function Input({ icon: Icon, ...props }) {
     <StInputContainer>
       {/*Icon이 있을 때만 이미지 표현*/}
       {Icon && <Icon />}
-      <input {...props} />
+      <StInput {...props} />
     </StInputContainer>
   );
 }
@@ -19,15 +19,14 @@ const StInputContainer = styled.div`
   width: 320px;
   height: 30px;
 
-  & > input {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    flex: 1;
-  }
-
   & > svg {
     font-size: 20px;
     margin-right: 4px;
   }
+`;
+const StInput = styled.input`
+  border: none;
+  outline: none;
+  font-size: ${(props) => props.fontSize || '16px'};
+  flex: 1;
 `;
