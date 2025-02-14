@@ -3,27 +3,46 @@ import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icon
 import Button from '@commons/Button';
 import Input from '@commons/Input';
 import { Link } from 'react-router-dom';
+import useAuth from '@/hooks/signIn/useAuth';
 
 export default function SigninPage() {
+  const { email, password, handleEmailChange, handlePasswordChange, handleSignIn } = useAuth();
   return (
     <StContainer>
       <h2>signin page</h2>
-      <StSignInForm>
+      <StSignInForm onSubmit={handleSignIn}>
         <div>
           <label>아이디: </label>
-          <Input type="text" placeholder="Insert your email" fontSize="16px" icon={MdEmail} />
+          <Input
+            type="text"
+            placeholder="Insert your email"
+            width="320px"
+            value={email}
+            onChange={handleEmailChange}
+            icon={MdEmail}
+            required
+          />
         </div>
 
         <div>
           <label>비밀번호: </label>
-          <Input type="password" placeholder="Insert your password" icon={MdOutlinePrivateConnectivity} />
+          <Input
+            type="password"
+            placeholder="Insert your password"
+            width="320px"
+            value={password}
+            onChange={handlePasswordChange}
+            icon={MdOutlinePrivateConnectivity}
+            required
+          />
         </div>
+
+        <StSignInButton type="submit" $color="point" $size="lg" $round="lg">
+          <MdDoneOutline />
+          로그인
+        </StSignInButton>
+        <Link to="/"> 회원가입이 아직인가요? </Link>
       </StSignInForm>
-      <StSignInButton $color="point" $size="lg" $round="lg">
-        <MdDoneOutline />
-        로그인
-      </StSignInButton>
-      <Link to="/"> 회원가입이 아직인가요? </Link>
     </StContainer>
   );
 }
@@ -42,7 +61,7 @@ const StContainer = styled.div`
 const StSignInForm = styled.form`
   display: flex;
   justify-content: space-evenly;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   margin: 50px;
   height: 350px;
