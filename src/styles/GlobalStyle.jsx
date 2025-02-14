@@ -9,6 +9,8 @@ const GlobalStyle = createGlobalStyle`
     --color-point-light: #f5eaff;
     --color-point-dark: #b699d6;
     --color-border: #b2b9C0;
+    --color-white: white;
+    --color-black: black;
 
     --round-sm: 4px;
     --round-md: 6px;
