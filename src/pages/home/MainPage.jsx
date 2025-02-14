@@ -1,12 +1,12 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import HomeFilter from '@features/home/HomeFilter';
+import HomeFilterTab from '@features/home/HomeFilter';
 import HomePost from '@features/home/HomePost';
 
 export default function MainPage() {
   return (
     <StMainContainer>
-      <HomeFilter />
+      <HomeFilterTab />
       <HomePost />
     </StMainContainer>
   );

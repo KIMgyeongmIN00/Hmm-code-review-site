@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export default function HomeFilter() {
+export default function HomeFilterTab() {
   return (
     <StFilterContainer>
       <p>HomeFilter1</p>
       <p>HomeFilter2</p>
-      <p>HomeFilter3</p>
+      <input type="radio"></input>
     </StFilterContainer>
   );
 }
