@@ -8,7 +8,7 @@ let IsAuth = true;
 export default function Header() {
   return (
     <StContainer>
-      <LogoImg src="/image/logo2.png" />
+      <LogoImg src="/image/logo.png" />
       <StWrapper>
         <SearchInput />
         {IsAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
