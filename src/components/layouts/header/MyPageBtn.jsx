@@ -1,40 +1,64 @@
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
+import Button from '@commons/Button';
 
 export default function MyPageBtn() {
   return (
     <StContainer>
       <StMypageIcon />
-      <StModalBox />
+      <StModalBox>
+        <StUl>
+          <Button $variant="ghost">글 작성</Button>
+          <Button $variant="ghost">마이 페이지</Button>
+          <Button $variant="ghost">로그 아웃</Button>
+        </StUl>
+      </StModalBox>
     </StContainer>
   );
 }
 
+const StModalBox = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  width: 120px;
+  height: 100px;
+  padding: 10px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-main-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+`;
+
+const StUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 4px;
+`;
+
 const StContainer = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: column;
   align-items: center;
   margin: 0 50px 0 60px;
-`;
-
-const StMypageIcon = styled(MdOutlinePerson)`
-  display: flex;
-  align-items: center;
-  border: 1px solid var(--color-main-light);
-  border-radius: var(--round-full);
-  width: 20px;
-  height: 20px;
-  &:hover + div {
+  &:hover ${StModalBox} {
     opacity: 1;
     visibility: visible;
   }
 `;
 
-const StModalBox = styled.div`
-  opacity: 0;
-  visibility: hidden;
-  padding: 10px;
-  background-color: var(--color-point);
-  border-radius: 8px;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+const StMypageIcon = styled(MdOutlinePerson)`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-main-light);
+  border-radius: var(--round-full);
 `;
