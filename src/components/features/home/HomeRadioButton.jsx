@@ -12,41 +12,50 @@ export default function HomeRadioButton() {
   return (
     <StRadioContainer>
       <StRadioButton
-        id="latest"
+        id={sortConstants.SORT_LATEST}
         name="sort"
         type="radio"
-        value="latest"
-        checked={sort === 'latest'}
+        value={sortConstants.SORT_LATEST}
+        checked={sort === sortConstants.SORT_LATEST}
         onChange={sortChanged}
       ></StRadioButton>
-      <StRadioLabel htmlFor="latest">최신순</StRadioLabel>
+      <StRadioLabel htmlFor={sortConstants.SORT_LATEST}>최신순</StRadioLabel>
       <StRadioButton
-        id="like"
+        id={sortConstants.SORT_LIKE}
         name="sort"
         type="radio"
-        value="like"
-        checked={sort === 'like'}
+        value={sortConstants.SORT_LIKE}
+        checked={sort === sortConstants.SORT_LIKE}
         onChange={sortChanged}
       ></StRadioButton>
-      <StRadioLabel htmlFor="like">좋아요순</StRadioLabel>
+      <StRadioLabel htmlFor={sortConstants.SORT_LIKE}>좋아요순</StRadioLabel>
       <StRadioButton
-        id="comment"
+        id={sortConstants.SORT_COMMENT}
         name="sort"
         type="radio"
-        value="comment"
-        checked={sort === 'comment'}
+        value={sortConstants.SORT_COMMENT}
+        checked={sort === sortConstants.SORT_COMMENT}
         onChange={sortChanged}
       ></StRadioButton>
-      <StRadioLabel htmlFor="comment">댓글순</StRadioLabel>
+      <StRadioLabel htmlFor={sortConstants.SORT_COMMENT}>댓글순</StRadioLabel>
     </StRadioContainer>
   );
 }
 
+const sortConstants = {
+  SORT_LATEST: 'latest',
+  SORT_LIKE: 'like',
+  SORT_COMMENT: 'comment'
+};
+
 const StRadioContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0 20px 0 0;
   align-items: center;
+  border: 1px solid;
+  border-radius: var(--round-sm);
+  margin: 0 20px 0 0;
+  overflow: hidden;
 `;
 
 const StRadioButton = styled.input`
@@ -55,9 +64,25 @@ const StRadioButton = styled.input`
 `;
 
 const StRadioLabel = styled.label`
+  display: flex;
+  width: 45px;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+
+  padding: 10px 10px;
+  cursor: pointer;
+
+  &:not(:last-of-type) {
+    border-right: 1px solid #ccc;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+
   ${StRadioButton}:checked + & {
-    background-color: #d1d5da;
-    color: #333;
-    font-weight: 700;
+    background-color: var(--color-point);
+    color: var(--color-main);
   }
 `;
