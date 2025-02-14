@@ -17,6 +17,11 @@ const GlobalStyle = createGlobalStyle`
     --round-lg: 12px;
     --round-xl: 20px;
     --round-full: 100%
+
+    --height-sm: 20px;
+    --height-md: 32px;
+    --height-lg: 48px;
+
   }
 
   a {
