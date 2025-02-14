@@ -3,7 +3,7 @@ import SearchInput from '@header/SearchInput';
 import MyPageBtn from '@header/MyPageBtn';
 import AuthBtn from '@header/AuthBtn';
 
-let IsAuth = false;
+let IsAuth = true;
 
 export default function Header() {
   return (
