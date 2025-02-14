@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export default function Input({ placeholder, type, icon: Icon }) {
+export default function Input({ icon: Icon, ...props }) {
   return (
     <StInputContainer>
       {/*Icon이 있을 때만 이미지 표현*/}
       {Icon && <Icon />}
-      <input type={type} placeholder={placeholder} />
+      <input {...props} />
     </StInputContainer>
   );
 }
