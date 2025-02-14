@@ -7,7 +7,7 @@ export default function HomeFilterSelectBox() {
 
   return (
     <StFilterSelectBoxWrapper>
-      <StFilterSelectBox
+      <SelectBox
         value={language}
         onChange={(e) => setLanguage(e)}
         placeholder="언어 선택"
@@ -28,5 +28,3 @@ export default function HomeFilterSelectBox() {
 const StFilterSelectBoxWrapper = styled.div`
   width: 120px;
 `;
-
-const StFilterSelectBox = styled(SelectBox)``;
