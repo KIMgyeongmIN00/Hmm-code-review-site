@@ -1,11 +1,19 @@
-import Header from '@layouts/header/Header';
-import MainPage from '@pages/home/MainPage';
+import { styled } from 'styled-components';
+import HomeFilterTab from '@features/home/HomeFilterTab';
+import HomePost from '@features/home/HomePost';
 
 export default function HomePage() {
   return (
     <>
-      <Header />
-      <MainPage />
+      <StMainContainer>
+        <HomeFilterTab />
+        <HomePost />
+      </StMainContainer>
     </>
   );
 }
+const StMainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
