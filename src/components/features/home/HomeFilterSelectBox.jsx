@@ -4,16 +4,15 @@ import SelectBox from '@/components/commons/SelectBox';
 
 export default function HomeFilterSelectBox() {
   const [language, setLanguage] = useState('');
-  const setSortLanguage = function (e) {
-    setLanguage(e);
-  };
+
   return (
     <StFilterSelectBoxWrapper>
       <StFilterSelectBox
         value={language}
-        onChange={setSortLanguage}
+        onChange={(e) => setLanguage(e)}
         placeholder="언어 선택"
         options={[
+          { id: 0, name: '전체' },
           { id: 1, name: 'C++' },
           { id: 2, name: 'JavaScript' },
           { id: 3, name: 'Python' },
