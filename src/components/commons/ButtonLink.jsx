@@ -24,9 +24,9 @@ import { Link } from 'react-router-dom';
  * @prop {string} [$round="md"] - 모서리 둥글기 정도 ("sm" | "md" | "lg" | "xl")
  */
 export default function ButtonLink({ children, ...props }) {
-  return (
-    <Button as={Link} {...props}>
-      {children}
-    </Button>
-  );
+ return (
+  <Button as={Link} {...props}>
+   {children}
+  </Button>
+ );
 }
