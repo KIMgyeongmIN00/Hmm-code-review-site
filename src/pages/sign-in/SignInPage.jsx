@@ -3,10 +3,10 @@ import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icon
 import Button from '@commons/Button';
 import Input from '@commons/Input';
 import { Link } from 'react-router-dom';
-import useAuth from '@/hooks/signIn/useAuth';
+import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
-  const { email, password, handleEmailChange, handlePasswordChange, handleSignIn } = useAuth();
+  const { email, password, handleEmailChange, handlePasswordChange, handleSignIn } = useSignInForm();
   return (
     <StContainer>
       <h2>signin page</h2>

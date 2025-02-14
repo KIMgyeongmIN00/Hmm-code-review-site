@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '@libs/supabase/supabase';
 
-export default function useAuth() {
-  const [email, SetEmail] = useState('');
+export default function useSignInForm() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
   function handleEmailChange(e) {
-    SetEmail(e.target.value);
+    setEmail(e.target.value);
   }
 
   function handlePasswordChange(e) {
