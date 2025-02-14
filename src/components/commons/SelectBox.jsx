@@ -1,39 +1,16 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const MOCK = [
-	{
-		id: 1,
-		name: 'Javascript',
-	},
-	{
-		id: 2,
-		name: 'Python',
-	},
-	{
-		id: 3,
-		name: 'Java',
-	},
-];
-
-function SelectBox({
-	value,
-	placeholder = '선택해주세요',
-	options = MOCK,
-	onChange,
-}) {
+function SelectBox({ value, placeholder, options, size, onChange }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleTriggerClick = () => {
 		setIsOpen(!isOpen);
 	};
 
-	return (
-		<>
-			<StSelectTrigger onClick={handleTriggerClick}>
-				{value || placeholder}
-			</StSelectTrigger>
-			{isOpen && (
+	function SelectOptions() {
+		return (
+			isOpen && (
 				<StSelectOptions>
 					{options.map((option) => (
 						<StSelectOption
@@ -44,13 +21,25 @@ function SelectBox({
 						</StSelectOption>
 					))}
 				</StSelectOptions>
-			)}
+			)
+		);
+	}
+
+	return (
+		<>
+			<StSelectTrigger onClick={handleTriggerClick}>
+				{value || placeholder}
+			</StSelectTrigger>
+			<SelectOptions />
 		</>
 	);
 }
 
 const StSelectTrigger = styled.div`
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	user-select: none;
 `;
 
 const StSelectOptions = styled.div`
