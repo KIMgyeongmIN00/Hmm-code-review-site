@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SearchInput from '@layouts/header/SearchInput';
-import HomeMyPageBtn from '@layouts/header/MyPageBtn';
-import HomeAuthBtn from '@layouts/header/AuthBtn';
+import HomeMyPageBtn from '@layouts/header/HomeMyPageBtn';
+import HomeAuthBtn from '@layouts/header/HomeAuthBtn';
 
 let isAuth = true;
 
