@@ -1,21 +1,30 @@
 import styled from 'styled-components';
 import HomeRadioButton from '@features/home/HomeRadioButton';
 import SelectBox from '@/components/commons/SelectBox';
+import { useState } from 'react';
 
 export default function HomeFilterTab() {
+  const [language, setLanguage] = useState('');
+  const setSortLanguage = function (e) {
+    setLanguage(e);
+  };
   return (
     <StFilterContainer>
-      <StFilterSelectBox
-        placeholder="언어 선택"
-        options={[
-          { id: 1, name: 'C++' },
-          { id: 2, name: 'JavaScript' },
-          { id: 3, name: 'Python' },
-          { id: 4, name: 'Kotlin' },
-          { id: 5, name: 'Java' }
-        ]}
-        size="sm"
-      />
+      <StFilterSelectBoxWrapper>
+        <StFilterSelectBox
+          value={language}
+          onChange={setSortLanguage}
+          placeholder="언어 선택"
+          options={[
+            { id: 1, name: 'C++' },
+            { id: 2, name: 'JavaScript' },
+            { id: 3, name: 'Python' },
+            { id: 4, name: 'Kotlin' },
+            { id: 5, name: 'Java' }
+          ]}
+          size="sm"
+        />
+      </StFilterSelectBoxWrapper>
       <HomeRadioButton />
     </StFilterContainer>
   );
@@ -29,10 +38,10 @@ const StFilterContainer = styled.div`
   width: 100%;
   height: 60px;
   gap: 20px;
-
-  background-color: green;
 `;
 
-const StFilterSelectBox = styled(SelectBox)`
-  /* height: var(--height-md); */
+const StFilterSelectBoxWrapper = styled.div`
+  width: 120px;
 `;
+
+const StFilterSelectBox = styled(SelectBox)``;
