@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import HomeRadioButton from '@features/home/HomeRadioButton';
+import SelectBox from '@/components/commons/SelectBox';
 
 export default function HomeFilterTab() {
   return (
     <StFilterContainer>
-      <p>HomeFilter1</p>
-      <p>HomeFilter2</p>
+      <StFilterSelectBox />
       <HomeRadioButton />
     </StFilterContainer>
   );
@@ -19,4 +19,8 @@ const StFilterContainer = styled.div`
   width: 100%;
   height: 60px;
   gap: 20px;
+
+  background-color: green;
 `;
+
+const StFilterSelectBox = styled(SelectBox)``;
