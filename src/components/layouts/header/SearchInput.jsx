@@ -1,12 +1,14 @@
 import { MdOutlineSearch } from 'react-icons/md';
 import styled from 'styled-components';
+import Input from '@commons/Input';
 
 export default function SearchInput() {
   return (
-    <StContainer>
-      <SearchIcon />
-      <input placeholder="search keyword..."></input>
-    </StContainer>
+    // <StContainer>
+    //   <SearchIcon />
+    //   <input placeholder="search keyword..."></input>
+    // </StContainer>
+    <Input icon={MdOutlineSearch}></Input>
   );
 }
 
