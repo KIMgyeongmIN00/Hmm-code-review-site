@@ -11,12 +11,12 @@ export default function SigninPage() {
       <StLoginForm>
         <div>
           <label>아이디: </label>
-          <Input placeholder="Insert your email" type="text" fontSize="16px" icon={MdEmail} />
+          <Input type="text" placeholder="Insert your email" fontSize="16px" icon={MdEmail} />
         </div>
 
         <div>
           <label>비밀번호: </label>
-          <Input placeholder="Insert your password" type="password" icon={MdOutlinePrivateConnectivity} />
+          <Input type="password" placeholder="Insert your password" icon={MdOutlinePrivateConnectivity} />
         </div>
       </StLoginForm>
       <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
