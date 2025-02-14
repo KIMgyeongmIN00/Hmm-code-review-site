@@ -106,13 +106,15 @@ const SelectTrigger = styled.div`
 	background: white;
 	border: 1px solid var(--color-border);
 	cursor: pointer;
-	gap: 4px;
+	gap: 0.5rem;
 	${({ $size }) => sizeStyles[$size]}
 	${({ $size }) => sizeHeight[$size]}
     ${({ $isPlaceholder }) => css`
-		color: ${$isPlaceholder
-			? 'var(--color-main-light)'
-			: 'var(--color-text)'};
+		& > p {
+			color: ${$isPlaceholder
+				? 'var(--color-main-light)'
+				: 'var(--color-black)'};
+		}
 	`}
 `;
 
