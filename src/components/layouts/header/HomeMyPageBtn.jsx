@@ -7,11 +7,11 @@ export default function HomeMyPageBtn() {
     <StContainer>
       <StMypageIcon />
       <StModalBox>
-        <StUl>
+        <StDropdown>
           <Button $variant="ghost">글 작성</Button>
           <Button $variant="ghost">마이 페이지</Button>
           <Button $variant="ghost">로그 아웃</Button>
-        </StUl>
+        </StDropdown>
       </StModalBox>
     </StContainer>
   );
@@ -34,7 +34,7 @@ const StModalBox = styled.div`
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
 
-const StUl = styled.ul`
+const StDropdown = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
