@@ -10,7 +10,6 @@ export default defineConfig({
       { find: '@commons', replacement: '/src/components/commons' },
       { find: '@features', replacement: '/src/components/features' },
       { find: '@layouts', replacement: '/src/components/layouts' },
-      { find: '@header', replacement: '/src/components/layouts/header' },
       { find: '@constants', replacement: '/src/constants' },
       { find: '@pages', replacement: '/src/pages' }
     ]
