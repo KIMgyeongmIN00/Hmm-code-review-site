@@ -1,22 +1,26 @@
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
-import ButtonLink from '@commons/ButtonLink';
 
 export default function MyPageBtn() {
   return (
-    <StMypageBtn $variant="outline">
+    <StWrapper>
       <StMypageIcon />
-    </StMypageBtn>
+    </StWrapper>
   );
 }
 
-const StMypageBtn = styled(ButtonLink)`
-  margin: 0 10px 0 0;
-  border-radius: var(--round-xl);
+const StWrapper = styled.div`
+  display: flex;
+  flex-wrap: row;
+  align-items: center;
+  margin: 0 50px 0 60px;
 `;
 
 const StMypageIcon = styled(MdOutlinePerson)`
   display: flex;
   align-items: center;
-  border-radius: var(--round-xl);
+  border: 1px solid var(--color-main-light);
+  border-radius: var(--round-full);
+  width: 20px;
+  height: 20px;
 `;
