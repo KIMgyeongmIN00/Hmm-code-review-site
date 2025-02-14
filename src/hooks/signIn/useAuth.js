@@ -24,7 +24,7 @@ export default function useAuth() {
       alert('로그인 성공!');
       navigate('/');
     } catch (error) {
-      alert('아이이디와 비밀번호가 일치하지 않습니다!');
+      alert('아이디와 비밀번호가 일치하지 않습니다!');
       console.error(error);
     }
   }
