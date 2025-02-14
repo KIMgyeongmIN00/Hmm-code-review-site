@@ -12,14 +12,14 @@ export default function SearchInput() {
 
 const SearchIcon = styled(MdOutlineSearch)`
   margin: 0 5px 0 5px;
+  color: var(--color-main-light);
 `;
 
 const StContainer = styled.div`
   height: 30px;
   box-sizing: border-box;
 
-  background: #ffffff;
-  border: 1px solid #b2b9c0;
+  border: 1px solid var(--color-main-light);
   border-radius: 6px;
 
   display: flex;
