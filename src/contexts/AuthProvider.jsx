@@ -4,7 +4,11 @@ import authReducer from './auth.reducer';
 import supabase from '../lib/supabase/supabase.api';
 
 export default function AuthProvider({ children }) {
-  const [isAuth, dispatch] = useReducer(authReducer, false);
+  const [isAuth, dispatch] = useReducer(authReducer, {
+    login: false,
+    userId: '',
+    userNickName: ''
+  });
 
   useEffect(() => {
     const {

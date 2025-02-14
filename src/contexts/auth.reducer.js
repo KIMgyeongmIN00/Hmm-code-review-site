@@ -8,6 +8,5 @@ export default function authReducer(state, action) {
       state = action.payload;
       break;
   }
-  console.log('state', state);
   return state;
 }
