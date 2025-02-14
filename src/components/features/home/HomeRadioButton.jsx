@@ -79,6 +79,6 @@ const StRadioContainer = styled.div`
 
   & > input[type='radio']:checked + label {
     background-color: var(--color-point);
-    color: var(--color-main);
+    color: var(--color-white);
   }
 `;

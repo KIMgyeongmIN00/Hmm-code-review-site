@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import SelectBox from '@/components/commons/SelectBox';
+import SelectBox from '@commons/SelectBox';
 
-export default function HomeFilterSelectBox() {
+export default function HomeLanguageSelector() {
   const [language, setLanguage] = useState('');
 
   return (
-    <StFilterSelectBoxWrapper>
+    <StLanguageSelectorWrapper>
       <SelectBox
         value={language}
         onChange={(e) => setLanguage(e)}
@@ -21,10 +21,10 @@ export default function HomeFilterSelectBox() {
         ]}
         size="sm"
       />
-    </StFilterSelectBoxWrapper>
+    </StLanguageSelectorWrapper>
   );
 }
 
-const StFilterSelectBoxWrapper = styled.div`
+const StLanguageSelectorWrapper = styled.div`
   width: 120px;
 `;
