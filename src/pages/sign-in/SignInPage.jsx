@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
-  const { email, password, handleEmailChange, handlePasswordChange, handleSignIn } = useSignInForm();
+  const { signInForm, handleSignInFormChange, handleSignIn } = useSignInForm();
   return (
     <StContainer>
       <h2>signin page</h2>
@@ -14,11 +14,12 @@ export default function SigninPage() {
         <div>
           <label>아이디: </label>
           <Input
+            name="email"
             type="text"
             placeholder="Insert your email"
             width="320px"
-            value={email}
-            onChange={handleEmailChange}
+            value={signInForm.email}
+            onChange={handleSignInFormChange}
             icon={MdEmail}
             required
           />
@@ -27,11 +28,12 @@ export default function SigninPage() {
         <div>
           <label>비밀번호: </label>
           <Input
+            name="password"
             type="password"
             placeholder="Insert your password"
             width="320px"
-            value={password}
-            onChange={handlePasswordChange}
+            value={signInForm.password}
+            onChange={handleSignInFormChange}
             icon={MdOutlinePrivateConnectivity}
             required
           />
