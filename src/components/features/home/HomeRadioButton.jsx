@@ -1,12 +1,11 @@
-import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function HomeRadioButton() {
+export default function HomePostSortRadioGroup() {
   const [sort, setSort] = useState('latest');
 
   return (
-    <StRadioContainer>
+    <StRadioGroupContainer>
       <input
         id={sortConstants.SORT_LATEST}
         name="sort"
@@ -34,7 +33,7 @@ export default function HomeRadioButton() {
         onChange={(e) => setSort(e.target.value)}
       ></input>
       <label htmlFor={sortConstants.SORT_COMMENT}>댓글순</label>
-    </StRadioContainer>
+    </StRadioGroupContainer>
   );
 }
 
@@ -44,7 +43,7 @@ const sortConstants = {
   SORT_COMMENT: 'comment'
 };
 
-const StRadioContainer = styled.div`
+const StRadioGroupContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import HomeRadioButton from '@features/home/HomeRadioButton';
-import HomeFilterSelectBox from './HomeFilterSelectBox';
+import HomeFilterSelectBox from './HomeLanguageSelector';
 
 export default function HomeFilterTab() {
   return (
