@@ -11,7 +11,7 @@ export default function SigninPage() {
       <StLoginForm>
         <div>
           <label>아이디: </label>
-          <Input placeholder="Insert your email" type="text" icon={MdEmail} />
+          <Input placeholder="Insert your email" type="text" fontSize="16px" icon={MdEmail} />
         </div>
 
         <div>
