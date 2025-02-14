@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     --round-md: 6px;
     --round-lg: 12px;
     --round-xl: 20px;
-    --round-full: 100%
+    --round-full: 100%;
 
     --height-sm: 20px;
     --height-md: 32px;

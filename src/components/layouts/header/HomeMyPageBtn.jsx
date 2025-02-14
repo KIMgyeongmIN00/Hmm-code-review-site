@@ -47,6 +47,7 @@ const StContainer = styled.div`
   flex-wrap: column;
   align-items: center;
   margin: 0 50px 0 60px;
+  border-radius: var(--round-full);
   &:hover ${StModalBox} {
     opacity: 1;
     visibility: visible;
