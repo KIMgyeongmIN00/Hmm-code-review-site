@@ -34,9 +34,9 @@ const StContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 700px;
-  height: 1000px;
+  height: 880px;
   margin: 0 auto;
-
+  border: 2px solid var(--color-border);
   & label {
     margin: 0;
   }
