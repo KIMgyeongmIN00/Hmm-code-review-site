@@ -20,7 +20,6 @@ export default function HomeMyPageBtn() {
 const StModalBox = styled.div`
   position: absolute;
   top: 40px;
-  right: 5px;
   width: 120px;
   height: 100px;
   padding: 10px;
@@ -46,7 +45,8 @@ const StContainer = styled.div`
   display: flex;
   flex-wrap: column;
   align-items: center;
-  margin: 0 50px 0 60px;
+  justify-content: center;
+  margin: 0 60px 0 60px;
   border-radius: var(--round-full);
   &:hover ${StModalBox} {
     opacity: 1;
