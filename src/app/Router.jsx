@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
-import SigninPage from '@pages/sign-in/SigninPage';
+import SigninPage from '@pages/sign-in/SignInPage';
 
 const publicRoutes = [
   {
