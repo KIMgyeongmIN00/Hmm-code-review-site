@@ -13,13 +13,13 @@ export default function ViewPage() {
 }
 
 const StViewPageContainer = styled.main`
-  border: 3px solid black;
-  padding: 10px 10px 10px 10px;
-  display: flex;
+  box-shadow: 0px 0px 12px var(--color-border);
+  background-color: var(--color-point-light);
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
-  text-align: center;
   gap: 18px;
+  max-width: 1200px;
 `;
