@@ -1,6 +1,11 @@
-import { useState } from 'react';
-import SelectBox from '../components/commons/SelectBox';
+import Header from '@layouts/header/Header';
+import MainPage from './MainPage';
 
 export default function HomePage() {
-  return <h1>HomePage</h1>;
+  return (
+    <>
+      <Header />
+      <MainPage />
+    </>
+  );
 }
