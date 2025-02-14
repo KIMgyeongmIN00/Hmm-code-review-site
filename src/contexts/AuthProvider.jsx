@@ -4,20 +4,34 @@ import authReducer from './auth.reducer';
 import supabase from '../lib/supabase/supabase.api';
 
 export default function AuthProvider({ children }) {
-  const [isLogin, dispatch] = useReducer(authReducer, false);
+  const [isAuth, dispatch] = useReducer(authReducer, false);
 
   useEffect(() => {
     const {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        dispatch({ type: 'login' });
+        dispatch({
+          type: 'login',
+          payload: {
+            login: true,
+            userId: session.user.id,
+            userNickName: ''
+          }
+        });
       } else {
-        dispatch({ type: 'logout' });
+        dispatch({
+          type: 'logout',
+          payload: {
+            login: false,
+            userId: '',
+            userNickName: ''
+          }
+        });
       }
     });
     return () => subscription.unsubscribe();
   }, []);
 
-  return <AuthContext.Provider value={{ isLogin }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isAuth }}>{children}</AuthContext.Provider>;
 }
