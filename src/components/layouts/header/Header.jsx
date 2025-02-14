@@ -28,16 +28,15 @@ const StContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
+  background: var(--color-white);
   width: 100%;
   height: 80px;
-  border-bottom: 1px solid #b2b9c0;
+  border-bottom: 1px solid var(--color-main-light);
 
-  font-family: 'Open Sans';
   font-size: 16px;
   line-height: 24px;
 
-  color: #666666;
+  overflow: visible;
 `;
 
 const StWrapper = styled.div`
