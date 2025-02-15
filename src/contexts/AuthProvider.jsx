@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
       const {
         data: { subscription }
       } = supabase.auth.onAuthStateChange((event, session) => {
-        const userNickName = data.find((user) => {
+        const sessionUser = data.find((user) => {
           return user.id === session.user.id;
         });
 
@@ -32,7 +32,7 @@ export default function AuthProvider({ children }) {
             payload: {
               login: true,
               userId: session.user.id,
-              userNickName: userNickName
+              userNickName: sessionUser.nickname
             }
           });
         } else {
