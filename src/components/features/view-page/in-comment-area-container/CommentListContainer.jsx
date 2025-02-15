@@ -1,31 +1,22 @@
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
-import { FaTrashAlt, FaEdit } from 'react-icons/fa';
-import { CgProfile } from 'react-icons/cg';
+import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
 import IconButton from '@/components/commons/IconButton';
-import Button from '@commons/Button';
 import styled from 'styled-components';
+import CommentOnAuthButtons from './CommentOnAuthButtons';
 
-export default function CommentListContainer() {
+export default function CommentListContainer({ CommentWriter }) {
   return (
     <StCommentListContainer>
       <StCommentWriterContainer>
-        <CgProfile size={30} />
-        <h3>댓글 작성자</h3>
+        <StPersonIcon size={30} />
+        <h3>{CommentWriter.Nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
-        <p>괜찮습니다!길어져도 괜찮습니다!길어져도 괜찮습니다!길어져도 괜찮습니다!</p>
+        <p>{CommentWriter.Contents}</p>
       </StCommentContentWrapper>
-      <StCommentEditButtonContainer>
-        <StButton $size="sm" $variant="solid" $color="point">
-          <FaEdit />
-        </StButton>
-        <StButton $size="sm" $variant="solid" $color="point">
-          <FaTrashAlt />
-        </StButton>
-      </StCommentEditButtonContainer>
+      {CommentWriter.IsAuth ? <CommentOnAuthButtons /> : <></>}
       <StCommentLikeContainer>
-        <StIconButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-        <p>999</p>
+        <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
+        <p>{CommentWriter.Likes}</p>
       </StCommentLikeContainer>
     </StCommentListContainer>
   );
@@ -51,8 +42,19 @@ const StCommentWriterContainer = styled.div`
   margin-left: 20px;
 
   & > h3 {
+    margin-left: 5px;
     margin-bottom: -5px;
   }
+`;
+
+const StPersonIcon = styled(MdOutlinePerson)`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--color-main-light);
+  border-radius: var(--round-full);
 `;
 
 const StCommentContentWrapper = styled.div`
@@ -65,17 +67,6 @@ const StCommentContentWrapper = styled.div`
   margin: 0px 12px 0px 12px;
 `;
 
-const StCommentEditButtonContainer = styled.div`
-  display: grid;
-  align-items: center;
-  grid-auto-flow: column;
-  column-gap: 6px;
-  padding: 10px 10px 10px 10px;
-  width: fit-content;
-  grid-area: 1/9/2/9;
-  justify-self: end;
-`;
-
 const StCommentLikeContainer = styled.div`
   padding: 0px 10px 10px 10px;
   grid-area: 3/9/4/10;
@@ -83,15 +74,7 @@ const StCommentLikeContainer = styled.div`
   text-align: center;
 `;
 
-const StButton = styled(Button)`
-  width: 38px;
-  height: 38px;
-  color: black;
-  background-color: transparent;
-  border: none;
-`;
-
-const StIconButton = styled(IconButton)`
+const StLikeButton = styled(IconButton)`
   font-size: 28px;
   background-color: transparent;
   border: none;

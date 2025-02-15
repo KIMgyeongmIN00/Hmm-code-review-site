@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import CommentAddContainer from './in-comment-area-container/CommentAddContainer';
 import CommentListContainer from './in-comment-area-container/CommentListContainer';
 
-export default function CommentAreaContainer() {
+export default function CommentAreaContainer({ CommentWriter }) {
   return (
     <StCommentAreaContainer>
-      <CommentListContainer />
+      <CommentListContainer CommentWriter={CommentWriter} />
       <CommentAddContainer />
     </StCommentAreaContainer>
   );

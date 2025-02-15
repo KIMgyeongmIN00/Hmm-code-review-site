@@ -1,4 +1,4 @@
-import { CgProfile } from 'react-icons/cg';
+import { MdOutlinePerson } from 'react-icons/md';
 import Button from '@commons/Button';
 import styled from 'styled-components';
 
@@ -6,7 +6,7 @@ export default function CommentAddContainer() {
   return (
     <StCommentAddContainer>
       <StCommentAdderWrapper>
-        <CgProfile size={30} />
+        <StPersonIcon size={30} />
         <h3>당신의 닉네임</h3>
       </StCommentAdderWrapper>
       <StInput type="text" placeholder="댓글 달기!" />
@@ -55,6 +55,17 @@ const StCommentAdderWrapper = styled.div`
   margin-left: 20px;
 
   & > h3 {
+    margin-left: 5px;
     margin-bottom: -5px;
   }
+`;
+
+const StPersonIcon = styled(MdOutlinePerson)`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--color-main-light);
+  border-radius: var(--round-full);
 `;

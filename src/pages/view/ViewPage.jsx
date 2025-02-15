@@ -4,10 +4,27 @@ import PostAreaContainer from '../../components/features/view-page/PostAreaConta
 import CommentAreaContainer from '../../components/features/view-page/CommentAreaContainer';
 
 export default function ViewPage() {
+  const PostWriter = {
+    IsAuth: true,
+    Title: '제목',
+    CodeLanguage: 'Language',
+    NickName: '글 작성자',
+    Contents: '일단 내용입니다.',
+    Comments: '15M',
+    Likes: 0
+  };
+
+  const CommentWriter = {
+    IsAuth: true,
+    Nickname: '댓글 작성자',
+    Contents: '댓글입니다.',
+    Likes: '1.1K'
+  };
+
   return (
     <StViewPageContainer>
-      <PostAreaContainer />
-      <CommentAreaContainer />
+      <PostAreaContainer PostWriter={PostWriter} />
+      <CommentAreaContainer CommentWriter={CommentWriter} />
     </StViewPageContainer>
   );
 }
