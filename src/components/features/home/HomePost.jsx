@@ -1,6 +1,5 @@
-import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
-import { MdFavoriteBorder, MdFavorite, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
+import { MdFavorite, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 import { useState } from 'react';
 
 export default function HomePost() {
@@ -11,7 +10,7 @@ export default function HomePost() {
       <StPostContent>this is test for develop.</StPostContent>
       <StIconButtonsContainer>
         <div>
-          <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
+          <StWriterIcon />
           <StIconButtonContent>author</StIconButtonContent>
         </div>
         <div>
@@ -28,10 +27,6 @@ export default function HomePost() {
     </StHomePostContainer>
   );
 }
-
-const test = () => {
-  console.log('first');
-};
 
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
@@ -53,10 +48,6 @@ const StPostContent = styled.p`
   margin: 10px;
 `;
 
-const StWriterIcon = styled(IconButton)`
-  border-radius: var(--round-full);
-`;
-
 const StIconButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -71,6 +62,7 @@ const StIconButtonsContainer = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 5px;
     }
   }
 `;
@@ -80,7 +72,17 @@ const StIconButtonContent = styled.p`
   color: var(--color-main);
 `;
 
+const StWriterIcon = styled(MdOutlinePerson)`
+  border: 1px solid var(--color-main);
+  font-size: 25px;
+  border-radius: var(--round-full);
+`;
+
 const StLikeIcon = styled(MdFavorite)`
   color: var(--color-red);
+  font-size: 20px;
 `;
-const StCommentIcon = styled(MdChatBubbleOutline)``;
+
+const StCommentIcon = styled(MdChatBubbleOutline)`
+  font-size: 20px;
+`;
