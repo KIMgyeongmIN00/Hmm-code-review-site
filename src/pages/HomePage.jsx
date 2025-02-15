@@ -4,13 +4,16 @@ import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
 import HomePost from '@features/home/HomePost';
 
 export default function HomePage() {
+  let postList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
         <HomeLanguageSelector />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
-      <HomePost />
+      {postList.map((post) => (
+        <HomePost />
+      ))}
     </StHomePageContainer>
   );
 }
