@@ -19,7 +19,7 @@ export default function HomePost() {
             <StIconButtonContent>100</StIconButtonContent>
           </div>
           <div>
-            {/* <StLikeIcon(isLikeActive) /> */}
+            <StLikeIcon isLikeActive={isLikeActive} />
             <StIconButtonContent>100</StIconButtonContent>
           </div>
         </div>
@@ -80,15 +80,12 @@ const StWriterIcon = styled(MdOutlinePerson)`
   border-radius: var(--round-full);
 `;
 
-// const StLikeIcon = state
-//   ? styled(MdFavorite)`
-//       color: var(--color-red);
-//       font-size: 20px;
-//     `
-//   : styled(MdFavoriteOutline)`
-//       color: var(--color-red);
-//       font-size: 20px;
-//     `;
+const StLikeIcon = styled(({ isLikeActive, ...rest }) =>
+  isLikeActive ? <MdFavorite {...rest} /> : <MdFavoriteBorder {...rest} />
+)`
+  color: var(--color-red);
+  font-size: 20px;
+`;
 
 const StCommentIcon = styled(MdChatBubbleOutline)`
   font-size: 20px;
