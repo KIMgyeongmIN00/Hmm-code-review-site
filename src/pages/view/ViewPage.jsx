@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import PostAreaContainer from '../../components/features/view-page/PostAreaContainer';
-import CommentAreaContainer from '../../components/features/view-page/CommentAreaContainer';
+import PostAreaContainer from '@features/view-page/PostAreaContainer';
+import CommentAreaContainer from '@features/view-page/CommentAreaContainer';
 
 export default function ViewPage() {
   const PostWriter = {

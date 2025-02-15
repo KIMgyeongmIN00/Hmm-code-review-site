@@ -11,7 +11,10 @@ export default defineConfig({
       { find: '@features', replacement: '/src/components/features' },
       { find: '@layouts', replacement: '/src/components/layouts' },
       { find: '@constants', replacement: '/src/constants' },
-      { find: '@pages', replacement: '/src/pages' }
+      { find: '@pages', replacement: '/src/pages' },
+      { find: '@libs', replacement: '/src/libs' },
+      { find: '@hooks', replacement: '/src/hooks' },
+      { find: '@utils', replacement: '/src/utils' }
     ]
   }
 });
