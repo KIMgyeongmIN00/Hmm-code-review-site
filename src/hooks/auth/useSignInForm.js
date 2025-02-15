@@ -24,7 +24,6 @@ export default function useSignInForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
-      throw error;
     } else {
       navigate('/');
     }
