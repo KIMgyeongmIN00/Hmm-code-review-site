@@ -1,6 +1,6 @@
 import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
-import { MdFavoriteBorder, MdFavorite, MdChatBubbleOutline } from 'react-icons/md';
+import { MdFavoriteBorder, MdFavorite, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 import { useState } from 'react';
 
 export default function HomePost() {
@@ -9,12 +9,9 @@ export default function HomePost() {
     <StHomePostContainer>
       <StPostTitle>Card Title</StPostTitle>
       <StPostContent>this is test for develop.</StPostContent>
+      <IconButton activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></IconButton>
       <IconButton activeIcon={MdFavorite} inActiveIcon={MdFavoriteBorder} onClick={(e) => setIsActive(!e)} />
-      <IconButton
-        activeIcon={MdChatBubbleOutline}
-        inActiveIcon={MdChatBubbleOutline}
-        onClick={console.log('gotoPage')}
-      />
+      <IconButton activeIcon={MdChatBubbleOutline} inActiveIcon={MdChatBubbleOutline} />
     </StHomePostContainer>
   );
 }
