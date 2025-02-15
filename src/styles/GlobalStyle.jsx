@@ -22,7 +22,8 @@ const GlobalStyle = createGlobalStyle`
     --height-sm: 20px;
     --height-md: 32px;
     --height-lg: 48px;
-
+    --height-xl: 100px;
+    
     --width-max: 1200px;
     --font-size-sm: 12px;
     --font-size-md: 16px;
