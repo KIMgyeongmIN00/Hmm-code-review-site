@@ -14,10 +14,7 @@ export default function AuthProvider({ children }) {
     const getAuthInfo = async () => {
       const { data, error } = await supabase.from('users').select('*');
 
-      if (error) {
-        console.log('error', error);
-        throw error;
-      }
+      if (error) throw error;
 
       const {
         data: { subscription }
