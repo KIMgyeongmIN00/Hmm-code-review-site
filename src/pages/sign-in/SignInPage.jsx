@@ -8,7 +8,7 @@ export default function SigninPage() {
   return (
     <StContainer>
       <h2>signin page</h2>
-      <StLoginForm>
+      <StSignInForm>
         <div>
           <label>아이디: </label>
           <Input type="text" placeholder="Insert your email" fontSize="16px" icon={MdEmail} />
@@ -18,11 +18,11 @@ export default function SigninPage() {
           <label>비밀번호: </label>
           <Input type="password" placeholder="Insert your password" icon={MdOutlinePrivateConnectivity} />
         </div>
-      </StLoginForm>
-      <StLoginButton $varient="solid" $color="point" $size="lg" $round="lg">
+      </StSignInForm>
+      <StSignInButton $color="point" $size="lg" $round="lg">
         <MdDoneOutline />
         로그인
-      </StLoginButton>
+      </StSignInButton>
       <Link to="/"> 회원가입이 아직인가요? </Link>
     </StContainer>
   );
@@ -39,7 +39,7 @@ const StContainer = styled.div`
   border: 2px solid var(--color-border);
 `;
 
-const StLoginForm = styled.form`
+const StSignInForm = styled.form`
   display: flex;
   justify-content: space-evenly;
   align-items: start;
@@ -48,7 +48,7 @@ const StLoginForm = styled.form`
   height: 350px;
 `;
 
-const StLoginButton = styled(Button)`
+const StSignInButton = styled(Button)`
   text-align: center;
   line-height: normal;
   width: 360px;

@@ -13,8 +13,10 @@ export default function ViewPage() {
 }
 
 const StViewPageContainer = styled.main`
-  box-shadow: 0px 0px 12px var(--color-border);
-  background-color: var(--color-point-light);
+  /* box-shadow: 0px 0px 12px var(--color-border); */
+  border: 1px solid var(--color-border);
+  border-radius: var(--round-md);
+  background-color: var(--color-white);
   align-items: center;
   justify-content: center;
   margin-left: auto;
@@ -22,4 +24,5 @@ const StViewPageContainer = styled.main`
   flex-direction: column;
   gap: 18px;
   max-width: 1200px;
+  font-size: var(--font-size-md);
 `;

@@ -53,7 +53,7 @@ const buttonStyles = {
       }
     `,
     ghost: (color) => css`
-      background: white;
+      background: transparent;
       color: var(--color-${color});
       &:hover {
         background: var(--color-${color}-light);
