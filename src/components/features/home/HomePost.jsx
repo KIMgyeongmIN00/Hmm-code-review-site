@@ -39,7 +39,7 @@ const test = () => {
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
-  height: var(--height-xl);
+  height: 100px;
   width: 800px;
   padding: 10px;
 `;
