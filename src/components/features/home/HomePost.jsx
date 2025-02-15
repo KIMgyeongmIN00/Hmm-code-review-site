@@ -10,7 +10,10 @@ export default function HomePost() {
       <StPostTitle>Card Title</StPostTitle>
       <StPostContent>this is test for develop.</StPostContent>
       <StIconButtonsContainer>
-        <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
+        <div>
+          <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
+          <StIconButtonContent>author</StIconButtonContent>
+        </div>
         <div>
           <div>
             <IconButton
@@ -19,7 +22,7 @@ export default function HomePost() {
               onClick={test}
               $variant="ghost"
             />
-            <StIconButtonCounter>100</StIconButtonCounter>
+            <StIconButtonContent>100</StIconButtonContent>
           </div>
           <div>
             <IconButton
@@ -28,7 +31,7 @@ export default function HomePost() {
               onClick={(e) => setIsActive(!e)}
               $variant="ghost"
             />
-            <StIconButtonCounter>100</StIconButtonCounter>
+            <StIconButtonContent>100</StIconButtonContent>
           </div>
         </div>
       </StIconButtonsContainer>
@@ -42,11 +45,10 @@ const test = () => {
 
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
-  border-radius: var(--round-md);
+  border-radius: var(--round-lg);
   height: 100px;
   width: 800px;
   padding: 10px;
-  /* background-color: green; */
 `;
 
 const StPostTitle = styled.h1`
@@ -70,7 +72,6 @@ const StIconButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-
   & > div {
     display: flex;
     flex-direction: row;
@@ -84,7 +85,7 @@ const StIconButtonsContainer = styled.div`
   }
 `;
 
-const StIconButtonCounter = styled.p`
+const StIconButtonContent = styled.p`
   font-size: var(--font-size-md);
   color: var(--color-main);
 `;
