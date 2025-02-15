@@ -4,38 +4,54 @@ import authReducer from './auth.reducer';
 import supabase from '../lib/supabase/supabase.api';
 
 export default function AuthProvider({ children }) {
-  const [isAuth, dispatch] = useReducer(authReducer, {
+  const [isLogin, dispatch] = useReducer(authReducer, {
     login: false,
     userId: '',
     userNickName: ''
   });
 
   useEffect(() => {
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        dispatch({
-          type: 'login',
-          payload: {
-            login: true,
-            userId: session.user.id,
-            userNickName: ''
-          }
-        });
-      } else {
-        dispatch({
-          type: 'logout',
-          payload: {
-            login: false,
-            userId: '',
-            userNickName: ''
-          }
-        });
+    const getAuthInfo = async () => {
+      const { data, error } = await supabase.from('users').select('*');
+
+      if (error) {
+        console.log('error', error);
+        throw error;
       }
-    });
-    return () => subscription.unsubscribe();
+
+      const {
+        data: { subscription }
+      } = supabase.auth.onAuthStateChange((event, session) => {
+        const userNickName = data.find((user) => {
+          return user.id === session.user.id;
+        });
+
+        if (session) {
+          dispatch({
+            type: 'login',
+            payload: {
+              login: true,
+              userId: session.user.id,
+              userNickName: userNickName
+            }
+          });
+        } else {
+          dispatch({
+            type: 'logout',
+            payload: {
+              login: false,
+              userId: '',
+              userNickName: ''
+            }
+          });
+        }
+      });
+
+      return () => subscription.unsubscribe();
+    };
+
+    getAuthInfo();
   }, []);
 
-  return <AuthContext.Provider value={{ isAuth }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isLogin }}>{children}</AuthContext.Provider>;
 }
