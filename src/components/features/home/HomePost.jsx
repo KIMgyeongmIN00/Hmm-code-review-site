@@ -81,6 +81,6 @@ const StIconButtonContent = styled.p`
 `;
 
 const StLikeIcon = styled(MdFavorite)`
-  color: var(--color-point);
+  color: var(--color-red);
 `;
 const StCommentIcon = styled(MdChatBubbleOutline)``;
