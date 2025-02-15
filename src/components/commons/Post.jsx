@@ -3,12 +3,7 @@ import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } fr
 
 export default function Post({ postData: PostData, ...props }) {
   let isLikeActive = false;
-  let postTitle = 'Title';
-  let languageType = 'C++';
-  let createAt = '2025년 *월 *일 **시 **분';
-  let author = 'tester';
-  let totalLikeCount = 100;
-  let totalCommentCount = 100;
+
   return (
     <StHomePostContainer>
       <StPostTitle>{PostData.postTitle}</StPostTitle>
@@ -39,7 +34,7 @@ const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
   height: 100px;
-  width: 800px;
+  width: 100%;
   padding: 10px;
 `;
 
