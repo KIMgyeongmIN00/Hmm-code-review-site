@@ -12,20 +12,24 @@ export default function HomePost() {
       <StIconButtonsContainer>
         <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
         <div>
-          <IconButton
-            activeIcon={MdChatBubbleOutline}
-            inActiveIcon={MdChatBubbleOutline}
-            onClick={test}
-            $variant="ghost"
-          />
-          <StIconButtonCounter>100</StIconButtonCounter>
-          <IconButton
-            activeIcon={StActiveLikeIconButton}
-            inActiveIcon={StNotActiveLikeIconButton}
-            onClick={(e) => setIsActive(!e)}
-            $variant="ghost"
-          />
-          <StIconButtonCounter>100</StIconButtonCounter>
+          <div>
+            <IconButton
+              activeIcon={MdChatBubbleOutline}
+              inActiveIcon={MdChatBubbleOutline}
+              onClick={test}
+              $variant="ghost"
+            />
+            <StIconButtonCounter>100</StIconButtonCounter>
+          </div>
+          <div>
+            <IconButton
+              activeIcon={StActiveLikeIconButton}
+              inActiveIcon={StNotActiveLikeIconButton}
+              onClick={(e) => setIsActive(!e)}
+              $variant="ghost"
+            />
+            <StIconButtonCounter>100</StIconButtonCounter>
+          </div>
         </div>
       </StIconButtonsContainer>
     </StHomePostContainer>
@@ -42,11 +46,20 @@ const StHomePostContainer = styled.div`
   height: 100px;
   width: 800px;
   padding: 10px;
+  /* background-color: green; */
 `;
 
-const StPostTitle = styled.h1``;
+const StPostTitle = styled.h1`
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--color-main-dark);
+  margin: 10px;
+`;
 
-const StPostContent = styled.p``;
+const StPostContent = styled.p`
+  color: var(--color-main-light);
+  margin: 10px;
+`;
 
 const StWriterIcon = styled(IconButton)`
   border-radius: var(--round-full);
@@ -57,10 +70,17 @@ const StIconButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+
   & > div {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 10px;
+    & > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 `;
 
