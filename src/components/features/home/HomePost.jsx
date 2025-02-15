@@ -3,24 +3,32 @@ import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } fr
 
 export default function HomePost() {
   let isLikeActive = false;
+  let postTitle = 'Title';
+  let languageType = 'C++';
+  let createAt = '2025년 *월 *일 **시 **분';
+  let author = 'tester';
+  let totalLikeCount = 100;
+  let totalCommentCount = 100;
 
   return (
     <StHomePostContainer>
-      <StPostTitle>Title</StPostTitle>
-      <StPostContent>this is test for develop.</StPostContent>
+      <StPostTitle>{postTitle}</StPostTitle>
+      <StPostInfo>
+        {languageType}·{createAt}
+      </StPostInfo>
       <StIconButtonsContainer>
         <div>
           <StWriterIcon />
-          <StIconButtonContent>author</StIconButtonContent>
+          <StIconButtonContent>{author}</StIconButtonContent>
         </div>
         <div>
           <div>
             <StCommentIcon />
-            <StIconButtonContent>100</StIconButtonContent>
+            <StIconButtonContent>{totalCommentCount}</StIconButtonContent>
           </div>
           <div>
             <StLikeIcon isLikeActive={isLikeActive} />
-            <StIconButtonContent>100</StIconButtonContent>
+            <StIconButtonContent>{totalLikeCount}</StIconButtonContent>
           </div>
         </div>
       </StIconButtonsContainer>
@@ -45,8 +53,10 @@ const StPostTitle = styled.h1`
   text-overflow: ellipsis;
 `;
 
-const StPostContent = styled.p`
+const StPostInfo = styled.p`
   color: var(--color-main-light);
+  text-align: right;
+  font-size: var(--font-size-sm);
   margin: 10px;
 `;
 
