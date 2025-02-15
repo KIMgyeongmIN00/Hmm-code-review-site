@@ -9,9 +9,15 @@ export default function HomePost() {
     <StHomePostContainer>
       <StPostTitle>Card Title</StPostTitle>
       <StPostContent>this is test for develop.</StPostContent>
-      <IconButton activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></IconButton>
-      <IconButton activeIcon={MdFavorite} inActiveIcon={MdFavoriteBorder} onClick={(e) => setIsActive(!e)} />
-      <IconButton activeIcon={MdChatBubbleOutline} inActiveIcon={MdChatBubbleOutline} />
+      <StIconButtonsContainer>
+        <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
+        <div>
+          <IconButton activeIcon={MdChatBubbleOutline} inActiveIcon={MdChatBubbleOutline} />
+          <StIconButtonCounter>100</StIconButtonCounter>
+          <IconButton activeIcon={MdFavorite} inActiveIcon={MdFavoriteBorder} onClick={(e) => setIsActive(!e)} />
+          <StIconButtonCounter>100</StIconButtonCounter>
+        </div>
+      </StIconButtonsContainer>
     </StHomePostContainer>
   );
 }
@@ -27,3 +33,24 @@ const StHomePostContainer = styled.div`
 const StPostTitle = styled.h1``;
 
 const StPostContent = styled.p``;
+
+const StWriterIcon = styled(IconButton)`
+  border-radius: var(--round-full);
+`;
+
+const StIconButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  & > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
+
+const StIconButtonCounter = styled.p`
+  font-size: var(--font-size-md);
+  color: var(--color-main);
+`;
