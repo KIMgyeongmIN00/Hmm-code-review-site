@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import supabase from '@libs/supabase/supabase';
+import supabase from '@libs/supabase';
 
 export default function useSignInForm() {
   const [signInForm, setSignInForm] = useState({ email: '', password: '' });
