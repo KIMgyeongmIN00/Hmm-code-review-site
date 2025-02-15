@@ -9,9 +9,10 @@ export default function SigninPage() {
   const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
   return (
     <StContainer>
-      <h2>signin page</h2>
+      <img src="/image/logo.png" />
       <StSignInForm onSubmit={signInSubmitHandler}>
         <StErrorMessage $show={!!signInErrorMessage}>{signInErrorMessage || ''}</StErrorMessage>
+
         <div>
           <label>아이디: </label>
           <Input
@@ -39,6 +40,7 @@ export default function SigninPage() {
             required
           />
         </div>
+
         <StSignInButton type="submit" $color="point" $size="lg" $round="lg">
           <MdDoneOutline />
           로그인
@@ -58,6 +60,11 @@ const StContainer = styled.div`
   height: 880px;
   margin: 0 auto;
   border: 2px solid var(--color-border);
+
+  > img {
+    width: 400px;
+    height: 280px;
+  }
 `;
 
 const StSignInForm = styled.form`
@@ -66,7 +73,7 @@ const StSignInForm = styled.form`
   align-items: center;
   flex-direction: column;
   margin: 50px;
-  height: 350px;
+  height: 400px;
 `;
 
 const StErrorMessage = styled.p`
