@@ -16,21 +16,11 @@ export default function HomePost() {
         </div>
         <div>
           <div>
-            <IconButton
-              activeIcon={MdChatBubbleOutline}
-              inActiveIcon={MdChatBubbleOutline}
-              onClick={test}
-              $variant="ghost"
-            />
+            <StCommentIcon />
             <StIconButtonContent>100</StIconButtonContent>
           </div>
           <div>
-            <IconButton
-              activeIcon={StActiveLikeIconButton}
-              inActiveIcon={StNotActiveLikeIconButton}
-              onClick={(e) => setIsActive(!e)}
-              $variant="ghost"
-            />
+            <StLikeIcon />
             <StIconButtonContent>100</StIconButtonContent>
           </div>
         </div>
@@ -90,9 +80,7 @@ const StIconButtonContent = styled.p`
   color: var(--color-main);
 `;
 
-const StActiveLikeIconButton = styled(MdFavorite)`
+const StLikeIcon = styled(MdFavorite)`
   color: var(--color-point);
 `;
-const StNotActiveLikeIconButton = styled(MdFavoriteBorder)`
-  color: var(--color-point);
-`;
+const StCommentIcon = styled(MdChatBubbleOutline)``;
