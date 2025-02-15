@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
-  const { signInForm, errorMessage, handleSignInFormChange, handleSignIn } = useSignInForm();
+  const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
   return (
     <StContainer>
       <h2>signin page</h2>
-      <StSignInForm onSubmit={handleSignIn}>
-        <StErrorMessage $show={!!errorMessage}>{errorMessage || ''}</StErrorMessage>
+      <StSignInForm onSubmit={signInSubmitHandler}>
+        <StErrorMessage $show={!!signInErrorMessage}>{signInErrorMessage || ''}</StErrorMessage>
         <div>
           <label>아이디: </label>
           <Input
@@ -19,8 +19,8 @@ export default function SigninPage() {
             type="text"
             placeholder="이메일을 입력해주세요"
             width="320px"
-            value={signInForm.email}
-            onChange={handleSignInFormChange}
+            value={signInState.email}
+            onChange={SignInChangeHandler}
             icon={MdEmail}
             required
           />
@@ -33,8 +33,8 @@ export default function SigninPage() {
             type="password"
             placeholder="비밀번호를 입력해주세요"
             width="320px"
-            value={signInForm.password}
-            onChange={handleSignInFormChange}
+            value={signInState.password}
+            onChange={SignInChangeHandler}
             icon={MdOutlinePrivateConnectivity}
             required
           />

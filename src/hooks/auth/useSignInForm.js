@@ -3,30 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import supabase from '@libs/supabase';
 
 export default function useSignInForm() {
-  const [signInForm, setSignInForm] = useState({ email: '', password: '' });
-  const [errorMessage, setErrorMessage] = useState('');
+  const [signInState, setSignInState] = useState({ email: '', password: '' });
+  const [signInErrorMessage, setSignInErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  function handleSignInFormChange(e) {
+  function SignInChangeHandler(e) {
     const { name, value } = e.target;
-    switch (name) {
-      case 'email':
-        return setSignInForm((prev) => ({ ...prev, email: value }));
-      case 'password':
-        return setSignInForm((prev) => ({ ...prev, password: value }));
-      default:
-        break;
+
+    if (name === 'email') {
+      setSignInState((prev) => ({ ...prev, email: value }));
+    } else {
+      setSignInState((prev) => ({ ...prev, password: value }));
     }
-    setErrorMessage('');
+    setSignInErrorMessage('');
   }
 
-  async function handleSignIn(e) {
+  async function signInSubmitHandler(e) {
     e.preventDefault();
-    const { email, password } = signInForm;
+    const { email, password } = signInState;
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    console.log(error);
     if (error) {
-      setErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
+      setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
       throw error;
     } else {
       navigate('/');
@@ -34,9 +31,9 @@ export default function useSignInForm() {
   }
 
   return {
-    signInForm,
-    errorMessage,
-    handleSignInFormChange,
-    handleSignIn
+    signInState,
+    signInErrorMessage,
+    SignInChangeHandler,
+    signInSubmitHandler
   };
 }
