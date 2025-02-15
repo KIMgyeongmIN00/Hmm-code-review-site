@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { MdFavorite, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
-import { useState } from 'react';
+import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 
 export default function HomePost() {
-  const [isActive, setIsActive] = useState(false);
+  let isLikeActive = false;
+
   return (
     <StHomePostContainer>
-      <StPostTitle>Card Title</StPostTitle>
+      <StPostTitle>Title</StPostTitle>
       <StPostContent>this is test for develop.</StPostContent>
       <StIconButtonsContainer>
         <div>
@@ -19,7 +19,7 @@ export default function HomePost() {
             <StIconButtonContent>100</StIconButtonContent>
           </div>
           <div>
-            <StLikeIcon />
+            {/* <StLikeIcon(isLikeActive) /> */}
             <StIconButtonContent>100</StIconButtonContent>
           </div>
         </div>
@@ -41,6 +41,8 @@ const StPostTitle = styled.h1`
   font-weight: bold;
   color: var(--color-main-dark);
   margin: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StPostContent = styled.p`
@@ -78,10 +80,15 @@ const StWriterIcon = styled(MdOutlinePerson)`
   border-radius: var(--round-full);
 `;
 
-const StLikeIcon = styled(MdFavorite)`
-  color: var(--color-red);
-  font-size: 20px;
-`;
+// const StLikeIcon = state
+//   ? styled(MdFavorite)`
+//       color: var(--color-red);
+//       font-size: 20px;
+//     `
+//   : styled(MdFavoriteOutline)`
+//       color: var(--color-red);
+//       font-size: 20px;
+//     `;
 
 const StCommentIcon = styled(MdChatBubbleOutline)`
   font-size: 20px;
