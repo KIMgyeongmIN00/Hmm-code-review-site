@@ -12,15 +12,29 @@ export default function HomePost() {
       <StIconButtonsContainer>
         <StWriterIcon activeIcon={MdOutlinePerson} inActiveIcon={MdOutlinePerson}></StWriterIcon>
         <div>
-          <IconButton activeIcon={MdChatBubbleOutline} inActiveIcon={MdChatBubbleOutline} />
+          <IconButton
+            activeIcon={MdChatBubbleOutline}
+            inActiveIcon={MdChatBubbleOutline}
+            onClick={test}
+            $variant="ghost"
+          />
           <StIconButtonCounter>100</StIconButtonCounter>
-          <IconButton activeIcon={MdFavorite} inActiveIcon={MdFavoriteBorder} onClick={(e) => setIsActive(!e)} />
+          <IconButton
+            activeIcon={StActiveLikeIconButton}
+            inActiveIcon={StNotActiveLikeIconButton}
+            onClick={(e) => setIsActive(!e)}
+            $variant="ghost"
+          />
           <StIconButtonCounter>100</StIconButtonCounter>
         </div>
       </StIconButtonsContainer>
     </StHomePostContainer>
   );
 }
+
+const test = () => {
+  console.log('first');
+};
 
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
@@ -53,4 +67,11 @@ const StIconButtonsContainer = styled.div`
 const StIconButtonCounter = styled.p`
   font-size: var(--font-size-md);
   color: var(--color-main);
+`;
+
+const StActiveLikeIconButton = styled(MdFavorite)`
+  color: var(--color-point);
+`;
+const StNotActiveLikeIconButton = styled(MdFavoriteBorder)`
+  color: var(--color-point);
 `;
