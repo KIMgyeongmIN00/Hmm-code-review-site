@@ -4,6 +4,16 @@ export const authInitialValue = {
   nickname: ''
 };
 
+export function onLogin(userId, userNickname) {
+  return {
+    type: 'login',
+    payload: {
+      id: userId,
+      nickname: userNickname
+    }
+  };
+}
+
 export default function authReducer(state, action) {
   switch (action.type) {
     case 'login':
