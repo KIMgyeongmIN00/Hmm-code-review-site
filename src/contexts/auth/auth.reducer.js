@@ -1,12 +1,12 @@
 export const authInitialValue = {
-  isLogin: false,
+  isSignin: false,
   id: '',
   nickname: ''
 };
 
-export function onLogin(userId, userNickname) {
+export function onSignIn(userId, userNickname) {
   return {
-    type: 'login',
+    type: 'signIn',
     payload: {
       id: userId,
       nickname: userNickname
@@ -16,11 +16,11 @@ export function onLogin(userId, userNickname) {
 
 export default function authReducer(state, action) {
   switch (action.type) {
-    case 'login':
-      return (state = { ...action.payload, isLogin: true });
+    case 'signIn':
+      return (state = { ...action.payload, isSignin: true });
 
-    case 'logout':
-      return (state = { isLogin: false, id: '', nickname: '' });
+    case 'signOut':
+      return (state = { isSignin: false, id: '', nickname: '' });
   }
   return state;
 }
