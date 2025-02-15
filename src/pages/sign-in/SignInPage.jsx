@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
-  const { signInForm, handleSignInFormChange, handleSignIn } = useSignInForm();
+  const { signInForm, errorMessage, handleSignInFormChange, handleSignIn } = useSignInForm();
   return (
     <StContainer>
       <h2>signin page</h2>
       <StSignInForm onSubmit={handleSignIn}>
+        <StErrorMessage $show={!!errorMessage}>{errorMessage || ''}</StErrorMessage>
         <div>
           <label>아이디: </label>
           <Input
@@ -38,7 +39,6 @@ export default function SigninPage() {
             required
           />
         </div>
-
         <StSignInButton type="submit" $color="point" $size="lg" $round="lg">
           <MdDoneOutline />
           로그인
@@ -69,17 +69,25 @@ const StSignInForm = styled.form`
   height: 350px;
 `;
 
+const StErrorMessage = styled.p`
+  text-align: center;
+  color: red;
+  height: var(--height-sm);
+  font-size: var(--font-size-md);
+  visibility: ${(show) => (show ? 'visible' : 'hidden')};
+`;
+
 const StSignInButton = styled(Button)`
   text-align: center;
   line-height: normal;
   width: 360px;
   height: 80px;
-  font-size: 24px;
+  font-size: var(--font-size-lg);
   margin-bottom: 12px;
 
   & > svg {
     font-size: 32px;
     position: relative;
-    left: -24px;
+    left: -var(--font-size-lg);
   }
 `;
