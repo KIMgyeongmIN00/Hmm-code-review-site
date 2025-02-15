@@ -11,7 +11,7 @@ export default function HomePost() {
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
-  height: 100px;
+  height: var(--height-xl);
   width: 800px;
 `;
 
