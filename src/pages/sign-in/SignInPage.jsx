@@ -16,7 +16,7 @@ export default function SigninPage() {
           <Input
             name="email"
             type="text"
-            placeholder="Insert your email"
+            placeholder="이메일을 입력해주세요"
             width="320px"
             value={signInForm.email}
             onChange={handleSignInFormChange}
@@ -30,7 +30,7 @@ export default function SigninPage() {
           <Input
             name="password"
             type="password"
-            placeholder="Insert your password"
+            placeholder="비밀번호를 입력해주세요"
             width="320px"
             value={signInForm.password}
             onChange={handleSignInFormChange}
