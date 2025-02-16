@@ -76,10 +76,10 @@ const StCommentLikeContainer = styled.div`
 
 const StLikeButton = styled(IconButton)`
   font-size: 28px;
-  background-color: transparent;
+  background-color: var(--color-trans);
   border: none;
   color: var(--color-red);
   &:hover {
-    background-color: transparent;
+    background-color: var(--color-trans);
   }
 `;

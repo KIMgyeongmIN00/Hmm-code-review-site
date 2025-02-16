@@ -29,7 +29,7 @@ const StCommentEditButtonContainer = styled.div`
 const StButton = styled(Button)`
   width: 38px;
   height: 38px;
-  color: black;
-  background-color: transparent;
+  color: var(--color-black);
+  background-color: var(--color-trans);
   border: none;
 `;

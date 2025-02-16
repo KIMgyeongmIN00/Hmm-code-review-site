@@ -26,7 +26,7 @@ const StPostEditButtonContainer = styled.div`
 const StButton = styled(Button)`
   width: 38px;
   height: 38px;
-  color: black;
-  background-color: transparent;
-  border: 1px solid transparent;
+  color: var(--color-black);
+  background-color: var(--color-trans);
+  border: 1px solid var(--color-trans);
 `;

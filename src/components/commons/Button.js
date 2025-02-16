@@ -27,12 +27,12 @@ const buttonStyles = {
   base: css`
     cursor: pointer;
     transition: all 0.2s;
-    border: 2px solid transparent;
+    border: 2px solid var(--color-trans);
   `,
   variants: {
     solid: (color) => css`
       background: var(--color-${color});
-      color: white;
+      color: var(--color-white);
       border-color: var(--color-${color});
       &:hover {
         background: var(--color-${color}-dark);
@@ -42,7 +42,7 @@ const buttonStyles = {
       }
     `,
     outline: (color) => css`
-      background: white;
+      background: var(--color-white);
       color: var(--color-${color});
       border-color: var(--color-${color});
       &:hover {
@@ -53,7 +53,7 @@ const buttonStyles = {
       }
     `,
     ghost: (color) => css`
-      background: transparent;
+      background: var(--color-trans);
       color: var(--color-${color});
       &:hover {
         background: var(--color-${color}-light);

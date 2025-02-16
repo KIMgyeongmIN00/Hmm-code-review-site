@@ -107,21 +107,21 @@ const StPostToggleButtonContainer = styled.div`
 
 const StLikeButton = styled(IconButton)`
   font-size: 28px;
-  background-color: transparent;
+  background-color: var(--color-trans);
   border: none;
-  color: red;
+  color: var(--color-red);
   &:hover {
-    background-color: transparent;
+    background-color: var(--color-trans);
   }
 `;
 
 const StCommentButton = styled(IconButton)`
   font-size: 28px;
-  background-color: transparent;
+  background-color: var(--color-trans);
   border: none;
   color: var(--color-black);
   &:hover {
-    background-color: transparent;
+    background-color: var(--color-trans);
   }
 `;
 
