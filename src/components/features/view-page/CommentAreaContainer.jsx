@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import CommentAddContainer from '@features/view-page/in-comment-area-container/CommentAddContainer';
-import CommentBoxContainer from '@/components/features/view-page/in-comment-area-container/CommentBoxContainer';
+import CommentBoxContainer from '@features/view-page/in-comment-area-container/CommentBoxContainer';
 
 export default function CommentAreaContainer({ commentProps }) {
   return (
