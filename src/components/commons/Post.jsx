@@ -85,8 +85,8 @@ const StWriterIcon = styled(MdOutlinePerson)`
   border-radius: var(--round-full);
 `;
 
-const StLikeIcon = styled(({ isLikeActive, ...rest }) =>
-  isLikeActive ? <MdFavorite {...rest} /> : <MdFavoriteBorder {...rest} />
+const StLikeIcon = styled(({ isLikeActive, ...props }) =>
+  isLikeActive ? <MdFavorite {...props} /> : <MdFavoriteBorder {...props} />
 )`
   color: var(--color-red);
   font-size: 20px;
