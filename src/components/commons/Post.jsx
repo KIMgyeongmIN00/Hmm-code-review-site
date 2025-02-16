@@ -6,32 +6,32 @@ export default function Post({ postData: PostData }) {
   let isLikeActive = false;
 
   return (
-    <StHomePostContainer>
+    <StPostContainer>
       <StPostTitle>{PostData.postTitle}</StPostTitle>
       <StPostInfo>
         {PostData.languageType}·{PostData.createAt}
       </StPostInfo>
-      <StIconButtonsContainer>
+      <StIconsContainer>
         <div>
           <StWriterIcon />
-          <StIconButtonContent>{PostData.author}</StIconButtonContent>
+          <StIconContent>{PostData.author}</StIconContent>
         </div>
         <div>
           <div>
             <StCommentIcon />
-            <StIconButtonContent>{PostData.totalCommentCount}</StIconButtonContent>
+            <StIconContent>{PostData.totalCommentCount}</StIconContent>
           </div>
           <div>
             <StLikeIcon isLikeActive={isLikeActive} />
-            <StIconButtonContent>{PostData.totalLikeCount}</StIconButtonContent>
+            <StIconContent>{PostData.totalLikeCount}</StIconContent>
           </div>
         </div>
-      </StIconButtonsContainer>
-    </StHomePostContainer>
+      </StIconsContainer>
+    </StPostContainer>
   );
 }
 
-const StHomePostContainer = styled.div`
+const StPostContainer = styled.div`
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
   height: 100%;
@@ -55,7 +55,7 @@ const StPostInfo = styled.p`
   margin: 10px;
 `;
 
-const StIconButtonsContainer = styled.div`
+const StIconsContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -74,7 +74,7 @@ const StIconButtonsContainer = styled.div`
   }
 `;
 
-const StIconButtonContent = styled.p`
+const StIconContent = styled.p`
   font-size: var(--font-size-md);
   color: var(--color-main);
 `;
