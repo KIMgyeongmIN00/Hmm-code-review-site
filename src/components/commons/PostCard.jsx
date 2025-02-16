@@ -14,16 +14,16 @@ export default function PostCard({ postData: postData }) {
       <StIconsContainer>
         <div>
           <StWriterIcon />
-          <StIconContent>{postData.author}</StIconContent>
+          <StIconLabel>{postData.author}</StIconLabel>
         </div>
         <div>
           <div>
             <StCommentIcon />
-            <StIconContent>{postData.totalCommentCount}</StIconContent>
+            <StIconLabel>{postData.totalCommentCount}</StIconLabel>
           </div>
           <div>
             {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-            <StIconContent>{postData.totalLikeCount}</StIconContent>
+            <StIconLabel>{postData.totalLikeCount}</StIconLabel>
           </div>
         </div>
       </StIconsContainer>
@@ -74,7 +74,7 @@ const StIconsContainer = styled.div`
   }
 `;
 
-const StIconContent = styled.p`
+const StIconLabel = styled.p`
   font-size: var(--font-size-md);
   color: var(--color-main);
 `;
