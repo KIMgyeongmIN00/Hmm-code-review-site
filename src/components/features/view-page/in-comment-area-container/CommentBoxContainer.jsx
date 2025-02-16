@@ -78,7 +78,7 @@ const StLikeButton = styled(IconButton)`
   font-size: 28px;
   background-color: transparent;
   border: none;
-  color: red;
+  color: var(--color-red);
   &:hover {
     background-color: transparent;
   }

@@ -12,7 +12,7 @@ export default function Header() {
       <StContainer>
         <img src="/image/logo.png" />
         <div>
-          <Input icon={MdOutlineSearch} placeholder="search keyword..." />
+          <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
           {isAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
         </div>
       </StContainer>

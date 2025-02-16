@@ -1,7 +1,55 @@
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import HomePost from '@features/home/HomePost';
+import PostCard from '@commons/PostCard';
+
+const postList = [
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS1'
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS2'
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS3'
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS3'
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS4'
+  }
+];
 
 export default function HomePage() {
   return (
@@ -10,13 +58,26 @@ export default function HomePage() {
         <HomeLanguageSelector />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
-      <HomePost />
+      {postList.map((post) => (
+        <StPostWrapper>
+          <PostCard key={post.author} postData={post} />
+        </StPostWrapper>
+      ))}
     </StHomePageContainer>
   );
 }
+
+const StPostWrapper = styled.div`
+  width: 800px;
+  height: 100px;
+  margin: 10px 0 10px 0;
+`;
+
 const StHomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 20px;
   width: 100%;
 `;
 

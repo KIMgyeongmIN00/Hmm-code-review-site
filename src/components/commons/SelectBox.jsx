@@ -32,7 +32,7 @@ function SelectBox({ value, placeholder = '선택해주세요', options = [], si
   const handleOptionClick = (e, name) => {
     e.stopPropagation();
     onChange(name);
-    setIsOpen((prev) => false);
+    setIsOpen(false);
   };
 
   return (
@@ -90,8 +90,7 @@ const sizeHeight = {
 
 const SelectContainer = styled.div`
   position: relative;
-  width: 100vm;
-  margin: 0 1rem;
+  width: 100%;
 `;
 
 const SelectTrigger = styled.div`
@@ -117,10 +116,13 @@ const SelectDropdown = styled.div`
   left: 0;
   right: 0;
   background: white;
+  max-height: 200px;
+  overflow-y: auto;
   border: 1px solid var(--color-border);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 4px;
   ${({ $size }) => sizeStyles[$size]}
+  z-index: 10;
 `;
 
 const SelectOption = styled.div`

@@ -23,6 +23,7 @@ function IconButton({ activeIcon: ActiveIcon, inActiveIcon: InActiveIcon, onClic
 
   function onClickIconHandler() {
     setIsActive((prev) => !prev);
+    onClick();
   }
 
   return (
