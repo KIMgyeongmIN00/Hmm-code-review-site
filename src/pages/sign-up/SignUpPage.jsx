@@ -1,5 +1,5 @@
 import Button from '@/components/commons/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   MdDoneOutline,
   MdEmail,
@@ -15,11 +15,12 @@ import Input from '@/components/commons/Input';
 
 export default function SignUpPage() {
   const [question, setQuestion] = useState('');
+  const navigate = useNavigate();
   const inputWidth = '374px';
 
   return (
     <StContainer>
-      <img src="/image/logo.png" />
+      <img src="/image/logo.png" onClick={() => navigate('/')} />
       <StSignUpForm>
         <StEmailNickNameWrapper>
           <label>아이디: </label>
@@ -55,7 +56,7 @@ export default function SignUpPage() {
               type="text"
               placeholder="닉네임을 입력해주세요"
               width="280px"
-              icon={MdEmail}
+              icon={MdOutlinePersonOutline}
               required
             />
             <StDuplicateButton type="submit" $color="point" $size="lg" $round="md">
@@ -125,6 +126,9 @@ const StContainer = styled.div`
   > img {
     width: 300px;
     height: 200px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
