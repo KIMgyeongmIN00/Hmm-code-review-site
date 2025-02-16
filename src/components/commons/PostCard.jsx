@@ -13,7 +13,7 @@ export default function PostCard({ postData: postData }) {
       </StPostMeta>
       <StIconsContainer>
         <div>
-          <StWriterIcon />
+          <StAuthorIcon />
           <StIconLabel>{postData.author}</StIconLabel>
         </div>
         <div>
@@ -79,7 +79,7 @@ const StIconLabel = styled.p`
   color: var(--color-main);
 `;
 
-const StWriterIcon = styled(MdOutlinePerson)`
+const StAuthorIcon = styled(MdOutlinePerson)`
   border: 1px solid var(--color-main);
   font-size: 25px;
   border-radius: var(--round-full);
