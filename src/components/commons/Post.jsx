@@ -1,29 +1,29 @@
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 
-export default function Post({ postData: PostData }) {
+export default function Post({ postData: postData }) {
   //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
 
   return (
     <StPostContainer>
-      <StPostTitle>{PostData.postTitle}</StPostTitle>
+      <StPostTitle>{postData.postTitle}</StPostTitle>
       <StPostInfo>
-        {PostData.languageType}·{PostData.createAt}
+        {postData.languageType}·{postData.createAt}
       </StPostInfo>
       <StIconsContainer>
         <div>
           <StWriterIcon />
-          <StIconContent>{PostData.author}</StIconContent>
+          <StIconContent>{postData.author}</StIconContent>
         </div>
         <div>
           <div>
             <StCommentIcon />
-            <StIconContent>{PostData.totalCommentCount}</StIconContent>
+            <StIconContent>{postData.totalCommentCount}</StIconContent>
           </div>
           <div>
             <StLikeIcon isLikeActive={isLikeActive} />
-            <StIconContent>{PostData.totalLikeCount}</StIconContent>
+            <StIconContent>{postData.totalLikeCount}</StIconContent>
           </div>
         </div>
       </StIconsContainer>
