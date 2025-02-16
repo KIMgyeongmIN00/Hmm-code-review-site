@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
-import Input from '@/commons/Input';
-import Button from '@/commons/Button';
-import SelectBox from '@/commons/SelectBox';
+import Input from '@commons/Input';
+import Button from '@commons/Button';
+import SelectBox from '@commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
 
 export default function WritePage() {
