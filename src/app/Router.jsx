@@ -3,6 +3,8 @@ import RootLayout from '@layouts/RootLayout';
 import HomePage from '@pages/HomePage';
 import SigninPage from '@pages/sign-in/SignInPage';
 import WritePage from '@pages/write/WritePage';
+import MyPage from '@/pages/MyPage';
+
 
 const publicRoutes = [
   {
@@ -16,11 +18,15 @@ const publicRoutes = [
       {
         path: '/write',
         element: <WritePage />
+      },
+      {
+        path: '/my-page',
+        element: <MyPage />
       }
     ]
   },
   {
-    path: '/signin',
+    path: '/sign-in',
     element: <SigninPage />
   }
 ];
