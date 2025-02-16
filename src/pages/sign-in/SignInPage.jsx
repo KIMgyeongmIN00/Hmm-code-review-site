@@ -2,14 +2,15 @@ import styled from 'styled-components';
 import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icons/md';
 import Button from '@commons/Button';
 import Input from '@commons/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
   const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
+  const navigate = useNavigate();
   return (
     <StContainer>
-      <img src="/image/logo.png" />
+      <img src="/image/logo.png" onClick={() => navigate('/')} />
       <StSignInForm onSubmit={signInSubmitHandler}>
         <StErrorMessage $show={!!signInErrorMessage}>{signInErrorMessage || ''}</StErrorMessage>
 
