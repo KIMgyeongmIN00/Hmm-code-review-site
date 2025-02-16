@@ -25,7 +25,9 @@ export default function SignUpPage() {
           <label>아이디: </label>
           <div>
             <Input name="email" type="text" placeholder="이메일을 입력해주세요" width="280px" icon={MdEmail} required />
-            <StDuplicateButton>아이디 중복체크</StDuplicateButton>
+            <StDuplicateButton type="submit" $color="point" $size="lg" $round="md">
+              아이디 중복체크
+            </StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
 
@@ -56,7 +58,9 @@ export default function SignUpPage() {
               icon={MdEmail}
               required
             />
-            <StDuplicateButton>닉네임 중복체크</StDuplicateButton>
+            <StDuplicateButton type="submit" $color="point" $size="lg" $round="md">
+              닉네임 중복체크
+            </StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
 
@@ -152,11 +156,11 @@ const StSignUpButton = styled(Button)`
 const StDuplicateButton = styled(Button)`
   text-align: center;
   line-height: normal;
-  padding: 4px 8px;
-  height: 44px;
   width: 84px;
+  height: 44px;
   font-size: var(--font-size-sm);
   margin-left: 10px;
+  padding: 4px 8px;
 `;
 
 const StEmailNickNameWrapper = styled.div`
