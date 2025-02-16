@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 
-export default function Post({ postData: postData }) {
+export default function PostCard({ postData: postData }) {
   //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
 
   return (
     <StPostContainer>
       <StPostTitle>{postData.postTitle}</StPostTitle>
-      <StPostInfo>
+      <StPostMeta>
         {postData.languageType}·{postData.createAt}
-      </StPostInfo>
+      </StPostMeta>
       <StIconsContainer>
         <div>
           <StWriterIcon />
@@ -48,7 +48,7 @@ const StPostTitle = styled.h1`
   text-overflow: ellipsis;
 `;
 
-const StPostInfo = styled.p`
+const StPostMeta = styled.p`
   color: var(--color-main-light);
   text-align: right;
   font-size: var(--font-size-sm);
