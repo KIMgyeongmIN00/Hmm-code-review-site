@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import MDEditor from '@uiw/react-md-editor';
 import Input from '@commons/Input';
 import Button from '@commons/Button';
@@ -26,9 +27,20 @@ export default function WritePage() {
 
     const output = await supabase.from('posts').insert({ title, content, programming_language: programmingLanguage });
     if (output.error) {
-      return alert('게시글을 생성하는데 실패했습니다.');
+      return Swal.fire({
+        title: 'Error!',
+        text: '게시글 작성에 실패했습니다.',
+        icon: 'error',
+        confirmButtonText: '확인'
+      });
     }
-    navigate('/');
+    return Swal.fire({
+      title: 'Good job!',
+      text: '게시글 작성에 성공했습니다.',
+      icon: 'success'
+    }).then(() => {
+      navigate('/');
+    });
   }
 
   return (
@@ -68,15 +80,15 @@ const StContainer = styled.main`
   > form > label:not(:last-of-type) + * {
     margin-bottom: 20px;
   }
-  form > div:has(> input) {
+  > form > div:has(> input) {
     border-width: 1px;
     box-sizing: border-box;
   }
-  form > button {
+  > form > button {
     float: right;
     margin-top: 10px;
   }
-  form > p {
+  > form > p {
     margin-top: 4px;
     font-size: var(--font-size-sm);
     color: var(--color-red);
