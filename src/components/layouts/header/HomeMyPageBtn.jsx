@@ -1,15 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Button from '@commons/Button';
 
 export default function HeaderMyPageButton() {
+  const navigate = useNavigate();
   return (
     <StContainer>
       <StMypageIcon />
       <StModalBox>
         <StDropdown>
-          <Button $variant="ghost">글 작성</Button>
-          <Button $variant="ghost">마이 페이지</Button>
+          <Button $variant="ghost" onClick={() => navigate('/write')}>
+            글 작성
+          </Button>
+          <Button $variant="ghost" onClick={() => navigate('/my-page')}>
+            마이 페이지
+          </Button>
           <Button $variant="ghost">로그 아웃</Button>
         </StDropdown>
       </StModalBox>
