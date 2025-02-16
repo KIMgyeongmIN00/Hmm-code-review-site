@@ -17,5 +17,6 @@ export default function HeaderAuthBtn() {
 
 const StContainer = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
 `;

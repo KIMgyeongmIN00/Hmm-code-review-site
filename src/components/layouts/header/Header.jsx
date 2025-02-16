@@ -5,7 +5,7 @@ import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 
-let isAuth = true;
+let isAuth = false;
 
 export default function Header() {
   const navigate = useNavigate();
