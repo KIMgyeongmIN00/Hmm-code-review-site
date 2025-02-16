@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import HomePost from '@features/home/HomePost';
+// import HomePost from '@features/home/HomePost';
+import Post from '@commons/Post';
 
 export default function HomePage() {
-  let postList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
@@ -12,11 +12,63 @@ export default function HomePage() {
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
       {postList.map((post) => (
-        <HomePost />
+        <StPostWrapper>
+          <Post postData={post} />
+        </StPostWrapper>
       ))}
     </StHomePageContainer>
   );
 }
+
+let postList = [
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100
+  },
+  {
+    postTitle: 'Title',
+    languageType: 'C++',
+    createAt: '2025년 *월 *일 **시 **분',
+    author: 'tester',
+    totalLikeCount: 100,
+    totalCommentCount: 100
+  }
+];
+
+const StPostWrapper = styled.div`
+  width: 800px;
+  height: 100px;
+  margin: 10px 0 10px 0;
+`;
+
 const StHomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
