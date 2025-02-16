@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
-import HomeMyPageBtn from '@layouts/header/HomeMyPageBtn';
-import HomeAuthBtn from '@layouts/header/HomeAuthBtn';
 import Input from '@commons/Input';
+import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
+import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 
 let isAuth = true;
 
@@ -15,7 +15,7 @@ export default function Header() {
         <img src="/image/logo.png" onClick={() => navigate('/')} />
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
-          {isAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
+          {isAuth ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
       </StContainer>
     </StWrapper>
