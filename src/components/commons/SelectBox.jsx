@@ -116,6 +116,8 @@ const SelectDropdown = styled.div`
   left: 0;
   right: 0;
   background: white;
+  max-height: 200px;
+  overflow-y: auto;
   border: 1px solid var(--color-border);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 4px;
