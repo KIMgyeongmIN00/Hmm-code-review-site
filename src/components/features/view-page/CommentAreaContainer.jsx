@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import CommentAddContainer from './in-comment-area-container/CommentAddContainer';
-import CommentListContainer from './in-comment-area-container/CommentListContainer';
+import CommentAddContainer from '@features/view-page/in-comment-area-container/CommentAddContainer';
+import CommentBoxContainer from '@/components/features/view-page/in-comment-area-container/CommentBoxContainer';
 
-export default function CommentAreaContainer({ CommentWriter }) {
+export default function CommentAreaContainer({ commentProps }) {
   return (
     <StCommentAreaContainer>
-      <CommentListContainer CommentWriter={CommentWriter} />
+      <CommentBoxContainer commentProps={commentProps} /> {/* 본문에 달린 댓글에 대한 정보가 들어있는 props */}
       <CommentAddContainer />
     </StCommentAreaContainer>
   );

@@ -1,4 +1,4 @@
-import Button from '@/components/commons/Button';
+import Button from '@commons/Button';
 import styled from 'styled-components';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 

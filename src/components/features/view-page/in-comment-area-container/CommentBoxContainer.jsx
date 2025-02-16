@@ -1,22 +1,22 @@
 import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
-import IconButton from '@/components/commons/IconButton';
+import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
-import CommentOnAuthButtons from './CommentOnAuthButtons';
+import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
 
-export default function CommentListContainer({ CommentWriter }) {
+export default function CommentListContainer({ commentProps }) {
   return (
     <StCommentListContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{CommentWriter.Nickname}</h3>
+        <h3>{commentProps.Nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
-        <p>{CommentWriter.Contents}</p>
+        <p>{commentProps.Contents}</p>
       </StCommentContentWrapper>
-      {CommentWriter.IsAuth ? <CommentOnAuthButtons /> : <></>}
+      {commentProps.IsAuth && <CommentOnAuthButtons />}
       <StCommentLikeContainer>
         <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-        <p>{CommentWriter.Likes}</p>
+        <p>{commentProps.Likes}</p>
       </StCommentLikeContainer>
     </StCommentListContainer>
   );
