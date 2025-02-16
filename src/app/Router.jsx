@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
 import SigninPage from '@pages/sign-in/SignInPage';
-import RootLayout from '../components/layouts/RootLayout';
+import RootLayout from '@/layouts/RootLayout';
 import WritePage from '@/pages/write/WritePage';
 
 const publicRoutes = [

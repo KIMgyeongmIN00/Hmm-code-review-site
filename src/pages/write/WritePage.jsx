@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
-import Input from '@/components/commons/Input';
-import Button from '@/components/commons/Button';
-import SelectBox from '@/components/commons/SelectBox';
+import Input from '@/commons/Input';
+import Button from '@/commons/Button';
+import SelectBox from '@/commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
 
 export default function WritePage() {
@@ -13,7 +13,7 @@ export default function WritePage() {
 
   function handleWriteFormSubmit(e) {
     e.preventDefault();
-    // TODO: API 연결
+    // TODO: Supabase API 연결
   }
 
   return (
@@ -28,7 +28,7 @@ export default function WritePage() {
           onChange={setProgrammingLanguage}
         />
         <label>제목</label>
-        <Input placeholder="Title" onChange={(e) => setTitle(e.target.value)} value={title} />
+        <Input placeholder="제목" onChange={(e) => setTitle(e.target.value)} value={title} />
         <label>본문</label>
         <MDEditor value={content} onChange={setContent} height="400px" />
         <Button>작성 완료</Button>
