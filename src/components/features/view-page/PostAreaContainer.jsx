@@ -9,6 +9,7 @@ import {
 import styled from 'styled-components';
 import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
+import MDEditor from '@uiw/react-md-editor';
 
 export default function PostAreaContainer({ postProps }) {
   return (
@@ -25,7 +26,7 @@ export default function PostAreaContainer({ postProps }) {
         <p>{postProps.NickName}</p>
       </StPostWriterWrapper>
       <StCodeBoxWrapper>
-        <p>{postProps.Contents}</p>
+        <StMDeditor source={postProps.Contents} />
       </StCodeBoxWrapper>
       <StPostToggleButtonContainer>
         <StPostLikeButtonContainer>
@@ -88,6 +89,11 @@ const StCodeBoxWrapper = styled.div`
   grid-area: 3 / 1 / 9 / 7;
   text-align: start;
   font-size: var(--font-size-md);
+`;
+
+const StMDeditor = styled(MDEditor.Markdown)`
+  background-color: var(--color-white);
+  color: var(--color-black);
 `;
 
 const StPostToggleButtonContainer = styled.div`

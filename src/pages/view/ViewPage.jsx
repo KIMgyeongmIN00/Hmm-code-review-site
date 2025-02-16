@@ -11,7 +11,7 @@ export default function ViewPage() {
     Title: '제목',
     CodeLanguage: 'Language',
     NickName: '글 작성자',
-    Contents: '일단 내용입니다.',
+    Contents: '마크다운 **지원** <span style="color:red" >코드박스</span>입니다.',
     Comments: '15M',
     Likes: 0
   };
