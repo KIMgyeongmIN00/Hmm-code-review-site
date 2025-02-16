@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --color-black: black;
     --color-hover: #f5f5f5;
     --color-red: red;
+    --color-trans: transparent;
 
     --round-sm: 4px;
     --round-md: 6px;
