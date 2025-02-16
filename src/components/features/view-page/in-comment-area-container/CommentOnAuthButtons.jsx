@@ -22,7 +22,7 @@ const StCommentEditButtonContainer = styled.div`
   column-gap: 6px;
   padding: 10px 10px 10px 10px;
   width: fit-content;
-  grid-area: 1/9/2/9;
+  grid-area: 1/8/2/9;
   justify-self: end;
 `;
 

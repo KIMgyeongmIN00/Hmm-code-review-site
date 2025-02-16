@@ -3,9 +3,9 @@ import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
 
-export default function CommentListContainer({ commentProps }) {
+export default function CommentBoxContainer({ commentProps }) {
   return (
-    <StCommentListContainer>
+    <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
         <h3>{commentProps.Nickname}</h3>
@@ -18,11 +18,11 @@ export default function CommentListContainer({ commentProps }) {
         <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
         <p>{commentProps.Likes}</p>
       </StCommentLikeContainer>
-    </StCommentListContainer>
+    </StCommentBoxContainer>
   );
 }
 
-const StCommentListContainer = styled.div`
+const StCommentBoxContainer = styled.div`
   /* box-shadow: 0px 0px 8px var(--color-main-light); */
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
@@ -30,7 +30,7 @@ const StCommentListContainer = styled.div`
   margin: 14px 20px;
   display: grid;
   grid-template-rows: 60px minmax(60px, auto) 60px;
-  grid-template-columns: minmax(1fr, auto) repeat(7, 1fr) minmax(auto, auto);
+  grid-template-columns: 200px repeat(6, auto) 150px;
   gap: 8px;
 `;
 
@@ -58,7 +58,7 @@ const StPersonIcon = styled(MdOutlinePerson)`
 `;
 
 const StCommentContentWrapper = styled.div`
-  grid-area: 2 / 1 / 3 / 10;
+  grid-area: 2 / 1 / 3 / 9;
   background-color: var(--color-white);
   border-radius: var(--round-md);
   text-align: start;
@@ -69,7 +69,7 @@ const StCommentContentWrapper = styled.div`
 
 const StCommentLikeContainer = styled.div`
   padding: 0px 10px 10px 10px;
-  grid-area: 3/9/4/10;
+  grid-area: 3/8/4/9;
   justify-self: center;
   text-align: center;
 `;

@@ -5,7 +5,9 @@ import CommentBoxContainer from '@/components/features/view-page/in-comment-area
 export default function CommentAreaContainer({ commentProps }) {
   return (
     <StCommentAreaContainer>
-      <CommentBoxContainer commentProps={commentProps} /> {/* 본문에 달린 댓글에 대한 정보가 들어있는 props */}
+      {commentProps.map((comment) => {
+        return <CommentBoxContainer key={comment.Id} commentProps={comment} />; //본문에 달린 댓글에 대한 정보가 들어있는 props
+      })}
       <CommentAddContainer />
     </StCommentAreaContainer>
   );
