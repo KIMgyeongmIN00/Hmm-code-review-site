@@ -11,13 +11,13 @@ export default function Header() {
   const navigate = useNavigate();
   return (
     <StWrapper>
-      <StContainer>
+      <StHeaderContainer>
         <img src="/image/logo.png" onClick={() => navigate('/')} />
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
           {isAuth ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
-      </StContainer>
+      </StHeaderContainer>
     </StWrapper>
   );
 }
@@ -27,7 +27,7 @@ const StWrapper = styled.div`
   border-bottom: 1px solid var(--color-main-light);
 `;
 
-const StContainer = styled.div`
+const StHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
