@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import Post from '@commons/Post';
+import Post from '@commons/PostCard';
 
 export default function HomePage() {
   return (
