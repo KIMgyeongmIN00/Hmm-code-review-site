@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     --color-white: white;
     --color-black: black;
     --color-hover: #f5f5f5;
+    --color-red: red;
 
     --round-sm: 4px;
     --round-md: 6px;
