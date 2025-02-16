@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 
-export default function Post({ postData: PostData, ...props }) {
+export default function Post({ postData: PostData }) {
+  //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
 
   return (
@@ -33,7 +34,7 @@ export default function Post({ postData: PostData, ...props }) {
 const StHomePostContainer = styled.div`
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
-  height: 100px;
+  height: 100%;
   width: 100%;
   padding: 10px;
 `;
