@@ -22,7 +22,7 @@ export default function Post({ postData: postData }) {
             <StIconContent>{postData.totalCommentCount}</StIconContent>
           </div>
           <div>
-            <StLikeIcon isLikeActive={isLikeActive} />
+            {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
             <StIconContent>{postData.totalLikeCount}</StIconContent>
           </div>
         </div>
@@ -85,9 +85,12 @@ const StWriterIcon = styled(MdOutlinePerson)`
   border-radius: var(--round-full);
 `;
 
-const StLikeIcon = styled(({ isLikeActive, ...props }) =>
-  isLikeActive ? <MdFavorite {...props} /> : <MdFavoriteBorder {...props} />
-)`
+const StActiveLikeIcon = styled(MdFavorite)`
+  color: var(--color-red);
+  font-size: 20px;
+`;
+
+const StNotActiveLikeIcon = styled(MdFavoriteBorder)`
   color: var(--color-red);
   font-size: 20px;
 `;
