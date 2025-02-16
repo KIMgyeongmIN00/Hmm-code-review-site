@@ -4,7 +4,7 @@ import MDEditor from '@uiw/react-md-editor';
 import Input from '@/components/commons/Input';
 import Button from '@/components/commons/Button';
 import SelectBox from '@/components/commons/SelectBox';
-import PROGRAMMING_LANGUAGES from '@/datas/programmingLanguage.constant';
+import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
 
 export default function WritePage() {
   const [programmingLanguage, setProgrammingLanguage] = useState(PROGRAMMING_LANGUAGES[0].name);
