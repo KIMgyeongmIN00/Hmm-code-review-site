@@ -45,7 +45,9 @@ export default function SigninPage() {
           <MdDoneOutline />
           로그인
         </StSignInButton>
-        <Link to="/"> 회원가입이 아직인가요? </Link>
+        <Link to="/signUp" className="sign-in-link">
+          회원가입이 아직인가요?
+        </Link>
       </StSignInForm>
     </StContainer>
   );
@@ -56,10 +58,12 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  top: var(--height-sm);
   width: 700px;
   height: 880px;
   margin: 0 auto;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-point);
 
   > img {
     width: 400px;
@@ -74,6 +78,9 @@ const StSignInForm = styled.form`
   flex-direction: column;
   margin: 50px;
   height: 400px;
+  .sign-in-link {
+    color: var(--color-point-dark);
+  }
 `;
 
 const StErrorMessage = styled.p`
