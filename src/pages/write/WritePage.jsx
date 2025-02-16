@@ -1,10 +1,10 @@
-import Input from '@/components/commons/Input';
 import { useState } from 'react';
+import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
+import Input from '@/components/commons/Input';
+import Button from '@/components/commons/Button';
 import SelectBox from '@/components/commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/datas/programmingLanguage.constant';
-import styled from 'styled-components';
-import Button from '@/components/commons/Button';
 
 export default function WritePage() {
   const [programmingLanguage, setProgrammingLanguage] = useState(PROGRAMMING_LANGUAGES[0].name);
@@ -24,7 +24,6 @@ export default function WritePage() {
         <SelectBox
           size="sm"
           value={programmingLanguage}
-          placeholder="선택해주세요"
           options={PROGRAMMING_LANGUAGES}
           onChange={setProgrammingLanguage}
         />
