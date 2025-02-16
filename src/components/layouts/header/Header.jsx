@@ -1,16 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { MdOutlineSearch } from 'react-icons/md';
 import HomeMyPageBtn from '@layouts/header/HomeMyPageBtn';
 import HomeAuthBtn from '@layouts/header/HomeAuthBtn';
-import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
 
 let isAuth = true;
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <StWrapper>
       <StContainer>
-        <img src="/image/logo.png" />
+        <img src="/image/logo.png" onClick={() => navigate('/')} />
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
           {isAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
@@ -35,6 +37,7 @@ const StContainer = styled.div`
   margin: auto;
 
   > img {
+    cursor: pointer;
     width: 80px;
     height: 60px;
   }
