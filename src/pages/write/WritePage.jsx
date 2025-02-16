@@ -46,7 +46,7 @@ export default function WritePage() {
         <label>제목</label>
         <Input placeholder="제목" onChange={(e) => setTitle(e.target.value)} value={title} />
         <label>본문</label>
-        <MDEditor value={content} onChange={setContent} height="400px" />
+        <MDEditor value={content} onChange={setContent} height="400px" data-color-mode="light" />
         {errorMessage && <p>{errorMessage}</p>}
         <Button>작성 완료</Button>
       </form>
