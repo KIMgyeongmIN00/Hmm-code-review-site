@@ -13,21 +13,22 @@ export default function HomePage() {
       </StFilterPanelContainer>
       {postList.map((post) => (
         <StPostWrapper>
-          <Post postData={post} />
+          <Post key={post.author} postData={post} />
         </StPostWrapper>
       ))}
     </StHomePageContainer>
   );
 }
 
-let postList = [
+const postList = [
   {
     postTitle: 'Title',
     languageType: 'C++',
     createAt: '2025년 *월 *일 **시 **분',
     author: 'tester',
     totalLikeCount: 100,
-    totalCommentCount: 100
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS1'
   },
   {
     postTitle: 'Title',
@@ -35,7 +36,8 @@ let postList = [
     createAt: '2025년 *월 *일 **시 **분',
     author: 'tester',
     totalLikeCount: 100,
-    totalCommentCount: 100
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS2'
   },
   {
     postTitle: 'Title',
@@ -43,7 +45,8 @@ let postList = [
     createAt: '2025년 *월 *일 **시 **분',
     author: 'tester',
     totalLikeCount: 100,
-    totalCommentCount: 100
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS3'
   },
   {
     postTitle: 'Title',
@@ -51,7 +54,8 @@ let postList = [
     createAt: '2025년 *월 *일 **시 **분',
     author: 'tester',
     totalLikeCount: 100,
-    totalCommentCount: 100
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS3'
   },
   {
     postTitle: 'Title',
@@ -59,7 +63,8 @@ let postList = [
     createAt: '2025년 *월 *일 **시 **분',
     author: 'tester',
     totalLikeCount: 100,
-    totalCommentCount: 100
+    totalCommentCount: 100,
+    id: 'RANDOM_CONSTANTS4'
   }
 ];
 
