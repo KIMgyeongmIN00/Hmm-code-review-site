@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ButtonLink from '@commons/ButtonLink';
+import { Link } from 'react-router-dom';
 
 export default function HeaderAuthBtn() {
   return (
@@ -8,7 +9,7 @@ export default function HeaderAuthBtn() {
         로그인
       </ButtonLink>
       /
-      <ButtonLink $variant="ghost" $size="sm">
+      <ButtonLink $variant="ghost" $size="sm" to="/sign-in">
         회원가입
       </ButtonLink>
     </StContainer>
