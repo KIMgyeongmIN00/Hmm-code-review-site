@@ -1,23 +1,7 @@
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import Post from '@commons/PostCard';
-
-export default function HomePage() {
-  return (
-    <StHomePageContainer>
-      <StFilterPanelContainer>
-        <HomeLanguageSelector />
-        <HomePostSortRadioGroup />
-      </StFilterPanelContainer>
-      {postList.map((post) => (
-        <StPostWrapper>
-          <Post key={post.author} postData={post} />
-        </StPostWrapper>
-      ))}
-    </StHomePageContainer>
-  );
-}
+import PostCard from '@commons/PostCard';
 
 const postList = [
   {
@@ -66,6 +50,22 @@ const postList = [
     id: 'RANDOM_CONSTANTS4'
   }
 ];
+
+export default function HomePage() {
+  return (
+    <StHomePageContainer>
+      <StFilterPanelContainer>
+        <HomeLanguageSelector />
+        <HomePostSortRadioGroup />
+      </StFilterPanelContainer>
+      {postList.map((post) => (
+        <StPostWrapper>
+          <PostCard key={post.author} postData={post} />
+        </StPostWrapper>
+      ))}
+    </StHomePageContainer>
+  );
+}
 
 const StPostWrapper = styled.div`
   width: 800px;
