@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
@@ -8,22 +8,57 @@ import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
+  const [searchWord, setSearchWord] = useState('');
+  const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
+
+  const handleSearchValue = function (e) {
+    setSearchWord(e.target.value);
+  };
+
+  const handleIconClick = function () {
+    if (searchWord.trim() !== '') {
+      navigate(`/?search=${encodeURIComponent(searchWord)}`);
+      setSearchWord('');
+    }
+  };
+
+  const handleLogoClick = function (e) {
+    e.preventDefault();
+    navigate('/');
+  };
 
   return (
     <StWrapper>
       <StHeaderContainer>
-        <Link to="/">
-          <img src="/image/logo.png" alt="로고 이미지" />
-        </Link>
+        <img src="/image/logo.png" alt="로고 이미지" onClick={handleLogoClick} />
         <div>
-          <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
+          <Input
+            icon={() => <SearchIcon active={searchWord.trim() !== ''} onClick={handleIconClick} />}
+            placeholder="검색어를 입력해 주세요."
+            value={searchWord}
+            onChange={handleSearchValue}
+          />
           {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
       </StHeaderContainer>
     </StWrapper>
   );
 }
+
+const ClickIcon = styled.div`
+  cursor: ${({ active }) => (active ? 'pointer' : 'default')};
+  color: ${({ active }) => (active ? 'var(--color-point)' : 'var(--color-main-light)')};
+  transition: color 0.3s;
+`;
+
+const SearchIcon = function ({ active, onClick }) {
+  return (
+    <ClickIcon active={active} onClick={onClick}>
+      <MdOutlineSearch />
+    </ClickIcon>
+  );
+};
 
 const StWrapper = styled.div`
   width: 100%;
