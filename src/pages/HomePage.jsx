@@ -24,10 +24,12 @@ export default function HomePage() {
       if (prevValues.current) {
         if (prevValues.current.language !== language) {
           navigate('/');
+
           if (language === '전체') {
             const { data } = await supabase.from('posts').select();
             const sortedPosts = await sortPosts(data, sort);
             setPostList(sortedPosts);
+            prevValues.current = { language, searchWord };
             return;
           }
           const { data } = await supabase.from('posts').select().eq('programming_language', language);
@@ -37,6 +39,14 @@ export default function HomePage() {
           return;
         }
         if (prevValues.current.searchWord !== searchWord) {
+          if (searchWord === null) {
+            setLanguage(null);
+            const { data } = await supabase.from('posts').select();
+            const sortedPosts = await sortPosts(data, sort);
+            setPostList(sortedPosts);
+            prevValues.current = { language, searchWord };
+            return;
+          }
           setLanguage(null);
           const { data } = await supabase.from('posts').select().textSearch('title', searchWord);
           const sortedPosts = await sortPosts(data, sort);

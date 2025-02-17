@@ -23,28 +23,21 @@ export default function Header() {
     }
   };
 
-  const handleKeyDown = function (e) {
-    if (e.key === 'Enter') {
-      if (searchWord.trim() !== '') {
-        navigate(`/?search=${encodeURIComponent(searchWord)}`);
-        setSearchWord('');
-      }
-    }
+  const handleLogoClick = function (e) {
+    e.preventDefault();
+    navigate('/');
   };
 
   return (
     <StWrapper>
       <StHeaderContainer>
-        <Link to="/">
-          <img src="/image/logo.png" alt="로고 이미지" />
-        </Link>
+        <img src="/image/logo.png" alt="로고 이미지" onClick={handleLogoClick} />
         <div>
           <Input
             icon={() => <SearchIcon active={searchWord.trim() !== ''} onClick={handleIconClick} />}
             placeholder="검색어를 입력해 주세요."
             value={searchWord}
             onChange={handleSearchValue}
-            onKeyDown={handleKeyDown}
           />
           {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
