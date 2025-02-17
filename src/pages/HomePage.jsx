@@ -14,10 +14,10 @@ export default function HomePage() {
     async function getPosts() {
       if (language && language !== '전체') {
         const { data } = await supabase.from('posts').select().eq('programming_language', language);
-        setPostList(data);
+        setPostList(sortPosts(data, sort));
       } else {
         const { data } = await supabase.from('posts').select();
-        setPostList(data);
+        setPostList(sortPosts(data, sort));
       }
     }
     getPosts();
@@ -39,6 +39,17 @@ export default function HomePage() {
     </StHomePageContainer>
   );
 }
+
+const sortPosts = function (posts, sort) {
+  switch (sort) {
+    case 'latest':
+      return posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    case 'like':
+    case 'comment':
+    default:
+      return posts;
+  }
+};
 
 const StPostWrapper = styled.div`
   width: 800px;
