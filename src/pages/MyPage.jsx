@@ -23,7 +23,7 @@ function MyPage() {
 const StMyPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 99%;
 `;
 
 const StUserInfoContainer = styled.div`
