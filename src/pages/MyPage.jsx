@@ -10,7 +10,7 @@ import { saveUserInfo } from '@/contexts/auth/auth.reducer';
 import { getMyPosts } from '@/libs/api/post.api';
 import supabase from '@/libs/api/supabase.api';
 
-function MyPage() {
+export default function MyPage() {
   const { auth, dispatch } = useContext(AuthContext);
 
   const [nickname, setNickname] = useState('');
@@ -114,4 +114,3 @@ const StPostContainer = styled.div`
     margin-bottom: 10px 0;
   }
 `;
-export default MyPage;

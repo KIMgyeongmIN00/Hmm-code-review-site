@@ -47,18 +47,18 @@ export default function Header() {
 }
 
 const ClickIcon = styled.div`
-  cursor: ${({ active }) => (active ? 'pointer' : 'default')};
-  color: ${({ active }) => (active ? 'var(--color-point)' : 'var(--color-main-light)')};
+  cursor: ${({ $active }) => ($active ? 'pointer' : 'default')};
+  color: ${({ $active }) => ($active ? 'var(--color-point)' : 'var(--color-main-light)')};
   transition: color 0.3s;
 `;
 
-const SearchIcon = function ({ active, onClick }) {
+function SearchIcon({ active, onClick }) {
   return (
-    <ClickIcon active={active} onClick={onClick}>
+    <ClickIcon $active={active} onClick={onClick}>
       <MdOutlineSearch />
     </ClickIcon>
   );
-};
+}
 
 const StWrapper = styled.div`
   width: 100%;

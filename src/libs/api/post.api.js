@@ -30,6 +30,7 @@ export async function getPosts(myId, { language, keyword }) {
       users!inner (nickname)
     `
     )
+    .order('created_at', { ascending: false })
     .match(language && language !== '전체' ? { programming_language: language } : {});
 
   if (keyword) {
@@ -71,6 +72,7 @@ export async function getMyPosts(userId) {
       users!inner (nickname)
     `
     )
+    .order('created_at', { ascending: false })
     .eq('user_id', userId);
 
   if (error) return [];
