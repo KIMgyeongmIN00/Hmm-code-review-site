@@ -24,6 +24,7 @@ const StInputContainer = styled.div`
     margin-right: 4px;
   }
 `;
+
 const StInput = styled.input`
   border: none;
   outline: none;
