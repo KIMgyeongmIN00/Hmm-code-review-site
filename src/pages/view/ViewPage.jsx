@@ -3,7 +3,7 @@ import PostAreaContainer from '@features/view-page/PostAreaContainer';
 import CommentAreaContainer from '@features/view-page/CommentAreaContainer';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import supabase from '@/libs/api/supabase.api';
+import supabase, { getLikes } from '@/libs/api/supabase.api';
 
 export default function ViewPage() {
   const { id } = useParams();
@@ -20,12 +20,13 @@ export default function ViewPage() {
         const commentsData = await getComments(id);
         const authData = await getAuthObj();
         const authNicknameData = await getNicknameWithAuthId(authData);
-        const postNicknameData = await getNicknameByUserId(postData.user_id);
+        const postNicknameData = await getNicknameByUserId(postData?.user_id);
+
         setYourNickname(authNicknameData || '로그인을 해주세요.');
         setPostInfomation(postData);
         setComments(commentsData);
         setPostNickname(postNicknameData);
-        setAuthId(authData.id);
+        setAuthId(authData?.id);
       } catch (error) {
         console.error('데이터 수집에 실패하였습니다 :', error);
       }
@@ -87,11 +88,19 @@ export default function ViewPage() {
     return data?.nickname || '';
   }
 
+  async function onClickLikeHandler() {}
+
   if (!postInfomation) return <p>로딩 중...</p>;
 
   return (
     <StViewPageContainer>
-      <PostAreaContainer postInfomation={postInfomation} postNickname={postNickname} authId={authId} />
+      <PostAreaContainer
+        postId={id}
+        postInfomation={postInfomation}
+        postNickname={postNickname}
+        authId={authId}
+        comments={comments}
+      />
       {/* URL의 id값이 있는 DB의 posts 테이블의 row를 props로 내림 */}
       <CommentAreaContainer comments={comments} postId={id} nickname={yourNickname} authId={authId} />
       {/* 페이지 댓글 상자에 DB에 저장되어 있는 값에 따라 변화하는 값을 임의적으로 표현하기 위해 내린 props */}

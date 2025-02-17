@@ -4,11 +4,13 @@ import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
 import PostCard from '@commons/PostCard';
 import supabase from '@libs/api/supabase.api';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/auth/auth.context';
 
 export default function HomePage() {
   const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
-
+  const { auth } = useContext(AuthContext);
   useEffect(() => {
     async function getPosts() {
       if (language && language !== '전체') {

@@ -18,11 +18,10 @@ import Button from './Button';
  * @prop {object} [props] - 추가적인 버튼 속성
  */
 
-function IconButton({ activeIcon: ActiveIcon, inActiveIcon: InActiveIcon, onClick, ...props }) {
-  const [isActive, setIsActive] = useState(false);
+function IconButton({ activeIcon: ActiveIcon, inActiveIcon: InActiveIcon, onClick, isActive, ...props }) {
+  // const [isActive, setIsActive] = useState(false);
 
   function onClickIconHandler() {
-    setIsActive((prev) => !prev);
     onClick();
   }
 
