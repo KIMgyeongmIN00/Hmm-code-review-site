@@ -21,5 +21,10 @@ export default function AuthProvider({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  return <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>;
+  const authValue = {
+    auth,
+    dispatch
+  };
+
+  return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
 }
