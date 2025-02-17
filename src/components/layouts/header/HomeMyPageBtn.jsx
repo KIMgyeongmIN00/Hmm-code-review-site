@@ -12,9 +12,9 @@ export default function HeaderMyPageButton() {
           <ButtonLink $variant="ghost" to="/write">
             글 작성
           </ButtonLink>
-          <Button $variant="ghost" to="/my-page">
+          <ButtonLink $variant="ghost" to="/my-page">
             마이 페이지
-          </Button>
+          </ButtonLink>
           <Button $variant="ghost">로그 아웃</Button>
         </StDropdown>
       </StModalBox>
