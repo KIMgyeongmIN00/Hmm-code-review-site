@@ -11,34 +11,36 @@ import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
 import MDEditor from '@uiw/react-md-editor';
 
-export default function PostAreaContainer({ postProps }) {
+export default function PostAreaContainer({ post }) {
+  const IsAuth = true;
+
   return (
     <StPostAreaContainer>
       <StPostTitleWrapper>
-        <h1>{postProps.Title}</h1>
+        <h1>{post.title}</h1>
       </StPostTitleWrapper>
       <StLanguageTypeWrapper>
         <MdKeyboard size={30} />
-        <p>{postProps.CodeLanguage}</p>
+        <p>{post.programming_language}</p>
       </StLanguageTypeWrapper>
       <StPostWriterWrapper>
         <StPersonIcon size={30} />
-        <p>{postProps.NickName}</p>
+        <p>{post.user_id}</p>
       </StPostWriterWrapper>
       <StCodeBoxWrapper>
-        <StMDeditor source={postProps.Contents} />
+        <StMDeditor source={post.content} />
       </StCodeBoxWrapper>
       <StPostToggleButtonContainer>
         <StPostLikeButtonContainer>
           <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-          <p>{postProps.Likes}</p>
+          <p>{post.created_at}</p>
         </StPostLikeButtonContainer>
         <StCommentToggleButtonContainer>
           <StCommentButton activeIcon={MdOutlineModeComment} inActiveIcon={MdModeComment} />
-          <p>{postProps.Comments}</p>
+          <p>{post.created_at}</p>
         </StCommentToggleButtonContainer>
       </StPostToggleButtonContainer>
-      {postProps.IsAuth && <PostOnAuthButtons />}
+      {IsAuth && <PostOnAuthButtons />}
     </StPostAreaContainer>
   );
 }
