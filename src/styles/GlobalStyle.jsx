@@ -29,11 +29,21 @@ const GlobalStyle = createGlobalStyle`
     --font-size-md: 16px;
     --font-size-lg: 24px;
 
+    font-family: Pretendard, Inter, system-ui, Avenir, Helvetica, Arial;
+
   }
 
   a {
     display: inline-block;
     text-decoration: none;
+  }
+
+  @font-face {
+    font-family: "Pretendard";
+    font-weight: 45 920;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
   }
   
   html, body, div, span, applet, object, iframe,
