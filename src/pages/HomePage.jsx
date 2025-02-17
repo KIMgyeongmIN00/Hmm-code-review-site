@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
@@ -9,28 +9,35 @@ import { getLikes } from '@libs/api/supabase.api';
 import { getComments } from '@/libs/api/supabase.api';
 
 export default function HomePage() {
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState(null);
   const [postList, setPostList] = useState([]);
   const [sort, setSort] = useState('latest');
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  const search = searchParams.get('search') || '';
-  console.log(search);
+  const searchWord = searchParams.get('search') || null;
 
   useEffect(() => {
     async function getPosts() {
-      if (language && language !== '전체') {
-        const { data } = await supabase.from('posts').select().eq('programming_language', language);
+      if (searchWord && language === null) {
+        const { data } = await supabase.from('posts').select().textSearch('title', searchWord);
         const sortedPosts = await sortPosts(data, sort);
         setPostList(sortedPosts);
       } else {
-        const { data } = await supabase.from('posts').select();
-        const sortedPosts = await sortPosts(data, sort);
-        setPostList(sortedPosts);
+        if (language && language !== '전체') {
+          navigate('/');
+          const { data } = await supabase.from('posts').select().eq('programming_language', language);
+          const sortedPosts = await sortPosts(data, sort);
+          setPostList(sortedPosts);
+        } else {
+          const { data } = await supabase.from('posts').select();
+          const sortedPosts = await sortPosts(data, sort);
+          setPostList(sortedPosts);
+        }
       }
     }
     getPosts();
-  }, [language, sort]);
+  }, [language, sort, searchWord]);
 
   return (
     <StHomePageContainer>

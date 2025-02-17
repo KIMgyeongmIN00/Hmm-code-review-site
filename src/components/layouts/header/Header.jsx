@@ -18,16 +18,16 @@ export default function Header() {
 
   const handleIconClick = function () {
     if (searchWord.trim() !== '') {
-      console.log(searchWord);
       navigate(`/?search=${encodeURIComponent(searchWord)}`);
+      setSearchWord('');
     }
   };
 
   const handleKeyDown = function (e) {
     if (e.key === 'Enter') {
       if (searchWord.trim() !== '') {
-        console.log(searchWord);
         navigate(`/?search=${encodeURIComponent(searchWord)}`);
+        setSearchWord('');
       }
     }
   };
