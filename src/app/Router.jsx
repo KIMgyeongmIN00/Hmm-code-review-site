@@ -12,7 +12,7 @@ import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
   const { auth } = useContext(AuthContext);
-  const NotAuthenticatedRoutes = [
+  const RoutesForAuthenticatedOnly = [
     {
       path: '/',
       element: <RootLayout />,
@@ -45,7 +45,7 @@ function Routes() {
     }
   ];
 
-  const AuthenticatedRoutes = [
+  const RoutesForNotAuthenticatedOnly = [
     {
       path: '/',
       element: <ProtectedRouter />,
@@ -62,7 +62,10 @@ function Routes() {
     }
   ];
 
-  const router = createBrowserRouter([...(!auth.isSignin ? AuthenticatedRoutes : []), ...NotAuthenticatedRoutes]);
+  const router = createBrowserRouter([
+    ...(!auth.isSignin ? RoutesForNotAuthenticatedOnly : []),
+    ...RoutesForAuthenticatedOnly
+  ]);
 
   return <RouterProvider router={router} />;
 }
