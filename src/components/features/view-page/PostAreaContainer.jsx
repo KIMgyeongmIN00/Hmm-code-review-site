@@ -1,11 +1,4 @@
-import {
-  MdFavoriteBorder,
-  MdFavorite,
-  MdOutlineModeComment,
-  MdModeComment,
-  MdOutlinePerson,
-  MdKeyboard
-} from 'react-icons/md';
+import { MdFavoriteBorder, MdFavorite, MdOutlineModeComment, MdOutlinePerson, MdKeyboard } from 'react-icons/md';
 import styled from 'styled-components';
 import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
@@ -33,10 +26,10 @@ export default function PostAreaContainer({ postInfomation, postNickname, authId
           <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
           <p>{postInfomation.created_at}</p>
         </StPostLikeButtonContainer>
-        <StCommentToggleButtonContainer>
-          <StCommentButton activeIcon={MdOutlineModeComment} inActiveIcon={MdModeComment} />
+        <StCommentIconContainer>
+          <StCommentIcon size={26} />
           <p>{postInfomation.created_at}</p>
-        </StCommentToggleButtonContainer>
+        </StCommentIconContainer>
       </StPostToggleButtonContainer>
       {postInfomation.user_id === authId && <PostOnAuthButtons />}
     </StPostAreaContainer>
@@ -106,6 +99,8 @@ const StPostToggleButtonContainer = styled.div`
 `;
 
 const StLikeButton = styled(IconButton)`
+  margin-top: -3px;
+  justify-self: center;
   font-size: 28px;
   background-color: var(--color-trans);
   border: none;
@@ -115,8 +110,7 @@ const StLikeButton = styled(IconButton)`
   }
 `;
 
-const StCommentButton = styled(IconButton)`
-  font-size: 28px;
+const StCommentIcon = styled(MdOutlineModeComment)`
   background-color: var(--color-trans);
   border: none;
   color: var(--color-black);
@@ -125,7 +119,7 @@ const StCommentButton = styled(IconButton)`
   }
 `;
 
-const StCommentToggleButtonContainer = styled.div`
+const StCommentIconContainer = styled.div`
   justify-self: center;
   text-align: center;
   font-size: var(--font-size-md);

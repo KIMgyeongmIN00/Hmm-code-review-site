@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { getAuthorName } from '@/libs/api/supabase.api';
 
 export default function CommentBoxContainer({ commentProps, authId }) {
   const [nickname, setNickname] = useState('');
@@ -11,28 +12,21 @@ export default function CommentBoxContainer({ commentProps, authId }) {
   useEffect(() => {
     async function fetchNickname() {
       try {
-        const nicknameData = await getNickname(commentProps);
-        setNickname(nicknameData);
+        const nicknameData = await getAuthorName(commentProps.user_id);
+        setNickname(nicknameData || '작성자 불명');
       } catch (error) {
-        console.errer('닉네임 배치에 실패하였습니다.', error);
+        console.log('닉네임 배치에 실패하였습니다.', error);
       }
     }
     fetchNickname();
   }, []);
 
-  async function getNickname(commentProps) {
-    const { data, error } = await supabase.from('users').select('nickname').eq('id', commentProps.id).single();
-    if (error) {
-      console.errer('댓글창의 닉네임을 가져오는 데 실패했습니다.', error);
-      return '';
-    }
-    return data?.nickname;
-  }
+  console.log(nickname);
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{nickname}</h3>
+        <h3>{nickname.nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
         <p>{commentProps.content}</p>
