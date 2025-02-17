@@ -45,11 +45,11 @@ export default function PostCard({ postData: postData }) {
         <div>
           <div>
             <StCommentIcon />
-            <StIconLabel>{likes.length}</StIconLabel>
+            <StIconLabel>{comments.length}</StIconLabel>
           </div>
           <div>
             {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-            <StIconLabel>{comments.length}</StIconLabel>
+            <StIconLabel>{likes.length}</StIconLabel>
           </div>
         </div>
       </StIconsContainer>
