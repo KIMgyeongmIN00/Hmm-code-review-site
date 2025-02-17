@@ -4,9 +4,17 @@ import Button from '@commons/Button';
 import Input from '@commons/Input';
 import { Link } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
+import supabase from '@/libs/api/supabase.api';
 
 export default function SigninPage() {
   const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
+
+  async function handleSignInWithGoogleClick() {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google'
+    });
+  }
+
   return (
     <StContainer>
       <Link to="/">
@@ -49,6 +57,10 @@ export default function SigninPage() {
         </StSignInButton>
         <Link to="/sign-up">회원가입이 아직인가요?</Link>
       </StSignInForm>
+      <StGoogleLoginButton onClick={handleSignInWithGoogleClick}>
+        <img src="/image/googleLogo.png" alt="구글 로고" />
+        <span>Sign In With Google</span>
+      </StGoogleLoginButton>
     </StContainer>
   );
 }
@@ -70,7 +82,7 @@ const StSignInForm = styled.form`
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  margin: 50px;
+
   height: 400px;
   > a {
     color: var(--color-point-dark);
@@ -104,5 +116,17 @@ const StSignInButton = styled(Button)`
     font-size: 32px;
     position: relative;
     left: -var(--font-size-lg);
+  }
+`;
+const StGoogleLoginButton = styled(Button).attrs({ $variant: 'outline' })`
+  height: 40px;
+  margin: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--round-lg);
+  > img {
+    width: 20px;
   }
 `;
