@@ -1,6 +1,6 @@
+import SignUpForm from '@/components/features/sign-up/SignUpForm';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import SignUpForm from './SignUpForm';
 
 export default function SignUpPage() {
   return (
