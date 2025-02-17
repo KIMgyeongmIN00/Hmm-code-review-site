@@ -10,7 +10,9 @@ export default function SigninPage() {
   const navigate = useNavigate();
   return (
     <StContainer>
-      <img src="/image/logo.png" onClick={() => navigate('/')} />
+      <Link to="/">
+        <StImg src="/image/logo.png" />
+      </Link>
       <StSignInForm onSubmit={signInSubmitHandler}>
         <StErrorMessage $show={!!signInErrorMessage}>{signInErrorMessage || ''}</StErrorMessage>
 
@@ -46,7 +48,7 @@ export default function SigninPage() {
           <MdDoneOutline />
           로그인
         </StSignInButton>
-        <Link to="/signUp" className="sign-in-link">
+        <Link to="/sign-up" className="sign-in-link">
           회원가입이 아직인가요?
         </Link>
       </StSignInForm>
@@ -65,13 +67,7 @@ const StContainer = styled.div`
   height: 880px;
   margin: 0 auto;
   border: 1px solid var(--color-point);
-
-  > img {
-    width: 400px;
-    height: 280px;
-  }
 `;
-
 const StSignInForm = styled.form`
   display: flex;
   justify-content: space-evenly;
@@ -92,6 +88,13 @@ const StErrorMessage = styled.p`
   visibility: ${(show) => (show ? 'visible' : 'hidden')};
 `;
 
+const StImg = styled.img`
+  width: 400px;
+  height: 280px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const StSignInButton = styled(Button)`
   text-align: center;
   line-height: normal;

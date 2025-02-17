@@ -1,5 +1,5 @@
 import Button from '@/components/commons/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   MdDoneOutline,
   MdEmail,
@@ -10,25 +10,20 @@ import {
 import styled from 'styled-components';
 import SignUpInput from './SignUpInput';
 import SelectBox from '@/components/commons/SelectBox';
-import { useState } from 'react';
 import Input from '@/components/commons/Input';
-import useSignUpForm from '@/hooks/auth/useSignUpForm';
 
 export default function SignUpPage() {
-  const navigate = useNavigate();
-  const inputWidth = '374px';
-
   return (
     <StContainer>
-      <img src="/image/logo.png" onClick={() => navigate('/')} />
+      <Link to="/">
+        <StImg src="/image/logo.png" />
+      </Link>
       <StSignUpForm>
         <StEmailNickNameWrapper>
           <label>아이디: </label>
           <div>
             <Input name="email" type="text" placeholder="이메일을 입력해주세요" width="280px" icon={MdEmail} required />
-            <StDuplicateButton $color="point" $size="lg" $round="md">
-              중복체크
-            </StDuplicateButton>
+            <StDuplicateButton>중복체크</StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
 
@@ -37,7 +32,6 @@ export default function SignUpPage() {
           name="password"
           inputType="password"
           placeholder="비밀번호를 입력해주세요"
-          $inputWidth={inputWidth}
           $iconImage={MdOutlinePrivateConnectivity}
         />
 
@@ -45,7 +39,6 @@ export default function SignUpPage() {
           labelName="비밀번호 확인"
           inputType="password"
           placeholder="비밀번호를 다시 입력해주세요"
-          $inputWidth={inputWidth}
           $iconImage={MdOutlinePrivateConnectivity}
         />
 
@@ -60,9 +53,7 @@ export default function SignUpPage() {
               icon={MdOutlinePersonOutline}
               required
             />
-            <StDuplicateButton $color="point" $size="lg" $round="md">
-              중복체크
-            </StDuplicateButton>
+            <StDuplicateButton>중복체크</StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
 
@@ -86,31 +77,20 @@ export default function SignUpPage() {
           name="answer"
           inputType="text"
           placeholder="질문에 대한 답을 입력해주세요"
-          $inputWidth={inputWidth}
           $iconImage={MdOutlineChat}
         />
 
-        <StSignUpButton type="submit" $color="point" $size="lg" $round="lg">
+        <StSignUpButton type="submit">
           <MdDoneOutline />
           회원가입
         </StSignUpButton>
-        <Link to="/signIn" className="custom-link">
+        <Link to="/sign-in" className="custom-link">
           이미 회원가입을 하셨나요?
         </Link>
       </StSignUpForm>
     </StContainer>
   );
 }
-
-const StSelectWrapper = styled.div`
-  width: 394px;
-  height: 64px;
-  margin-bottom: 8px;
-  & > label {
-    display: block;
-    margin-bottom: 4px;
-  }
-`;
 
 const StContainer = styled.div`
   display: flex;
@@ -122,15 +102,7 @@ const StContainer = styled.div`
   height: 880px;
   margin: 0 auto;
   border: 1px solid var(--color-point);
-  > img {
-    width: 300px;
-    height: 200px;
-    &:hover {
-      cursor: pointer;
-    }
-  }
 `;
-
 const StSignUpForm = styled.form`
   display: flex;
   justify-content: center;
@@ -142,30 +114,15 @@ const StSignUpForm = styled.form`
   }
 `;
 
-const StSignUpButton = styled(Button)`
-  text-align: center;
-  line-height: normal;
-  width: 394px;
-  height: 80px;
-  font-size: var(--font-size-lg);
-  margin: var(--height-sm) 0px;
-  & > svg {
-    font-size: 32px;
-    position: relative;
-    left: -var(--font-size-lg);
+const StSelectWrapper = styled.div`
+  width: 392px;
+  height: 64px;
+  margin-bottom: 8px;
+  & > label {
+    display: block;
+    margin-bottom: 4px;
   }
 `;
-
-const StDuplicateButton = styled(Button)`
-  text-align: center;
-  line-height: normal;
-  width: 84px;
-  height: 44px;
-  font-size: var(--font-size-sm);
-  margin-left: 10px;
-  padding: 4px 8px;
-`;
-
 const StEmailNickNameWrapper = styled.div`
   margin-bottom: 8px;
   > div {
@@ -178,4 +135,34 @@ const StEmailNickNameWrapper = styled.div`
     display: block;
     margin-bottom: 4px;
   }
+`;
+
+const StImg = styled.img`
+  width: 300px;
+  height: 200px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const StSignUpButton = styled(Button).attrs({ $color: 'point', $size: 'lg', $round: 'lg' })`
+  text-align: center;
+  line-height: normal;
+  width: 392px;
+  height: 80px;
+  font-size: var(--font-size-lg);
+  margin: var(--height-sm) 0px;
+  & > svg {
+    font-size: 32px;
+    position: relative;
+    left: -var(--font-size-lg);
+  }
+`;
+const StDuplicateButton = styled(Button).attrs({ $color: 'point', $size: 'lg', $round: 'md' })`
+  text-align: center;
+  line-height: normal;
+  width: 84px;
+  height: 44px;
+  font-size: var(--font-size-sm);
+  margin-left: 10px;
+  padding: 4px 8px;
 `;
