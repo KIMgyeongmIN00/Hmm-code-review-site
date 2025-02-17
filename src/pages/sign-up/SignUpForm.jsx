@@ -45,7 +45,14 @@ export default function SignUpForm() {
             value={signUpFormData.email}
             onChange={signUpChangeHandler}
           />
-          <StDuplicateButton onClick={() => signUpCheckDuplicate('email')}>중복체크</StDuplicateButton>
+          <StDuplicateButton
+            onClick={(e) => {
+              e.preventDefault();
+              signUpCheckDuplicate('email');
+            }}
+          >
+            중복체크
+          </StDuplicateButton>
         </div>
         {errorMessage.email && <StMessage $isValid={isChecked.email}>{errorMessage.email}</StMessage>}
       </StEmailNickNameWrapper>
@@ -89,10 +96,12 @@ export default function SignUpForm() {
             icon={MdOutlinePersonOutline}
             value={signUpFormData.nickname}
             onChange={signUpChangeHandler}
-            required
           />
           <StDuplicateButton
-            onClick={() => signUpCheckDuplicate('nickname')}
+            onClick={(e) => {
+              e.preventDefault();
+              signUpCheckDuplicate('nickname');
+            }}
             disabled={signUpFormData.nickname.length > 8}
           >
             중복체크
