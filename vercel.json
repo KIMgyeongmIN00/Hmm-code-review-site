@@ -1,3 +1,3 @@
 {
-  "routes": [{ "handle": "hmm-code-review-site" }, { "src": "/.*", "dest": "/index.html" }]
+  "routes": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
