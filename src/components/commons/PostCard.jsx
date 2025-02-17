@@ -1,41 +1,15 @@
-import { useContext, useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
-import AuthContext from '@/contexts/auth/auth.context';
-import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
 import { formatDate } from '@/libs/utils/format.util';
 
-export default function PostCard({ postData }) {
-  const [likes, setLikes] = useState([]);
-  const [comments, setComments] = useState([]);
-  const [author, setAuthor] = useState('');
-  const { id } = useContext(AuthContext);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const likesData = await getLikes(postData.id);
-        const commentsData = await getComments(postData.id);
-        const { nickname } = await getAuthorName(postData.user_id);
-
-        setLikes(likesData);
-        setComments(commentsData);
-        setAuthor(nickname);
-      } catch (error) {
-        alert('Error fetching data:', error);
-      }
-    }
-    fetchData();
-  }, [postData]);
-
-  const isLikeActive = likes.some((likeMeta) => likeMeta.user_id === id);
-
+function PostCard({ id, createdAt, title, author, isLiked, commentCount, likeCount, programmingLanguage }) {
   return (
-    <StPostContainer to={`/code/view/${postData.id}`}>
-      <StPostTitle>{postData.title}</StPostTitle>
+    <StPostContainer to={`/code/view/${id}`}>
+      <StPostTitle>{title}</StPostTitle>
       <StPostMeta>
-        {postData.programming_language}·{formatDate(postData.created_at)}
+        {programmingLanguage} · {formatDate(createdAt)}
       </StPostMeta>
       <StIconsContainer>
         <div>
@@ -45,11 +19,11 @@ export default function PostCard({ postData }) {
         <div>
           <div>
             <StCommentIcon />
-            <StIconLabel>{comments.length}</StIconLabel>
+            <StIconLabel>{commentCount}</StIconLabel>
           </div>
           <div>
-            {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-            <StIconLabel>{likes.length}</StIconLabel>
+            {isLiked ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
+            <StIconLabel>{likeCount}</StIconLabel>
           </div>
         </div>
       </StIconsContainer>
@@ -57,11 +31,12 @@ export default function PostCard({ postData }) {
   );
 }
 
+export default React.memo(PostCard);
+
 const StPostContainer = styled(Link)`
   cursor: pointer;
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
-  height: 100%;
   width: 100%;
   padding: 10px;
 `;

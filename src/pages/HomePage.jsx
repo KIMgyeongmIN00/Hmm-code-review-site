@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import PostCard2 from '@/components/commons/PostCard2';
+import PostCard from '@/components/commons/PostCard';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
 import AuthContext from '@/contexts/auth/auth.context';
@@ -37,7 +37,7 @@ export default function HomePage() {
       </StFilterPanelContainer>
       <StPostListContainer>
         {posts.map((post) => (
-          <PostCard2 key={post.id} {...post} />
+          <PostCard key={post.id} {...post} />
         ))}
       </StPostListContainer>
     </StHomePageContainer>

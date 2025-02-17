@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import Button from '@/components/commons/Button';
 import Input from '@/components/commons/Input';
-import PostCard2 from '@/components/commons/PostCard2';
+import PostCard from '@/components/commons/PostCard';
 import AuthContext from '@/contexts/auth/auth.context';
 import { saveUserInfo } from '@/contexts/auth/auth.reducer';
 import { getMyPosts } from '@/libs/api/post.api';
@@ -59,7 +59,7 @@ function MyPage() {
       </StUserInfoContainer>
       <StPostContainer>
         {myPosts.map((post) => (
-          <PostCard2 key={post.id} {...post} />
+          <PostCard key={post.id} {...post} />
         ))}
       </StPostContainer>
     </StMyPageContainer>
