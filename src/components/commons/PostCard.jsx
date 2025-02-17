@@ -23,7 +23,7 @@ export default function PostCard({ postData: postData }) {
         setComments(commentsData);
         setAuthor(nickname);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        alert('Error fetching data:', error);
       }
     }
     fetchData();
