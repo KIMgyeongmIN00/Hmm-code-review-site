@@ -13,7 +13,7 @@ export default function Input({ icon: Icon, width, ...props }) {
 const StInputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--round-md);
   padding: 4px 8px;
   width: ${(props) => props.width || '100%'};
