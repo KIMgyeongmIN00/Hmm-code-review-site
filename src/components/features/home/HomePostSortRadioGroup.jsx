@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function HomePostSortRadioGroup() {
-  const [sort, setSort] = useState('latest');
-
+export default function HomePostSortRadioGroup({ sort, setSort }) {
   return (
     <StRadioGroupContainer>
       <input
