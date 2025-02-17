@@ -59,8 +59,8 @@ export default function HomePage() {
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
       {postList.map((post) => (
-        <StPostWrapper>
-          <PostCard key={post.author} postData={post} />
+        <StPostWrapper key={post.author}>
+          <PostCard postData={post} />
         </StPostWrapper>
       ))}
     </StHomePageContainer>
