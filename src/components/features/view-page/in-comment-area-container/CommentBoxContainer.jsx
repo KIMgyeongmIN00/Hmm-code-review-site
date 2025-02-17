@@ -3,7 +3,7 @@ import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
 
-export default function CommentBoxContainer({ commentProps }) {
+export default function CommentBoxContainer({ commentProps, authId }) {
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
@@ -13,7 +13,7 @@ export default function CommentBoxContainer({ commentProps }) {
       <StCommentContentWrapper>
         <p>{commentProps.content}</p>
       </StCommentContentWrapper>
-      {commentProps.IsAuth && <CommentOnAuthButtons />}
+      {commentProps.user_id === authId && <CommentOnAuthButtons />}
       <StCommentLikeContainer>
         <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
         {/* <p>{commentProps.id를 외부키로 받아와 좋아요 수 호출}</p> */}
