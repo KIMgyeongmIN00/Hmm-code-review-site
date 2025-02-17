@@ -6,7 +6,6 @@ import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 import AuthContext from '@/contexts/auth/auth.context';
-import debounce from '@libs/utils/debounce';
 
 export default function Header() {
   const [searchWord, setSearchWord] = useState('');
@@ -14,7 +13,20 @@ export default function Header() {
 
   const handleSearchValue = function (e) {
     setSearchWord(e.target.value);
-    console.log(e.target.value);
+  };
+
+  const handleIconClick = function () {
+    if (searchWord.trim() !== '') {
+      console.log(searchWord);
+    }
+  };
+
+  const handleKeyDown = function (e) {
+    if (e.key === 'Enter') {
+      if (searchWord.trim() !== '') {
+        console.log(searchWord);
+      }
+    }
   };
 
   return (
@@ -25,10 +37,11 @@ export default function Header() {
         </Link>
         <div>
           <Input
-            icon={MdOutlineSearch}
+            icon={() => <SearchIcon active={searchWord.trim() !== ''} onClick={handleIconClick} />}
             placeholder="검색어를 입력해 주세요."
             value={searchWord}
             onChange={handleSearchValue}
+            onKeyDown={handleKeyDown}
           />
           {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
@@ -37,7 +50,19 @@ export default function Header() {
   );
 }
 
-const StSearchIcon = styled(MdOutlineSearch);
+const ClickIcon = styled.div`
+  cursor: ${({ active }) => (active ? 'pointer' : 'default')};
+  color: ${({ active }) => (active ? 'var(--color-point)' : 'var(--color-main-light)')};
+  transition: color 0.3s;
+`;
+
+const SearchIcon = function ({ active, onClick }) {
+  return (
+    <ClickIcon active={active} onClick={onClick}>
+      <MdOutlineSearch />
+    </ClickIcon>
+  );
+};
 
 const StWrapper = styled.div`
   width: 100%;
