@@ -1,57 +1,72 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
 import PostCard from '@commons/PostCard';
+import supabase from '@/libs/api/supabase.api';
 
-const postList = [
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS1'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS2'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS3'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS3'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS4'
-  }
-];
+// const postList = [
+//   {
+//     postTitle: 'Title',
+//     languageType: 'C++',
+//     createAt: '2025년 *월 *일 **시 **분',
+//     author: 'tester',
+//     totalLikeCount: 100,
+//     totalCommentCount: 100,
+//     id: 'RANDOM_CONSTANTS1'
+//   },
+//   {
+//     postTitle: 'Title',
+//     languageType: 'C++',
+//     createAt: '2025년 *월 *일 **시 **분',
+//     author: 'tester',
+//     totalLikeCount: 100,
+//     totalCommentCount: 100,
+//     id: 'RANDOM_CONSTANTS2'
+//   },
+//   {
+//     postTitle: 'Title',
+//     languageType: 'C++',
+//     createAt: '2025년 *월 *일 **시 **분',
+//     author: 'tester',
+//     totalLikeCount: 100,
+//     totalCommentCount: 100,
+//     id: 'RANDOM_CONSTANTS3'
+//   },
+//   {
+//     postTitle: 'Title',
+//     languageType: 'C++',
+//     createAt: '2025년 *월 *일 **시 **분',
+//     author: 'tester',
+//     totalLikeCount: 100,
+//     totalCommentCount: 100,
+//     id: 'RANDOM_CONSTANTS3'
+//   },
+//   {
+//     postTitle: 'Title',
+//     languageType: 'C++',
+//     createAt: '2025년 *월 *일 **시 **분',
+//     author: 'tester',
+//     totalLikeCount: 100,
+//     totalCommentCount: 100,
+//     id: 'RANDOM_CONSTANTS4'
+//   }
+// ];
 
 export default function HomePage() {
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    async function getPosts() {
+      const { data, error } = await supabase.from('posts').select();
+      setPostList(data);
+      return data;
+    }
+    getPosts();
+  }, []);
+
+  console.log(postList);
+
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
