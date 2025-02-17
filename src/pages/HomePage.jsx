@@ -6,6 +6,7 @@ import PostCard from '@commons/PostCard';
 import supabase from '@libs/api/supabase.api';
 
 export default function HomePage() {
+  const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function HomePage() {
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
-        <HomeLanguageSelector />
+        <HomeLanguageSelector language={language} setLanguage={setLanguage} />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
       {postList.map((post) => (

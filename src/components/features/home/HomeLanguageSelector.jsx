@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import SelectBox from '@commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
 
-export default function HomeLanguageSelector() {
-  const [language, setLanguage] = useState('');
-
+export default function HomeLanguageSelector({ language, setLanguage }) {
   return (
     <StLanguageSelectorWrapper>
       <SelectBox
