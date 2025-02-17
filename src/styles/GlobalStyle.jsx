@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
   :root{
     --color-main: #495057;
     --color-main-light: #9fa3a7;
@@ -36,14 +38,6 @@ const GlobalStyle = createGlobalStyle`
   a {
     display: inline-block;
     text-decoration: none;
-  }
-
-  @font-face {
-    font-family: "Pretendard";
-    font-weight: 45 920;
-    font-style: normal;
-    font-display: swap;
-    src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
   }
   
   html, body, div, span, applet, object, iframe,
