@@ -84,9 +84,7 @@ export default function SignUpPage() {
           <MdDoneOutline />
           회원가입
         </StSignUpButton>
-        <Link to="/sign-in" className="custom-link">
-          이미 회원가입을 하셨나요?
-        </Link>
+        <Link to="/sign-in">이미 회원가입을 하셨나요?</Link>
       </StSignUpForm>
     </StContainer>
   );
@@ -109,7 +107,7 @@ const StSignUpForm = styled.form`
   align-items: center;
   flex-direction: column;
   margin: 50px;
-  .custom-link {
+  > a {
     color: var(--color-point-dark);
   }
 `;

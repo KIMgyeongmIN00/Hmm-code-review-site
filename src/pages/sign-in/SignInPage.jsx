@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { MdEmail, MdOutlinePrivateConnectivity, MdDoneOutline } from 'react-icons/md';
 import Button from '@commons/Button';
 import Input from '@commons/Input';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useSignInForm from '@/hooks/auth/useSignInForm';
 
 export default function SigninPage() {
   const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
-  const navigate = useNavigate();
   return (
     <StContainer>
       <Link to="/">
@@ -48,9 +47,7 @@ export default function SigninPage() {
           <MdDoneOutline />
           로그인
         </StSignInButton>
-        <Link to="/sign-up" className="sign-in-link">
-          회원가입이 아직인가요?
-        </Link>
+        <Link to="/sign-up">회원가입이 아직인가요?</Link>
       </StSignInForm>
     </StContainer>
   );
@@ -75,7 +72,7 @@ const StSignInForm = styled.form`
   flex-direction: column;
   margin: 50px;
   height: 400px;
-  .sign-in-link {
+  > a {
     color: var(--color-point-dark);
   }
 `;
