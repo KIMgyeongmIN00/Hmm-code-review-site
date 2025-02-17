@@ -13,7 +13,7 @@ export default function AuthProvider({ children }) {
       if (session) {
         async function setAuth() {
           const { data } = await supabase.from('users').select().eq('id', session.user.id);
-          dispatch(onSignIn(session.user.id, data[0].nickname));
+          dispatch(onSignIn(session.user.id, data[0].email, data[0].nickname));
         }
         setAuth();
       } else {

@@ -6,7 +6,7 @@ import AuthContext from '@/contexts/auth/auth.context';
 import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
 import formatDate from '@/utils/formatDate';
 
-export default function PostCard({ postData: postData }) {
+export default function PostCard({ postData }) {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [author, setAuthor] = useState('');
@@ -27,7 +27,7 @@ export default function PostCard({ postData: postData }) {
       }
     }
     fetchData();
-  }, []);
+  }, [postData]);
 
   const isLikeActive = likes.some((likeMeta) => likeMeta.user_id === id);
 

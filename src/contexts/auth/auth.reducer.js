@@ -1,15 +1,17 @@
 export const authInitialValue = {
   isSignin: false,
   id: '',
+  email: '',
   nickname: ''
 };
 
-export function onSignIn(userId, userNickname) {
+export function onSignIn(userId, email, nickname) {
   return {
     type: 'signIn',
     payload: {
       id: userId,
-      nickname: userNickname
+      email,
+      nickname
     }
   };
 }
@@ -26,7 +28,7 @@ export default function authReducer(state, action) {
       return (state = { ...action.payload, isSignin: true });
 
     case 'signOut':
-      return (state = { isSignin: false, id: '', nickname: '' });
+      return (state = { isSignin: false, id: '', email: '', nickname: '' });
   }
   return state;
 }

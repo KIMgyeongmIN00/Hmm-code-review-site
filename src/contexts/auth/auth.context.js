@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-// { id:stirng, nickname: string, is: boolean }
+// { id:string, email: string, nickname: string, isSignin: boolean }
 const AuthContext = createContext(null);
 export default AuthContext;
