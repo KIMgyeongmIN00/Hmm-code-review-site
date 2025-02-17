@@ -1,6 +1,6 @@
-import Button from '@commons/Button';
 import styled from 'styled-components';
-import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
+import Button from '@commons/Button';
 
 export default function CommentOnAuthButtons({ onDelete }) {
   return (

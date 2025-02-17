@@ -1,9 +1,9 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { MdOutlinePerson } from 'react-icons/md';
 import Button from '@commons/Button';
-import styled from 'styled-components';
-import { useState } from 'react';
 import supabase from '@/libs/api/supabase.api';
-import Swal from 'sweetalert2';
 
 export default function CommentAddContainer({ postId, nickname, onSubmit }) {
   const [content, setContent] = useState('');
@@ -19,10 +19,16 @@ export default function CommentAddContainer({ postId, nickname, onSubmit }) {
         confirmButtonText: '확인'
       });
 
-    const addCommentToDB = await supabase.from('comments').insert({ content, post_id: postId }).select('*');
-    onSubmit(addCommentToDB.data[0]);
-    setContent('');
-    if (addCommentToDB.error) {
+    try {
+      const addCommentToDB = await supabase.from('comments').insert({ content, post_id: postId }).select().single();
+      onSubmit(addCommentToDB.data);
+      setContent('');
+      return Swal.fire({
+        title: 'Good job!',
+        text: '댓글 작성에 성공했습니다.',
+        icon: 'success'
+      });
+    } catch (e) {
       return Swal.fire({
         title: 'Error!',
         text: '댓글 작성에 실패했습니다.',
@@ -30,11 +36,6 @@ export default function CommentAddContainer({ postId, nickname, onSubmit }) {
         confirmButtonText: '확인'
       });
     }
-    return Swal.fire({
-      title: 'Good job!',
-      text: '댓글 작성에 성공했습니다.',
-      icon: 'success'
-    });
   }
 
   return (
@@ -57,7 +58,6 @@ export default function CommentAddContainer({ postId, nickname, onSubmit }) {
 }
 
 const StCommentAddContainer = styled.form`
-  /* box-shadow: 0px 0px 8px var(--color-main-light); */
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
   background-color: var(--color-point-light);

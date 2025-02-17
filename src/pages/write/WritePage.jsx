@@ -6,7 +6,6 @@ import MDEditor from '@uiw/react-md-editor';
 import Input from '@commons/Input';
 import Button from '@commons/Button';
 import SelectBox from '@commons/SelectBox';
-import supabase from '@/libs/api/supabase.api';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
 import { insertPost } from '@/libs/api/post.api';
 

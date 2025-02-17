@@ -144,7 +144,8 @@ export async function getPostById(postId, userId) {
     id: data.id,
     createdAt: data.created_at,
     title: data.title,
-    userId: data.user_id,
+    content: data.content,
+    authorId: data.user_id,
     programmingLanguage: data.programming_language,
     likeCount: data.post_likes.length,
     commentCount: data.comments.length,
@@ -152,7 +153,7 @@ export async function getPostById(postId, userId) {
     isLiked: data.post_likes.some((like) => like.user_id === userId),
     comments: data.comments.map((comment) => ({
       id: comment.id,
-      userId: comment.user_id,
+      authorId: comment.user_id,
       createdAt: comment.created_at,
       content: comment.content,
       author: comment.users.nickname,

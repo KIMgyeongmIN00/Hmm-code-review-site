@@ -1,67 +1,66 @@
-import { MdFavoriteBorder, MdFavorite, MdOutlineModeComment, MdOutlinePerson, MdKeyboard } from 'react-icons/md';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import MDEditor from '@uiw/react-md-editor';
+import { MdFavoriteBorder, MdFavorite, MdOutlineModeComment, MdOutlinePerson, MdKeyboard } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
-import MDEditor from '@uiw/react-md-editor';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { useState } from 'react';
 import supabase from '@/libs/api/supabase.api';
+import { deletePostById } from '@/libs/api/post.api';
 import AuthContext from '@/contexts/auth/auth.context';
 
-export default function PostAreaContainer({
-  postId,
-  postInfomation,
-  postNickname,
-  authId,
-  likeCount = [],
-  comments = []
-}) {
+export default function PostAreaContainer({ postInfo }) {
   const { auth } = useContext(AuthContext);
-  const [isLiked, setIsLiked] = useState(false);
-  const [postLikeCount, setPostLikeCount] = useState(likeCount.length);
+  const [isLiked, setIsLiked] = useState(postInfo?.isLiked ?? false);
+  const [postLikeCount, setPostLikeCount] = useState(postInfo?.likeCount ?? 0);
 
-  useEffect(() => {
-    async function fetchLikeStatus() {
-      const { data } = await supabase.from('post_likes').select().eq('user_id', auth.id).eq('post_id', postId);
-      setIsLiked(data.length > 0);
-    }
-    async function fetchLikeCounts() {
-      const { data } = await supabase.from('post_likes').select().eq('post_id', postId);
-      setPostLikeCount(data?.length || 0);
-    }
-    fetchLikeCounts();
-    fetchLikeStatus();
-  }, [auth.id, postId]);
+  const navigate = useNavigate();
 
   async function toggleLikeButton() {
     if (isLiked) {
-      const { error } = await supabase.from('post_likes').delete().eq('user_id', auth.id).eq('post_id', postId);
-      if (error) console.log(error);
-      setPostLikeCount(postLikeCount - 1);
+      const { error } = await supabase.from('post_likes').delete().eq('user_id', auth.id).eq('post_id', postInfo?.id);
+      if (!error) setPostLikeCount(postLikeCount - 1);
     } else {
-      const { error } = await supabase.from('post_likes').insert([{ user_id: auth.id, post_id: postId }]);
-      if (error) console.log(error);
-      setPostLikeCount(postLikeCount + 1);
+      const { error } = await supabase.from('post_likes').insert([{ user_id: auth.id, post_id: postInfo?.id }]);
+      if (!error) setPostLikeCount(postLikeCount + 1);
     }
     setIsLiked(!isLiked);
+  }
+
+  async function handlePostDeleteClick() {
+    try {
+      await deletePostById(postInfo?.id);
+      return Swal.fire({
+        title: 'Good job!',
+        text: '게시글 삭제에 성공했습니다.',
+        icon: 'success'
+      }).then(() => navigate('/'));
+    } catch (e) {
+      return Swal.fire({
+        title: 'Error!',
+        text: '댓글 작성에 실패했습니다.',
+        icon: 'error',
+        confirmButtonText: '확인'
+      });
+    }
   }
 
   return (
     <StPostAreaContainer>
       <StPostTitleWrapper>
-        <h1>{postInfomation.title}</h1>
+        <h1>{postInfo?.title}</h1>
       </StPostTitleWrapper>
       <StLanguageTypeWrapper>
         <MdKeyboard size={30} />
-        <p>{postInfomation.programming_language}</p>
+        <p>{postInfo?.programmingLanguage}</p>
       </StLanguageTypeWrapper>
       <StPostWriterWrapper>
         <StPersonIcon size={30} />
-        <p>{postNickname}</p>
+        <p>{postInfo?.author}</p>
       </StPostWriterWrapper>
       <StCodeBoxWrapper>
-        <StMDeditor source={postInfomation.content} />
+        <StMDeditor source={postInfo?.content} />
       </StCodeBoxWrapper>
       <StPostToggleButtonContainer>
         <StPostLikeButtonContainer>
@@ -75,10 +74,10 @@ export default function PostAreaContainer({
         </StPostLikeButtonContainer>
         <StCommentIconContainer>
           <StCommentIcon size={26} />
-          <p>{comments?.length}</p>
+          <p>{postInfo?.commentCount}</p>
         </StCommentIconContainer>
       </StPostToggleButtonContainer>
-      {postInfomation.user_id === authId && <PostOnAuthButtons />}
+      {postInfo?.authorId === auth.id && <PostOnAuthButtons onDelete={handlePostDeleteClick} />}
     </StPostAreaContainer>
   );
 }

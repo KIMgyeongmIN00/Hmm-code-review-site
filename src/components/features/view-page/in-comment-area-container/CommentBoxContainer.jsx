@@ -1,42 +1,24 @@
-import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
+import { MdOutlinePerson } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
-import { useEffect, useState } from 'react';
-import { getAuthorName } from '@/libs/api/supabase.api';
 
-export default function CommentBoxContainer({ commentProps, authId, onDelete }) {
-  const [nickname, setNickname] = useState([]);
-
-  useEffect(() => {
-    async function fetchNickname() {
-      try {
-        const nicknameData = await getAuthorName(commentProps.user_id);
-        setNickname(nicknameData || '작성자 불명');
-      } catch (error) {
-        console.log('닉네임 배치에 실패하였습니다.', error);
-      }
-    }
-    fetchNickname();
-  }, []);
-
-  // console.log(nickname);
+export default function CommentBoxContainer({ comment, authId, onDelete }) {
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{nickname.nickname}</h3>
+        <h3>{comment.author}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
-        <p>{commentProps.content}</p>
+        <p>{comment.content}</p>
       </StCommentContentWrapper>
-      {commentProps.user_id === authId && <CommentOnAuthButtons onDelete={onDelete} />}
+      {comment.authorId === authId && <CommentOnAuthButtons onDelete={onDelete} />}
     </StCommentBoxContainer>
   );
 }
 
 const StCommentBoxContainer = styled.div`
-  /* box-shadow: 0px 0px 8px var(--color-main-light); */
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
   background-color: var(--color-point-light);
