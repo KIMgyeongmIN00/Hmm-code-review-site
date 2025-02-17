@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ButtonLink from '@commons/ButtonLink';
-import { Link } from 'react-router-dom';
 
 export default function HeaderAuthBtn() {
   return (
