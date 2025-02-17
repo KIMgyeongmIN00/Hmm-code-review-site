@@ -9,9 +9,10 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const {
       data: { subscription }
-    } = supabase.auth.onAuthStateChange((_, session) => {
+    } = supabase.auth.onAuthStateChange(async (_, session) => {
       if (session) {
-        dispatch(onSignIn(session.user.id, session.user.user_metadata?.nickname));
+        const { data } = await supabase.from('users').select().eq('id', session.user.id);
+        dispatch(onSignIn(session.user.id, data[0].nickname));
       } else {
         dispatch({ type: 'signOut' });
       }
@@ -20,5 +21,10 @@ export default function AuthProvider({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  return <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>;
+  const authValue = {
+    auth,
+    dispatch
+  };
+
+  return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>;
 }
