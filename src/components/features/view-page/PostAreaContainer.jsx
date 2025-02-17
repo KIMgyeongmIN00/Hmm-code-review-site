@@ -9,6 +9,7 @@ import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOn
 import supabase from '@api/supabase.api';
 import { deletePostById } from '@api/post.api';
 import AuthContext from '@contexts/auth/auth.context';
+import { useEffect } from 'react';
 
 export default function PostAreaContainer({ postInfo }) {
   const { auth } = useContext(AuthContext);
@@ -16,6 +17,11 @@ export default function PostAreaContainer({ postInfo }) {
   const [postLikeCount, setPostLikeCount] = useState(postInfo?.likeCount ?? 0);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLiked(postInfo?.isLiked ?? false);
+    setPostLikeCount(postInfo?.likeCount ?? 0);
+  }, [postInfo?.likeCount, postInfo?.isLiked]);
 
   async function toggleLikeButton() {
     if (isLiked) {
