@@ -25,8 +25,12 @@ export default function PostAreaContainer({
     async function fetchLikeStatus() {
       const { data } = await supabase.from('post_likes').select().eq('user_id', auth.id).eq('post_id', postId);
       setIsLiked(data.length > 0);
+    }
+    async function fetchLikeCounts() {
+      const { data } = await supabase.from('post_likes').select().eq('post_id', postId);
       setPostLikeCount(data?.length || 0);
     }
+    fetchLikeCounts();
     fetchLikeStatus();
   }, [auth.id, postId]);
 
