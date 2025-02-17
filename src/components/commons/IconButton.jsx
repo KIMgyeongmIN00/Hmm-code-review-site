@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button from './Button';
 
@@ -19,14 +18,8 @@ import Button from './Button';
  */
 
 function IconButton({ activeIcon: ActiveIcon, inActiveIcon: InActiveIcon, onClick, isActive, ...props }) {
-  // const [isActive, setIsActive] = useState(false);
-
-  function onClickIconHandler() {
-    onClick();
-  }
-
   return (
-    <StButton onClick={onClickIconHandler} {...props}>
+    <StButton onClick={onClick} {...props}>
       {isActive ? <ActiveIcon /> : <InActiveIcon />}
     </StButton>
   );
