@@ -1,10 +1,31 @@
+import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import AuthContext from '@/contexts/auth/auth.context';
+import supabase from '@libs/api/supabase.api';
 
 export default function PostCard({ postData: postData }) {
-  //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
-  let isLikeActive = false;
+  const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
+  const { id } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const likesData = await getLikes(postData.id);
+        const commentsData = await getComments(postData.id);
+        setLikes(likesData);
+        setComments(commentsData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, [postData.id]);
+
+  const isLikeActive = likes.includes(id);
+
   return (
     <StPostLink to={`/code/view/${postData.id}`}>
       <StPostContainer>
@@ -20,11 +41,11 @@ export default function PostCard({ postData: postData }) {
           <div>
             <div>
               <StCommentIcon />
-              <StIconLabel>{postData.totalCommentCount}</StIconLabel>
+              <StIconLabel>{likes.length}</StIconLabel>
             </div>
             <div>
               {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-              <StIconLabel>{postData.totalLikeCount}</StIconLabel>
+              <StIconLabel>{comments.length}</StIconLabel>
             </div>
           </div>
         </StIconsContainer>
@@ -44,6 +65,22 @@ const formatDate = function (createAt) {
 
   return `${year}년 ${month}월 ${day}일 ${hour}시 ${min}분`;
 };
+
+async function getLikes(postId) {
+  const { data, error } = await supabase.from('post_likes').select('user_id').eq('post_id', postId);
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
+async function getComments(postId) {
+  const { data, error } = await supabase.from('comments').select().eq('post_id', postId);
+  if (error) {
+    throw error;
+  }
+  return data;
+}
 
 const StPostLink = styled(Link)`
   display: block;
