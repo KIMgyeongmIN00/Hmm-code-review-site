@@ -16,7 +16,7 @@ export default function HomePage() {
       return data;
     }
     getPosts();
-  }, []);
+  }, [language]);
 
   return (
     <StHomePageContainer>
