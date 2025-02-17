@@ -1,20 +1,28 @@
-import { MdOutlinePerson } from 'react-icons/md';
-import styled from 'styled-components';
-import Button from '@commons/Button';
 import ButtonLink from '@/components/commons/ButtonLink';
+import AuthContext from '@/contexts/auth/auth.context';
+import { onSignOut } from '@/contexts/auth/auth.reducer';
 import supabase from '@/libs/api/supabase.api';
-
-const userSignout = async function () {
-  const { error } = await supabase.auth.signOut();
-  //TODO: 로그아웃 에러에 대한 처리
-  if (error) {
-    alert(error);
-  } else {
-    return;
-  }
-};
+import Button from '@commons/Button';
+import { useContext } from 'react';
+import { MdOutlinePerson } from 'react-icons/md';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function HeaderMyPageButton() {
+  const { dispatch } = useContext(AuthContext);
+  const { pathname } = useLocation();
+
+  async function userSignout() {
+    const { error } = await supabase.auth.signOut();
+    //TODO: 로그아웃 에러에 대한 처리
+    if (error) {
+      alert(error);
+    } else {
+      dispatch(onSignOut());
+      return <Navigate to={'/sign-in'} replace state={{ redirectedFrom: pathname }} />;
+    }
+  }
+
   return (
     <StContainer>
       <StMypageIcon />

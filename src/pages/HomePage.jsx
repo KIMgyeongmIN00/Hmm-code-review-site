@@ -1,68 +1,40 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
 import PostCard from '@commons/PostCard';
-
-const postList = [
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS1'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS2'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS3'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS3'
-  },
-  {
-    postTitle: 'Title',
-    languageType: 'C++',
-    createAt: '2025년 *월 *일 **시 **분',
-    author: 'tester',
-    totalLikeCount: 100,
-    totalCommentCount: 100,
-    id: 'RANDOM_CONSTANTS4'
-  }
-];
+import supabase from '@libs/api/supabase.api';
 
 export default function HomePage() {
+  const [language, setLanguage] = useState('');
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    async function getPosts() {
+      if (language && language !== '전체') {
+        const { data } = await supabase.from('posts').select().eq('programming_language', language);
+        setPostList(data);
+      } else {
+        const { data } = await supabase.from('posts').select();
+        setPostList(data);
+      }
+    }
+    getPosts();
+  }, [language]);
+
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
-        <HomeLanguageSelector />
+        <HomeLanguageSelector language={language} setLanguage={setLanguage} />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
-      {postList.map((post) => (
-        <StPostWrapper key={post.author}>
-          <PostCard postData={post} />
-        </StPostWrapper>
-      ))}
+      {postList.length !== 0
+        ? postList.map((post) => (
+            <StPostWrapper key={post.author}>
+              <PostCard postData={post} />
+            </StPostWrapper>
+          ))
+        : '해당 정보가 없습니다.'}
     </StHomePageContainer>
   );
 }

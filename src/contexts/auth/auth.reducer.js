@@ -14,6 +14,12 @@ export function onSignIn(userId, userNickname) {
   };
 }
 
+export function onSignOut() {
+  return {
+    type: 'signOut'
+  };
+}
+
 export default function authReducer(state, action) {
   switch (action.type) {
     case 'signIn':
