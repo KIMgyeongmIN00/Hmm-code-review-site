@@ -10,9 +10,8 @@ export default function HomePage() {
 
   useEffect(() => {
     async function getPosts() {
-      const { data, error } = await supabase.from('posts').select();
+      const { data } = await supabase.from('posts').select();
       setPostList(data);
-      return data;
     }
     getPosts();
   }, []);
