@@ -9,7 +9,7 @@ export default function HeaderAuthBtn() {
         로그인
       </ButtonLink>
       /
-      <ButtonLink $variant="ghost" $size="sm" to="/sign-in">
+      <ButtonLink $variant="ghost" $size="sm" to="/sign-up">
         회원가입
       </ButtonLink>
     </StContainer>
