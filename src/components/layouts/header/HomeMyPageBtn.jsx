@@ -1,15 +1,20 @@
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Button from '@commons/Button';
+import ButtonLink from '@/components/commons/ButtonLink';
 
-export default function HomeMyPageBtn() {
+export default function HeaderMyPageButton() {
   return (
     <StContainer>
       <StMypageIcon />
       <StModalBox>
         <StDropdown>
-          <Button $variant="ghost">글 작성</Button>
-          <Button $variant="ghost">마이 페이지</Button>
+          <ButtonLink $variant="ghost" to="/write">
+            글 작성
+          </ButtonLink>
+          <ButtonLink $variant="ghost" to="/my-page">
+            마이 페이지
+          </ButtonLink>
           <Button $variant="ghost">로그 아웃</Button>
         </StDropdown>
       </StModalBox>
@@ -39,6 +44,7 @@ const StDropdown = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   gap: 4px;
 `;
 
