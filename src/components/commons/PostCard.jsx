@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 import AuthContext from '@/contexts/auth/auth.context';
-import supabase from '@libs/api/supabase.api';
+import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
 
 export default function PostCard({ postData: postData }) {
   const [likes, setLikes] = useState([]);
@@ -17,6 +17,7 @@ export default function PostCard({ postData: postData }) {
         const likesData = await getLikes(postData.id);
         const commentsData = await getComments(postData.id);
         const { nickname } = await getAuthorName(postData.user_id);
+
         setLikes(likesData);
         setComments(commentsData);
         setAuthor(nickname);
@@ -27,7 +28,7 @@ export default function PostCard({ postData: postData }) {
     fetchData();
   }, []);
 
-  const isLikeActive = likes.includes(id);
+  const isLikeActive = likes.some((likeMeta) => likeMeta.user_id === id);
 
   return (
     <StPostContainer to={`/code/view/${postData.id}`}>
@@ -66,30 +67,6 @@ const formatDate = function (createAt) {
 
   return `${year}년 ${month}월 ${day}일 ${hour}시 ${min}분`;
 };
-//Post의 좋아요 정보 불러오기
-async function getLikes(postId) {
-  const { data, error } = await supabase.from('post_likes').select('user_id').eq('post_id', postId);
-  if (error) {
-    throw error;
-  }
-  return data;
-}
-//Post의 댓글 정보 불러오기
-async function getComments(postId) {
-  const { data, error } = await supabase.from('comments').select().eq('post_id', postId);
-  if (error) {
-    throw error;
-  }
-  return data;
-}
-//Post의 작성자 닉네임 불러오기
-async function getAuthorName(authorId) {
-  const { data, error } = await supabase.from('users').select('nickname').eq('id', authorId);
-  if (error) {
-    throw error;
-  }
-  return data[0];
-}
 
 const StPostContainer = styled(Link)`
   cursor: pointer;
