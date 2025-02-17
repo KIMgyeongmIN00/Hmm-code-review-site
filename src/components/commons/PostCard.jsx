@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 import AuthContext from '@/contexts/auth/auth.context';
 import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
-import formatDate from '@/libs/utils/formatDate';
+import { formatDate } from '@/libs/utils/format.util';
 
 export default function PostCard({ postData }) {
   const [likes, setLikes] = useState([]);
