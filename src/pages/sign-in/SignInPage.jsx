@@ -11,7 +11,10 @@ export default function SigninPage() {
 
   async function handleSignInWithGoogleClick() {
     await supabase.auth.signInWithOAuth({
-      provider: 'google'
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}`
+      }
     });
   }
 

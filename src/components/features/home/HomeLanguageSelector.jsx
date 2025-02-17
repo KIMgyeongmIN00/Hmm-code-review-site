@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import SelectBox from '@commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
