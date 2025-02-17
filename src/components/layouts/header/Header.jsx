@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
@@ -8,7 +8,12 @@ import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
+  const [searchWord, setSearchWord] = useState('');
   const { auth } = useContext(AuthContext);
+
+  const handleSearchValue = function (e) {
+    setSearchWord(e.target.value);
+  };
 
   return (
     <StWrapper>
@@ -17,13 +22,20 @@ export default function Header() {
           <img src="/image/logo.png" alt="로고 이미지" />
         </Link>
         <div>
-          <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
+          <Input
+            icon={MdOutlineSearch}
+            placeholder="검색어를 입력해 주세요."
+            value={searchWord}
+            onChange={handleSearchValue}
+          />
           {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
       </StHeaderContainer>
     </StWrapper>
   );
 }
+
+const StSearchIcon = styled(MdOutlineSearch);
 
 const StWrapper = styled.div`
   width: 100%;
