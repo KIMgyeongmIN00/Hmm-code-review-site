@@ -5,7 +5,7 @@ export const authInitialValue = {
   nickname: ''
 };
 
-export function onSignIn(userId, email, nickname) {
+export function saveUserInfo(userId, email, nickname) {
   return {
     type: 'signIn',
     payload: {
@@ -16,7 +16,7 @@ export function onSignIn(userId, email, nickname) {
   };
 }
 
-export function onSignOut() {
+export function clearUserInfo() {
   return {
     type: 'signOut'
   };

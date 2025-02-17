@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import AuthContext from './auth.context';
-import authReducer, { authInitialValue, onSignIn } from './auth.reducer';
+import authReducer, { authInitialValue, clearUserInfo, saveUserInfo } from './auth.reducer';
 import supabase from '@/libs/api/supabase.api';
 
 export default function AuthProvider({ children }) {
@@ -13,11 +13,11 @@ export default function AuthProvider({ children }) {
       if (session) {
         async function setAuth() {
           const { data } = await supabase.from('users').select().eq('id', session.user.id);
-          dispatch(onSignIn(session.user.id, data[0].email, data[0].nickname));
+          dispatch(saveUserInfo(session.user.id, data[0].email, data[0].nickname));
         }
         setAuth();
       } else {
-        dispatch({ type: 'signOut' });
+        dispatch(clearUserInfo);
       }
     });
 

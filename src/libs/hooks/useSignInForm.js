@@ -1,5 +1,5 @@
 import AuthContext from '@/contexts/auth/auth.context';
-import { onSignIn } from '@/contexts/auth/auth.reducer';
+import { clearUserInfo, saveUserInfo } from '@/contexts/auth/auth.reducer';
 import supabase from '@/libs/api/supabase.api';
 import { useEffect } from 'react';
 import { useContext, useState } from 'react';
@@ -19,10 +19,10 @@ export default function useSignInForm() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((_, session) => {
       if (session) {
-        dispatch(onSignIn(session.user.id, session.user.user_metadata?.nickname));
+        dispatch(saveUserInfo(session.user.id, session.user.user_metadata?.nickname));
         navigate(redirectPath);
       } else {
-        dispatch({ type: 'signOut' });
+        dispatch(clearUserInfo);
       }
     });
 
@@ -48,7 +48,7 @@ export default function useSignInForm() {
       setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
     } else {
       const { data } = await supabase.from('users').select().eq('email', email);
-      dispatch(onSignIn(data[0].id, data[0].nickname));
+      dispatch(saveUserInfo(data[0].id, data[0].nickname));
       navigate(redirectPath);
     }
   }

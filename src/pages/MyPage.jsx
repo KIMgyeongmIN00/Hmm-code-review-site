@@ -2,7 +2,7 @@ import Button from '@/components/commons/Button';
 import Input from '@/components/commons/Input';
 import PostCard from '@/components/commons/PostCard';
 import AuthContext from '@/contexts/auth/auth.context';
-import { onSignIn } from '@/contexts/auth/auth.reducer';
+import { saveUserInfo } from '@/contexts/auth/auth.reducer';
 import supabase from '@/libs/api/supabase.api';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -38,7 +38,7 @@ function MyPage() {
         confirmButtonText: '확인'
       });
     }
-    dispatch(onSignIn(auth.id, auth.email, nickname));
+    dispatch(saveUserInfo(auth.id, auth.email, nickname));
     return Swal.fire({
       title: 'Good job!',
       text: '정보 수정에 성공했습니다.',

@@ -1,11 +1,11 @@
 import ButtonLink from '@/components/commons/ButtonLink';
 import AuthContext from '@/contexts/auth/auth.context';
-import { onSignOut } from '@/contexts/auth/auth.reducer';
+import { clearUserInfo } from '@/contexts/auth/auth.reducer';
 import supabase from '@/libs/api/supabase.api';
 import Button from '@commons/Button';
 import { useContext } from 'react';
 import { MdOutlinePerson } from 'react-icons/md';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function HeaderMyPageButton() {
@@ -14,11 +14,8 @@ export default function HeaderMyPageButton() {
 
   async function userSignout() {
     const { error } = await supabase.auth.signOut();
-    //TODO: 로그아웃 에러에 대한 처리
-    if (error) {
-      alert(error);
-    } else {
-      dispatch(onSignOut());
+    if (!error) {
+      dispatch(clearUserInfo());
       return <Navigate to={'/sign-in'} replace state={{ redirectedFrom: pathname }} />;
     }
   }
