@@ -26,7 +26,7 @@ export async function getPosts(myId, { language, keyword }) {
       post_likes (
         user_id
       ),
-      comments (count),
+      comments (post_id),
       users!inner (nickname)
     `
     )
@@ -67,7 +67,7 @@ export async function getMyPosts(userId) {
       post_likes (
         user_id
       ),
-      comments (count),
+      comments (post_id),
       users!inner (nickname)
     `
     )
