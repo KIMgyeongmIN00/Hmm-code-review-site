@@ -1,7 +1,7 @@
-import ButtonLink from '@/components/commons/ButtonLink';
-import AuthContext from '@/contexts/auth/auth.context';
-import { clearUserInfo } from '@/contexts/auth/auth.reducer';
-import supabase from '@/libs/api/supabase.api';
+import ButtonLink from '@commons/ButtonLink';
+import AuthContext from '@contexts/auth/auth.context';
+import { clearUserInfo } from '@contexts/auth/auth.reducer';
+import supabase from '@api/supabase.api';
 import Button from '@commons/Button';
 import { useContext } from 'react';
 import { MdOutlinePerson } from 'react-icons/md';

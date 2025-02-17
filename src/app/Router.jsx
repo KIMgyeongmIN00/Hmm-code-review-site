@@ -3,12 +3,10 @@ import RootLayout from '@layouts/RootLayout';
 import HomePage from '@pages/HomePage';
 import ViewPage from '@pages/view/ViewPage';
 import WritePage from '@pages/write/WritePage';
-import MyPage from '@/pages/MyPage';
+import MyPage from '@pages/MyPage';
 import SignInPage from '@pages/sign-in/SignInPage';
-import SignUpPage from '@/pages/sign-up/SignUpPage';
+import SignUpPage from '@pages/sign-up/SignUpPage';
 import ProtectedRouter from './ProtectedRouter';
-import { useContext } from 'react';
-import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
   const RoutesForAuthenticatedOnly = [

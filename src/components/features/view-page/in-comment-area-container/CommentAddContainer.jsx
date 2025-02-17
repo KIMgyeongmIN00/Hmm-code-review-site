@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { MdOutlinePerson } from 'react-icons/md';
 import Button from '@commons/Button';
-import supabase from '@/libs/api/supabase.api';
+import supabase from '@api/supabase.api';
 
 export default function CommentAddContainer({ postId, nickname, onSubmit }) {
   const [content, setContent] = useState('');

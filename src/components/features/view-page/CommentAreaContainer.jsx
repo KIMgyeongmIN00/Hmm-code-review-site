@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import CommentAddContainer from '@features/view-page/in-comment-area-container/CommentAddContainer';
 import CommentBoxContainer from '@features/view-page/in-comment-area-container/CommentBoxContainer';
-import { deleteCommentById } from '@/libs/api/comment.api';
+import { deleteCommentById } from '@api/comment.api';
 
 export default function CommentAreaContainer({ postId, auth, comments, onSubmit, onDelete }) {
   async function handleCommentDelete(comment) {

@@ -3,9 +3,9 @@ import PostAreaContainer from '@features/view-page/PostAreaContainer';
 import CommentAreaContainer from '@features/view-page/CommentAreaContainer';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getPostById } from '@/libs/api/post.api';
+import { getPostById } from '@api/post.api';
 import { useContext } from 'react';
-import AuthContext from '@/contexts/auth/auth.context';
+import AuthContext from '@contexts/auth/auth.context';
 
 export default function ViewPage() {
   const { id } = useParams();

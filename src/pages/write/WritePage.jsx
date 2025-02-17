@@ -7,7 +7,7 @@ import Input from '@commons/Input';
 import Button from '@commons/Button';
 import SelectBox from '@commons/SelectBox';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
-import { insertPost } from '@/libs/api/post.api';
+import { insertPost } from '@api/post.api';
 
 export default function WritePage() {
   const [programmingLanguage, setProgrammingLanguage] = useState('');

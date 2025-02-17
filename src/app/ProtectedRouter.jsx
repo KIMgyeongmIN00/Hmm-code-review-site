@@ -1,7 +1,6 @@
-import RootLayout from '@/components/layouts/RootLayout';
-import AuthContext from '@/contexts/auth/auth.context';
+import AuthContext from '@contexts/auth/auth.context';
 import { useContext } from 'react';
-import { Navigate, Outlet, redirect, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 function ProtectedRouter() {
   const { auth } = useContext(AuthContext);

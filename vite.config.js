@@ -10,11 +10,11 @@ export default defineConfig({
       { find: '@commons', replacement: '/src/components/commons' },
       { find: '@features', replacement: '/src/components/features' },
       { find: '@layouts', replacement: '/src/components/layouts' },
-      { find: '@constants', replacement: '/src/constants' },
+      { find: '@contexts', replacement: '/src/contexts' },
       { find: '@pages', replacement: '/src/pages' },
-      { find: '@libs', replacement: '/src/libs' },
-      { find: '@hooks', replacement: '/src/hooks' },
-      { find: '@utils', replacement: '/src/utils' }
+      { find: '@hooks', replacement: '/src/libs/hooks' },
+      { find: '@api', replacement: '/src/libs/api' },
+      { find: '@utils', replacement: '/src/libs/utils' }
     ]
   }
 });

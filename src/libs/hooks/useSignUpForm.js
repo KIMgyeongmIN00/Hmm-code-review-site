@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import supabase from '@/libs/api/supabase.api';
-import { signUpValidate } from '@/libs/utils/validate.util';
+import supabase from '@api/supabase.api';
+import { signUpValidate } from '@utils/validate.util';
 
 export default function useSignUpForm() {
   const [signUpFormData, setSignUpFormData] = useState({

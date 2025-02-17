@@ -6,11 +6,11 @@
       "@commons/*": ["src/components/commons/*"],
       "@features/*": ["src/components/features/*"],
       "@layouts/*": ["src/components/layouts/*"],
-      "@constants/*": ["src/constants/*"],
+      "@contexts/*": ["src/contexts/*"],
       "@pages/*": ["src/pages/*"],
-      "@libs/*": ["src/libs/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"]
+      "@hooks/*": ["src/libs/hooks/*"],
+      "@api/*": ["src/libs/api/*"],
+      "@utils/*": ["src/libs/utils/*"]
     }
   }
 }

@@ -1,4 +1,4 @@
-import supabase from '@/libs/api/supabase.api';
+import supabase from '@api/supabase.api';
 import { useState, useEffect } from 'react';
 
 export default function useGetQuestions() {

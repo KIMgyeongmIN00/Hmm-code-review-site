@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
-import AuthContext from '@/contexts/auth/auth.context';
+import AuthContext from '@contexts/auth/auth.context';
 
 export default function Header() {
   const [searchWord, setSearchWord] = useState('');

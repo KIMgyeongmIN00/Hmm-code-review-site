@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '@layouts/header/Header';
 import styled from 'styled-components';
-import ProtectedRouter from '@/app/ProtectedRouter';
 
 export default function RootLayout() {
   return (

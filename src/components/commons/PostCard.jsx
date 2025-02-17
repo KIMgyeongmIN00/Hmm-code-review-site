@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
-import { formatDate } from '@/libs/utils/format.util';
+import { formatDate } from '@utils/format.util';
 
 function PostCard({ id, createdAt, title, author, isLiked, commentCount, likeCount, programmingLanguage }) {
   return (

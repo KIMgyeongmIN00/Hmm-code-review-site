@@ -6,9 +6,9 @@ import MDEditor from '@uiw/react-md-editor';
 import { MdFavoriteBorder, MdFavorite, MdOutlineModeComment, MdOutlinePerson, MdKeyboard } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
-import supabase from '@/libs/api/supabase.api';
-import { deletePostById } from '@/libs/api/post.api';
-import AuthContext from '@/contexts/auth/auth.context';
+import supabase from '@api/supabase.api';
+import { deletePostById } from '@api/post.api';
+import AuthContext from '@contexts/auth/auth.context';
 
 export default function PostAreaContainer({ postInfo }) {
   const { auth } = useContext(AuthContext);

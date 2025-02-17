@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from 'react';
 import AuthContext from './auth.context';
 import authReducer, { authInitialValue, clearUserInfo, saveUserInfo } from './auth.reducer';
-import supabase from '@/libs/api/supabase.api';
+import supabase from '@api/supabase.api';
 
 export default function AuthProvider({ children }) {
   const [auth, dispatch] = useReducer(authReducer, authInitialValue);

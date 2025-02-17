@@ -2,13 +2,13 @@ import { useState, useEffect, useContext } from 'react';
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
-import Button from '@/components/commons/Button';
-import Input from '@/components/commons/Input';
-import PostCard from '@/components/commons/PostCard';
-import AuthContext from '@/contexts/auth/auth.context';
-import { saveUserInfo } from '@/contexts/auth/auth.reducer';
-import { getMyPosts } from '@/libs/api/post.api';
-import supabase from '@/libs/api/supabase.api';
+import Button from '@commons/Button';
+import Input from '@commons/Input';
+import PostCard from '@commons/PostCard';
+import AuthContext from '@contexts/auth/auth.context';
+import { saveUserInfo } from '@contexts/auth/auth.reducer';
+import { getMyPosts } from '@api/post.api';
+import supabase from '@api/supabase.api';
 
 export default function MyPage() {
   const { auth, dispatch } = useContext(AuthContext);

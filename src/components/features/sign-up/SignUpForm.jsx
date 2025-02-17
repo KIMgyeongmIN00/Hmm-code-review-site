@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import Button from '@/components/commons/Button';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '@/components/commons/Input';
-import SelectBox from '@/components/commons/SelectBox';
+import styled from 'styled-components';
+import Button from '@commons/Button';
+import Input from '@commons/Input';
+import SelectBox from '@commons/SelectBox';
 import SignUpInput from './SignUpInput';
 import {
   MdDoneOutline,
@@ -11,9 +12,8 @@ import {
   MdOutlinePersonOutline,
   MdOutlinePrivateConnectivity
 } from 'react-icons/md';
-import { useState } from 'react';
-import useGetQuestions from '@/libs/hooks/useGetQuestions';
-import useSignUpForm from '@/libs/hooks/useSignUpForm';
+import useGetQuestions from '@hooks/useGetQuestions';
+import useSignUpForm from '@hooks/useSignUpForm';
 
 export default function SignUpForm() {
   const { signUpFormData, errorMessage, isDuplicateChecked, signUpSubmitHandler, signUpChangeHandler, checkDuplicate } =

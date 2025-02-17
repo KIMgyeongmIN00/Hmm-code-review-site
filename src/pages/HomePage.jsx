@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import PostCard from '@/components/commons/PostCard';
+import PostCard from '@commons/PostCard';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import AuthContext from '@/contexts/auth/auth.context';
-import { getPosts } from '@/libs/api/post.api';
+import AuthContext from '@contexts/auth/auth.context';
+import { getPosts } from '@api/post.api';
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();

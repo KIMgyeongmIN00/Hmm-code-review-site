@@ -1,4 +1,4 @@
-import supabase from '@/libs/api/supabase.api';
+import supabase from '@api/supabase.api';
 
 /**
  * 게시글 목록을 조회하는 함수

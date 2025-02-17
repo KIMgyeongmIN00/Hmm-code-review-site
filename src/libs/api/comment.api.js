@@ -1,4 +1,4 @@
-import supabase from '@/libs/api/supabase.api';
+import supabase from '@api/supabase.api';
 
 /**
  * 특정 게시글에 새로운 댓글을 생성하는 함수
