@@ -12,6 +12,9 @@ import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
   const { auth } = useContext(AuthContext);
+  const isSignIn = auth.isSignin;
+  console.log(`🚀 - Router.jsx:16 - Routes - isSignIn:`, isSignIn);
+
   const RoutesForAuthenticatedOnly = [
     {
       path: '/',
@@ -61,9 +64,8 @@ function Routes() {
       ]
     }
   ];
-
   const router = createBrowserRouter([
-    ...(!auth.isSignin ? RoutesForNotAuthenticatedOnly : []),
+    ...(!isSignIn ? RoutesForNotAuthenticatedOnly : []),
     ...RoutesForAuthenticatedOnly
   ]);
 
