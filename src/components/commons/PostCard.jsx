@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 export default function PostCard({ postData: postData }) {
   //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
-  console.log(postData.id);
   return (
-    <Link to={`/code/view/${postData.id}`}>
+    <StPostLink to={`/code/view/${postData.id}`}>
       <StPostContainer>
         <StPostTitle>{postData.title}</StPostTitle>
         <StPostMeta>
@@ -30,7 +29,7 @@ export default function PostCard({ postData: postData }) {
           </div>
         </StIconsContainer>
       </StPostContainer>
-    </Link>
+    </StPostLink>
   );
 }
 
@@ -45,6 +44,11 @@ const formatDate = function (createAt) {
 
   return `${year}년 ${month}월 ${day}일 ${hour}시 ${min}분`;
 };
+
+const StPostLink = styled(Link)`
+  display: block;
+  width: 100%;
+`;
 
 const StPostContainer = styled.div`
   cursor: pointer;
@@ -98,6 +102,7 @@ const StIconLabel = styled.p`
 const StAuthorIcon = styled(MdOutlinePerson)`
   border: 1px solid var(--color-main);
   font-size: 25px;
+  color: var(--color-main-dark);
   border-radius: var(--round-full);
 `;
 
@@ -112,5 +117,6 @@ const StNotActiveLikeIcon = styled(MdFavoriteBorder)`
 `;
 
 const StCommentIcon = styled(MdChatBubbleOutline)`
+  color: var(--color-main-dark);
   font-size: 20px;
 `;
