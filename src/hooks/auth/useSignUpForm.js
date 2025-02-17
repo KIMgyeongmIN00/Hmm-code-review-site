@@ -105,7 +105,7 @@ export default function useSignUpForm() {
     if (error) {
       Swal.fire({
         title: 'Error!',
-        text: `회원가입 실패: ${error.message}`,
+        text: `회원가입 실패, 입력된 정보를 다시 확인해 주세요!`,
         icon: 'error',
         confirmButtonText: '확인'
       });
