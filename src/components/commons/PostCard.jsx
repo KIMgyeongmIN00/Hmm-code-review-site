@@ -4,17 +4,17 @@ import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } fr
 export default function PostCard({ postData: postData }) {
   //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
-
+  console.log(postData);
   return (
     <StPostContainer>
-      <StPostTitle>{postData.postTitle}</StPostTitle>
+      <StPostTitle>{postData.title}</StPostTitle>
       <StPostMeta>
-        {postData.languageType}·{postData.createAt}
+        {postData.programming_language}·{formatDate(postData.created_at)}
       </StPostMeta>
       <StIconsContainer>
         <div>
           <StAuthorIcon />
-          <StIconLabel>{postData.author}</StIconLabel>
+          <StIconLabel>{postData.user_id}</StIconLabel>
         </div>
         <div>
           <div>
@@ -30,6 +30,18 @@ export default function PostCard({ postData: postData }) {
     </StPostContainer>
   );
 }
+
+const formatDate = function (createAt) {
+  const date = new Date(createAt);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const min = date.getMinutes();
+
+  return `${year}년 ${month}월 ${day}일 ${hour}시 ${min}분`;
+};
 
 const StPostContainer = styled.div`
   border: 1px solid var(--color-border);
