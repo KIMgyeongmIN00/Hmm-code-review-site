@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
@@ -13,27 +13,48 @@ export default function HomePage() {
   const [postList, setPostList] = useState([]);
   const [sort, setSort] = useState('latest');
   const [searchParams] = useSearchParams();
+
   const navigate = useNavigate();
 
   const searchWord = searchParams.get('search') || null;
+  const prevValues = useRef({ language, searchWord });
 
   useEffect(() => {
     async function getPosts() {
-      if (searchWord && language === null) {
-        const { data } = await supabase.from('posts').select().textSearch('title', searchWord);
-        const sortedPosts = await sortPosts(data, sort);
-        setPostList(sortedPosts);
-      } else {
-        if (language && language !== '전체') {
+      if (prevValues.current) {
+        if (prevValues.current.language !== language) {
           navigate('/');
+          if (language === '전체') {
+            const { data } = await supabase.from('posts').select();
+            const sortedPosts = await sortPosts(data, sort);
+            setPostList(sortedPosts);
+            return;
+          }
           const { data } = await supabase.from('posts').select().eq('programming_language', language);
           const sortedPosts = await sortPosts(data, sort);
           setPostList(sortedPosts);
-        } else {
-          const { data } = await supabase.from('posts').select();
+          prevValues.current = { language, searchWord };
+          return;
+        }
+        if (prevValues.current.searchWord !== searchWord) {
+          setLanguage(null);
+          const { data } = await supabase.from('posts').select().textSearch('title', searchWord);
           const sortedPosts = await sortPosts(data, sort);
           setPostList(sortedPosts);
+          prevValues.current = { language, searchWord };
+          return;
         }
+      }
+
+      if (language && language !== '전체') {
+        navigate('/');
+        const { data } = await supabase.from('posts').select().eq('programming_language', language);
+        const sortedPosts = await sortPosts(data, sort);
+        setPostList(sortedPosts);
+      } else {
+        const { data } = await supabase.from('posts').select();
+        const sortedPosts = await sortPosts(data, sort);
+        setPostList(sortedPosts);
       }
     }
     getPosts();
