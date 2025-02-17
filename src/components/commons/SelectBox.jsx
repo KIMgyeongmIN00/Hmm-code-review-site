@@ -96,7 +96,7 @@ const SelectContainer = styled.div`
 const SelectTrigger = styled.div`
   display: flex;
   align-items: center;
-  background: white;
+  background: var(--color-white);
   border: 1px solid var(--color-border);
   cursor: pointer;
   gap: 0.5rem;
@@ -115,7 +115,7 @@ const SelectDropdown = styled.div`
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
+  background: var(--color-white);
   max-height: 200px;
   overflow-y: auto;
   border: 1px solid var(--color-border);

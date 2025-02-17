@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --color-black: black;
     --color-hover: #f5f5f5;
     --color-red: red;
+    --color-trans: transparent;
 
     --round-sm: 4px;
     --round-md: 6px;
@@ -36,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   
-  html, body, div, span, applet, object, iframe,
+  html, body, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
