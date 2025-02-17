@@ -69,8 +69,7 @@ export default function useSignUpForm() {
         }
       }
     });
-    navigate('/');
-    console.log('error =>', error);
+    navigate('/sign-in');
   }
 
   return { signUpFormData, errorMessage, isChecked, signUpSubmitHandler, signUpChangeHandler, signUpCheckDuplicate };
