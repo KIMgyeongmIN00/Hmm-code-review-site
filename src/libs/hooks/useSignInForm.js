@@ -1,56 +1,27 @@
-import AuthContext from '@/contexts/auth/auth.context';
-import { clearUserInfo, saveUserInfo } from '@/contexts/auth/auth.reducer';
-import supabase from '@/libs/api/supabase.api';
-import { useEffect } from 'react';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import supabase from '@/libs/api/supabase.api';
 
 export default function useSignInForm() {
   const [signInState, setSignInState] = useState({ email: '', password: '' });
   const [signInErrorMessage, setSignInErrorMessage] = useState('');
 
-  const { auth, dispatch } = useContext(AuthContext);
   const redirectedFrom = useLocation()?.state?.redirectedFrom || '/';
   const navigate = useNavigate();
   const redirectPath = redirectedFrom === '/sign-in' ? '/' : redirectedFrom;
 
-  useEffect(() => {
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((_, session) => {
-      if (session) {
-        dispatch(saveUserInfo(session.user.id, session.user.user_metadata?.nickname));
-        navigate(redirectPath);
-      } else {
-        dispatch(clearUserInfo);
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [auth.isSignin, dispatch, navigate, redirectPath]);
-
   function SignInChangeHandler(e) {
     const { name, value } = e.target;
 
-    if (name === 'email') {
-      setSignInState((prev) => ({ ...prev, email: value }));
-    } else {
-      setSignInState((prev) => ({ ...prev, password: value }));
-    }
-    setSignInErrorMessage('');
+    if (name === 'email') return setSignInState((prev) => ({ ...prev, email: value }));
+    else return setSignInState((prev) => ({ ...prev, password: value }));
   }
 
   async function signInSubmitHandler(e) {
     e.preventDefault();
-    const { email, password } = signInState;
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
-    } else {
-      const { data } = await supabase.from('users').select().eq('email', email);
-      dispatch(saveUserInfo(data[0].id, data[0].nickname));
-      navigate(redirectPath);
-    }
+    const { error } = await supabase.auth.signInWithPassword(signInState);
+    if (error) return setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
+    return navigate(redirectPath);
   }
 
   return {

@@ -12,14 +12,14 @@ import {
   MdOutlinePrivateConnectivity
 } from 'react-icons/md';
 import { useState } from 'react';
-import useQuestions from '@/libs/hooks/useQuestions';
+import useGetQuestions from '@/libs/hooks/useGetQuestions';
 import useSignUpForm from '@/libs/hooks/useSignUpForm';
 
 export default function SignUpForm() {
   const { signUpFormData, errorMessage, isChecked, signUpSubmitHandler, signUpChangeHandler, signUpCheckDuplicate } =
     useSignUpForm();
   const [question, setQuestion] = useState();
-  const { questions } = useQuestions();
+  const { questions } = useGetQuestions();
   const formattedQuestions = questions.map((question) => ({
     id: question.id,
     name: question.question
