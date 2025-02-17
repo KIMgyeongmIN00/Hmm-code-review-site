@@ -6,27 +6,35 @@ import PostCard from '@commons/PostCard';
 import supabase from '@libs/api/supabase.api';
 
 export default function HomePage() {
+  const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
     async function getPosts() {
-      const { data } = await supabase.from('posts').select();
-      setPostList(data);
+      if (language && language !== '전체') {
+        const { data } = await supabase.from('posts').select().eq('programming_language', language);
+        setPostList(data);
+      } else {
+        const { data } = await supabase.from('posts').select();
+        setPostList(data);
+      }
     }
     getPosts();
-  }, []);
+  }, [language]);
 
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
-        <HomeLanguageSelector />
+        <HomeLanguageSelector language={language} setLanguage={setLanguage} />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
-      {postList.map((post) => (
-        <StPostWrapper key={post.author}>
-          <PostCard postData={post} />
-        </StPostWrapper>
-      ))}
+      {postList.length !== 0
+        ? postList.map((post) => (
+            <StPostWrapper key={post.author}>
+              <PostCard postData={post} />
+            </StPostWrapper>
+          ))
+        : '해당 정보가 없습니다.'}
     </StHomePageContainer>
   );
 }

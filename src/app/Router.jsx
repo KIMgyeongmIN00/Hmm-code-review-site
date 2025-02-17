@@ -6,43 +6,52 @@ import WritePage from '@pages/write/WritePage';
 import MyPage from '@/pages/MyPage';
 import SignInPage from '@pages/sign-in/SignInPage';
 import SignUpPage from '@/pages/sign-up/SignUpPage';
-
-const publicRoutes = [
-  {
-    path: '/',
-    element: <RootLayout />,
-    children: [
-      {
-        path: '/',
-        element: <HomePage />
-      },
-      {
-        path: '/code/view/:id',
-        element: <ViewPage />
-      },
-      {
-        path: '/write',
-        element: <WritePage />
-      },
-      {
-        path: '/my-page',
-        element: <MyPage />
-      }
-    ]
-  },
-  {
-    path: '/sign-in',
-    element: <SignInPage />
-  },
-  {
-    path: '/sign-up',
-    element: <SignUpPage />
-  }
-];
-
-const router = createBrowserRouter(publicRoutes);
+import ProtectedRouter from './ProtectedRouter';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
+  const RoutesForAuthenticatedOnly = [
+    {
+      path: '/',
+      element: <RootLayout />,
+      children: [
+        {
+          path: '',
+          element: <HomePage />
+        },
+        {
+          path: '/code/view/:id',
+          element: <ViewPage />
+        },
+        {
+          path: '',
+          element: <ProtectedRouter />,
+          children: [
+            {
+              path: '/write',
+              element: <WritePage />
+            },
+            {
+              path: '/my-page',
+              element: <MyPage />
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: '/sign-in',
+      element: <SignInPage />
+    },
+    {
+      path: '/sign-up',
+      element: <SignUpPage />
+    }
+  ];
+
+  const router = createBrowserRouter([...RoutesForAuthenticatedOnly]);
+
   return <RouterProvider router={router} />;
 }
 
