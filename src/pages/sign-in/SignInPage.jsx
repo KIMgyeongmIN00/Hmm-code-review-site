@@ -13,7 +13,7 @@ export default function SigninPage() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'https://your-deployed-domain.com/auth/callback'
+        redirectTo: `${window.location.origin}/auth/callback`
       }
     });
   }
