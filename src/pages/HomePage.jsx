@@ -8,6 +8,7 @@ import supabase from '@libs/api/supabase.api';
 export default function HomePage() {
   const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
+  const [sort, setSort] = useState('latest');
 
   useEffect(() => {
     async function getPosts() {
@@ -20,13 +21,13 @@ export default function HomePage() {
       }
     }
     getPosts();
-  }, [language]);
+  }, [language, sort]);
 
   return (
     <StHomePageContainer>
       <StFilterPanelContainer>
         <HomeLanguageSelector language={language} setLanguage={setLanguage} />
-        <HomePostSortRadioGroup />
+        <HomePostSortRadioGroup sort={sort} setSort={setSort} />
       </StFilterPanelContainer>
       {postList.length !== 0
         ? postList.map((post) => (
