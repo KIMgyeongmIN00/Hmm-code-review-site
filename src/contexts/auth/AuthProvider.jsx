@@ -11,11 +11,11 @@ export default function AuthProvider({ children }) {
       data: { subscription }
     } = supabase.auth.onAuthStateChange(async (_, session) => {
       if (session) {
-        async function get() {
+        async function setAuth() {
           const { data } = await supabase.from('users').select().eq('id', session.user.id);
           dispatch(onSignIn(session.user.id, data[0].nickname));
         }
-        get();
+        setAuth();
       } else {
         dispatch({ type: 'signOut' });
       }
