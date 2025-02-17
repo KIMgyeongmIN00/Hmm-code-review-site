@@ -1,29 +1,55 @@
+import { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
+import AuthContext from '@/contexts/auth/auth.context';
+import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
+import formatDate from '@/utils/formatDate';
 
 export default function PostCard({ postData: postData }) {
-  //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
-  let isLikeActive = false;
+  const [likes, setLikes] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [author, setAuthor] = useState('');
+  const { id } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const likesData = await getLikes(postData.id);
+        const commentsData = await getComments(postData.id);
+        const { nickname } = await getAuthorName(postData.user_id);
+
+        setLikes(likesData);
+        setComments(commentsData);
+        setAuthor(nickname);
+      } catch (error) {
+        alert('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const isLikeActive = likes.some((likeMeta) => likeMeta.user_id === id);
 
   return (
-    <StPostContainer>
-      <StPostTitle>{postData.postTitle}</StPostTitle>
+    <StPostContainer to={`/code/view/${postData.id}`}>
+      <StPostTitle>{postData.title}</StPostTitle>
       <StPostMeta>
-        {postData.languageType}·{postData.createAt}
+        {postData.programming_language}·{formatDate(postData.created_at)}
       </StPostMeta>
       <StIconsContainer>
         <div>
           <StAuthorIcon />
-          <StIconLabel>{postData.author}</StIconLabel>
+          <StIconLabel>{author}</StIconLabel>
         </div>
         <div>
           <div>
             <StCommentIcon />
-            <StIconLabel>{postData.totalCommentCount}</StIconLabel>
+            <StIconLabel>{likes.length}</StIconLabel>
           </div>
           <div>
             {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-            <StIconLabel>{postData.totalLikeCount}</StIconLabel>
+            <StIconLabel>{comments.length}</StIconLabel>
           </div>
         </div>
       </StIconsContainer>
@@ -31,7 +57,8 @@ export default function PostCard({ postData: postData }) {
   );
 }
 
-const StPostContainer = styled.div`
+const StPostContainer = styled(Link)`
+  cursor: pointer;
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
   height: 100%;
@@ -82,6 +109,7 @@ const StIconLabel = styled.p`
 const StAuthorIcon = styled(MdOutlinePerson)`
   border: 1px solid var(--color-main);
   font-size: 25px;
+  color: var(--color-main-dark);
   border-radius: var(--round-full);
 `;
 
@@ -96,5 +124,6 @@ const StNotActiveLikeIcon = styled(MdFavoriteBorder)`
 `;
 
 const StCommentIcon = styled(MdChatBubbleOutline)`
+  color: var(--color-main-dark);
   font-size: 20px;
 `;
