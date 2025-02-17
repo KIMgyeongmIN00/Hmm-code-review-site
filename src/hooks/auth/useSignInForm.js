@@ -12,10 +12,12 @@ export default function useSignInForm() {
   const navigate = useNavigate();
   const redirectPath = redirectedFrom === '/sign-in' ? '/' : redirectedFrom;
 
-  if (auth.isSignin) {
-    // todo dispatch 로 로그인 처리해주세요
-    navigate(redirectPath);
-  }
+  useEffect(() => {
+    if (auth.isSignin) {
+      // TODO: supabase 로그인 및 dispatch() 상태 수정
+      navigate(redirectPath);
+    }
+  }, [auth.isSignin, navigate, redirectPath]);
 
   function SignInChangeHandler(e) {
     const { name, value } = e.target;
