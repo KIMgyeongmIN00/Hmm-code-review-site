@@ -26,6 +26,14 @@ function Routes() {
         {
           path: '/code/view/:id',
           element: <ViewPage />
+        },
+        {
+          path: '/write',
+          element: <WritePage />
+        },
+        {
+          path: '/my-page',
+          element: <MyPage />
         }
       ]
     },
