@@ -1,33 +1,36 @@
 import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 export default function PostCard({ postData: postData }) {
   //TODO:사용자의 정보로 좋아요 누른지 확인하는 로직 구현
   let isLikeActive = false;
-  console.log(postData);
+  console.log(postData.id);
   return (
-    <StPostContainer>
-      <StPostTitle>{postData.title}</StPostTitle>
-      <StPostMeta>
-        {postData.programming_language}·{formatDate(postData.created_at)}
-      </StPostMeta>
-      <StIconsContainer>
-        <div>
-          <StAuthorIcon />
-          <StIconLabel>{postData.user_id}</StIconLabel>
-        </div>
-        <div>
+    <Link to={`/code/view/${postData.id}`}>
+      <StPostContainer>
+        <StPostTitle>{postData.title}</StPostTitle>
+        <StPostMeta>
+          {postData.programming_language}·{formatDate(postData.created_at)}
+        </StPostMeta>
+        <StIconsContainer>
           <div>
-            <StCommentIcon />
-            <StIconLabel>{postData.totalCommentCount}</StIconLabel>
+            <StAuthorIcon />
+            <StIconLabel>{postData.user_id}</StIconLabel>
           </div>
           <div>
-            {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-            <StIconLabel>{postData.totalLikeCount}</StIconLabel>
+            <div>
+              <StCommentIcon />
+              <StIconLabel>{postData.totalCommentCount}</StIconLabel>
+            </div>
+            <div>
+              {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
+              <StIconLabel>{postData.totalLikeCount}</StIconLabel>
+            </div>
           </div>
-        </div>
-      </StIconsContainer>
-    </StPostContainer>
+        </StIconsContainer>
+      </StPostContainer>
+    </Link>
   );
 }
 
@@ -44,6 +47,7 @@ const formatDate = function (createAt) {
 };
 
 const StPostContainer = styled.div`
+  cursor: pointer;
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
   height: 100%;
