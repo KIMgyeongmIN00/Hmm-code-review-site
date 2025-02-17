@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+import PostCard2 from '@/components/commons/PostCard2';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
-import { getPosts } from '@/libs/api/post.api';
-import { useContext } from 'react';
 import AuthContext from '@/contexts/auth/auth.context';
-import PostCard2 from '@/components/commons/PostCard2';
+import { getPosts } from '@/libs/api/post.api';
 
 export default function HomePage() {
+  const [searchParams] = useSearchParams();
+  const searchWord = searchParams.get('search') || null;
+
   const [language, setLanguage] = useState(null);
   const [sort, setSort] = useState('latest');
-  const [searchParams] = useSearchParams();
 
   const [posts, setPosts] = useState([]);
   const { auth } = useContext(AuthContext);
-
-  const searchWord = searchParams.get('search') || null;
 
   useEffect(() => {
     async function fetchPosts() {
