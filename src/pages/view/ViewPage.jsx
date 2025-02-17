@@ -1,59 +1,99 @@
-import React from 'react';
 import styled from 'styled-components';
 import PostAreaContainer from '@features/view-page/PostAreaContainer';
 import CommentAreaContainer from '@features/view-page/CommentAreaContainer';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import supabase from '@/libs/api/supabase.api';
 
 export default function ViewPage() {
-  const postProps = {
-    // 페이지 본문의 동적 변환 값을 props를 통해 임시적으로 표현하기 위한 객체
-    // 추후 이 부분은 supabase의 db로 대체될 예정
-    IsAuth: true,
-    Title: '제목',
-    CodeLanguage: 'Language',
-    NickName: '글 작성자',
-    Contents: '마크다운 **지원** <span style="color:red" >코드박스</span>입니다.',
-    Comments: '15M',
-    Likes: 0
-  };
+  const { id } = useParams();
+  const [postInfomation, setPostInfomation] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [yourNickname, setYourNickname] = useState('');
+  const [postNickname, setPostNickname] = useState('');
+  const [authId, setAuthId] = useState('');
 
-  const commentProps = [
-    {
-      // 페이지 댓글의 동적 변환 값을 props를 통해 임시적으로 표현하기 위한 객체
-      // 추후 이 부분은 supabase의 db로 대체될 예정
-      Id: 1,
-      IsAuth: true,
-      Nickname: '작성자 본인',
-      Contents: '1번 댓글입니다.',
-      Likes: 1111
-    },
-    {
-      Id: 2,
-      IsAuth: false,
-      Nickname: '너무길다길어이름',
-      Contents: '2번 댓글입니다.',
-      Likes: 1111
-    },
-    {
-      Id: 3,
-      IsAuth: true,
-      Nickname: '작성자 본인',
-      Contents: '3번 댓글입니다.',
-      Likes: 1111
-    },
-    {
-      Id: 4,
-      IsAuth: true,
-      Nickname: '작성자 본인',
-      Contents: '4번 댓글입니다.',
-      Likes: 1111
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const postData = await getPost(id);
+        const commentsData = await getComments(id);
+        const authData = await getAuthObj();
+        const authNicknameData = await getNicknameWithAuthId(authData);
+        const postNicknameData = await getNicknameByUserId(postData.user_id);
+        setYourNickname(authNicknameData || '로그인을 해주세요.');
+        setPostInfomation(postData);
+        setComments(commentsData);
+        setPostNickname(postNicknameData);
+        setAuthId(authData.id);
+      } catch (error) {
+        console.error('데이터 수집에 실패하였습니다 :', error);
+      }
     }
-  ];
+    fetchData();
+  }, [id]);
+
+  async function getPost(id) {
+    const { data, error } = await supabase.from('posts').select('*').eq('id', id).single(); // 게시글 가져오기
+    if (error) {
+      console.error('본문 가져오는데 에러가 발생하였습니다! :', error);
+      return null;
+    }
+    return data;
+  }
+
+  async function getComments(id) {
+    const { data, error } = await supabase.from('comments').select('*').eq('post_id', id); // 댓글 목록 가져오기
+
+    if (error) {
+      console.error('댓글을 가져오는데 에러가 발생하였습니다! :', error);
+      return null;
+    }
+    return data;
+  }
+
+  async function getAuthObj() {
+    const {
+      data: { user },
+      error
+    } = await supabase.auth.getUser();
+
+    if (error || !user) {
+      console.error('사용자 정보를 가져오는 데 실패했습니다:', error);
+      return null;
+    }
+    return user;
+  }
+
+  async function getNicknameWithAuthId(user) {
+    if (!user?.id) return ''; // user가 없으면 바로 반환
+    const { data, error } = await supabase.from('users').select('nickname').eq('id', user.id).single();
+
+    if (error) {
+      console.error('닉네임을 가져오는 데 실패했습니다:', error);
+      return '';
+    }
+    return data?.nickname; // 닉네임만 반환하도록 수정
+  }
+
+  async function getNicknameByUserId(userId) {
+    if (!userId) return '';
+    const { data, error } = await supabase.from('users').select('nickname').eq('id', userId).single();
+
+    if (error) {
+      console.error(`사용자 ID(${userId})의 닉네임을 가져오는 데 실패했습니다:`, error);
+      return '';
+    }
+    return data?.nickname || '';
+  }
+
+  if (!postInfomation) return <p>로딩 중...</p>;
 
   return (
     <StViewPageContainer>
-      <PostAreaContainer postProps={postProps} />
-      {/* 페이지의 본문에 DB에 저장되어 있는 값에 따라 변화하는 값을 임의적으로 표현하기 위해 내린 props */}
-      <CommentAreaContainer commentProps={commentProps} />
+      <PostAreaContainer postInfomation={postInfomation} postNickname={postNickname} authId={authId} />
+      {/* URL의 id값이 있는 DB의 posts 테이블의 row를 props로 내림 */}
+      <CommentAreaContainer comments={comments} postId={id} nickname={yourNickname} authId={authId} />
       {/* 페이지 댓글 상자에 DB에 저장되어 있는 값에 따라 변화하는 값을 임의적으로 표현하기 위해 내린 props */}
     </StViewPageContainer>
   );

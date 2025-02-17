@@ -1,23 +1,60 @@
 import { MdOutlinePerson } from 'react-icons/md';
 import Button from '@commons/Button';
 import styled from 'styled-components';
+import { useState } from 'react';
+import supabase from '@/libs/api/supabase.api';
+import Swal from 'sweetalert2';
 
-export default function CommentAddContainer() {
+export default function CommentAddContainer({ postId, nickname }) {
+  const [content, setContent] = useState('');
+
+  async function handleAddCommentFormSubmit(e) {
+    e.preventDefault();
+
+    if (content === '')
+      return Swal.fire({
+        title: 'Error!',
+        text: '댓글의 내용을 작성해주세요!.',
+        icon: 'error',
+        confirmButtonText: '확인'
+      });
+
+    const addCommentToDB = await supabase.from('comments').insert({ content, post_id: postId });
+    if (addCommentToDB.error) {
+      return Swal.fire({
+        title: 'Error!',
+        text: '댓글 작성에 실패했습니다.',
+        icon: 'error',
+        confirmButtonText: '확인'
+      });
+    }
+    return Swal.fire({
+      title: 'Good job!',
+      text: '게시글 작성에 성공했습니다.',
+      icon: 'success'
+    });
+  }
+
   return (
-    <StCommentAddContainer>
+    <StCommentAddContainer onSubmit={handleAddCommentFormSubmit}>
       <StCommentAdderWrapper>
         <StPersonIcon size={30} />
-        <h3>당신의 닉네임</h3>
+        <h3>{nickname}</h3>
       </StCommentAdderWrapper>
-      <StInput type="text" placeholder="댓글 달기!" />
-      <StCommentAddButton $variant="solid" $size="lg" $color="point">
+      <StInput
+        type="text"
+        value={content}
+        placeholder="댓글을 작성해주세요."
+        onChange={(e) => setContent(e.target.value)}
+      />
+      <StCommentAddButton type="submit" $variant="solid" $size="lg" $color="point">
         댓글 추가하기
       </StCommentAddButton>
     </StCommentAddContainer>
   );
 }
 
-const StCommentAddContainer = styled.div`
+const StCommentAddContainer = styled.form`
   /* box-shadow: 0px 0px 8px var(--color-main-light); */
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);

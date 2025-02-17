@@ -1,11 +1,19 @@
-import Button from '@/components/commons/Button';
+import Button from '@commons/Button';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import styled from 'styled-components';
 
 export default function PostOnAuthButtons() {
+  function handleEditPost() {}
   return (
     <StPostEditButtonContainer>
-      <StButton $size="sm" $variant="solid" $color="point">
+      <StButton
+        onClick={() => {
+          console.log('gi');
+        }}
+        $size="sm"
+        $variant="solid"
+        $color="point"
+      >
         <FaEdit />
       </StButton>
       <StButton $size="sm" $variant="solid" $color="point">

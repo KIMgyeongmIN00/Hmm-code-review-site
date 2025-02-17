@@ -2,21 +2,39 @@ import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { getAuthorName } from '@/libs/api/supabase.api';
 
-export default function CommentBoxContainer({ commentProps }) {
+export default function CommentBoxContainer({ commentProps, authId }) {
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    async function fetchNickname() {
+      try {
+        const nicknameData = await getAuthorName(commentProps.user_id);
+        setNickname(nicknameData || '작성자 불명');
+      } catch (error) {
+        console.log('닉네임 배치에 실패하였습니다.', error);
+      }
+    }
+    fetchNickname();
+  }, []);
+
+  console.log(nickname);
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{commentProps.Nickname}</h3>
+        <h3>{nickname.nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
-        <p>{commentProps.Contents}</p>
+        <p>{commentProps.content}</p>
       </StCommentContentWrapper>
-      {commentProps.IsAuth && <CommentOnAuthButtons />}
+      {commentProps.user_id === authId && <CommentOnAuthButtons />}
       <StCommentLikeContainer>
         <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-        <p>{commentProps.Likes}</p>
+        {/* <p>{commentProps.id를 외부키로 받아와 좋아요 수 호출}</p> */}
       </StCommentLikeContainer>
     </StCommentBoxContainer>
   );
