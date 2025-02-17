@@ -1,13 +1,15 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
-
-let isAuth = true;
+import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
+  const { auth } = useContext(AuthContext);
+
   return (
     <StWrapper>
       <StHeaderContainer>
@@ -16,7 +18,7 @@ export default function Header() {
         </Link>
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
-          {isAuth ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
+          {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
       </StHeaderContainer>
     </StWrapper>

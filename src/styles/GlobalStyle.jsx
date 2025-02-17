@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
   :root{
     --color-main: #495057;
     --color-main-light: #9fa3a7;
@@ -29,6 +31,8 @@ const GlobalStyle = createGlobalStyle`
     --font-size-sm: 12px;
     --font-size-md: 16px;
     --font-size-lg: 24px;
+
+    font-family: Pretendard, Inter, system-ui, Avenir, Helvetica, Arial;
 
   }
 
