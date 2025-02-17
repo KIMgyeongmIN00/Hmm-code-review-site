@@ -11,10 +11,6 @@ import { useContext } from 'react';
 import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
-  const { auth } = useContext(AuthContext);
-  const isSignIn = auth.isSignin;
-  console.log(`🚀 - Router.jsx:16 - Routes - isSignIn:`, isSignIn);
-
   const RoutesForAuthenticatedOnly = [
     {
       path: '/',
@@ -29,12 +25,18 @@ function Routes() {
           element: <ViewPage />
         },
         {
-          path: '/write',
-          element: <WritePage />
-        },
-        {
-          path: '/my-page',
-          element: <MyPage />
+          path: '',
+          element: <ProtectedRouter />,
+          children: [
+            {
+              path: '/write',
+              element: <WritePage />
+            },
+            {
+              path: '/my-page',
+              element: <MyPage />
+            }
+          ]
         }
       ]
     },
@@ -48,26 +50,7 @@ function Routes() {
     }
   ];
 
-  const RoutesForNotAuthenticatedOnly = [
-    {
-      path: '/',
-      element: <ProtectedRouter />,
-      children: [
-        {
-          path: '/write',
-          element: <WritePage />
-        },
-        {
-          path: '/my-page',
-          element: <MyPage />
-        }
-      ]
-    }
-  ];
-  const router = createBrowserRouter([
-    ...(!isSignIn ? RoutesForNotAuthenticatedOnly : []),
-    ...RoutesForAuthenticatedOnly
-  ]);
+  const router = createBrowserRouter([...RoutesForAuthenticatedOnly]);
 
   return <RouterProvider router={router} />;
 }

@@ -1,22 +1,20 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import supabase from '@/libs/api/supabase.api';
-import { useContext } from 'react';
 import AuthContext from '@/contexts/auth/auth.context';
-import { useEffect } from 'react';
-import { onSignIn, onSignOut } from '@/contexts/auth/auth.reducer';
+import supabase from '@/libs/api/supabase.api';
+import { useContext, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function useSignInForm() {
   const [signInState, setSignInState] = useState({ email: '', password: '' });
   const [signInErrorMessage, setSignInErrorMessage] = useState('');
 
   const { auth, dispatch } = useContext(AuthContext);
-  const redirectedFrom = useLocation()?.state?.redirectedFrom;
+  const redirectedFrom = useLocation()?.state?.redirectedFrom || '/';
   const navigate = useNavigate();
+  const redirectPath = redirectedFrom === '/sign-in' ? '/' : redirectedFrom;
 
   if (auth.isSignin) {
     // todo dispatch 로 로그인 처리해주세요
-    navigate(redirectedFrom === '/sign-in' ? '/' : redirectedFrom);
+    navigate(redirectPath);
   }
 
   function SignInChangeHandler(e) {
@@ -38,7 +36,7 @@ export default function useSignInForm() {
       setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
     } else {
       // todo dispatch 로 로그인 처리해주세요
-      navigate(redirectedFrom === '/sign-in' ? '/' : redirectedFrom);
+      navigate(redirectPath);
     }
   }
 

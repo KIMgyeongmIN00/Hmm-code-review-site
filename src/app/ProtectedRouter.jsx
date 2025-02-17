@@ -11,7 +11,7 @@ function ProtectedRouter() {
     return <Navigate to="/sign-in" replace state={{ redirectedFrom: pathname }} />;
   }
 
-  return <RootLayout />;
+  return <Outlet />;
 }
 
 export default ProtectedRouter;

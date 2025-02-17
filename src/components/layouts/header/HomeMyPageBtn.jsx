@@ -18,7 +18,7 @@ export default function HeaderMyPageButton() {
     if (error) {
       alert(error);
     } else {
-      dispatch(onSignOut());
+      //TODO: Dispatch 적용하십시오
       return <Navigate to={'/sign-in'} replace state={{ redirectedFrom: pathname }} />;
     }
   }
