@@ -8,6 +8,7 @@ import Button from '@commons/Button';
 import SelectBox from '@commons/SelectBox';
 import supabase from '@/libs/api/supabase.api';
 import PROGRAMMING_LANGUAGES from '@/data/programmingLanguage.constant';
+import { insertPost } from '@/libs/api/post.api';
 
 export default function WritePage() {
   const [programmingLanguage, setProgrammingLanguage] = useState('');
@@ -25,8 +26,16 @@ export default function WritePage() {
     if (programmingLanguage === '') return setErrorMessage('게시글의 내용의 언어 타입을 선택해주세요.');
     setErrorMessage('');
 
-    const output = await supabase.from('posts').insert({ title, content, programming_language: programmingLanguage });
-    if (output.error) {
+    try {
+      await insertPost(title, content, programmingLanguage);
+      return Swal.fire({
+        title: 'Good job!',
+        text: '게시글 작성에 성공했습니다.',
+        icon: 'success'
+      }).then(() => {
+        navigate('/');
+      });
+    } catch (e) {
       return Swal.fire({
         title: 'Error!',
         text: '게시글 작성에 실패했습니다.',
@@ -34,13 +43,6 @@ export default function WritePage() {
         confirmButtonText: '확인'
       });
     }
-    return Swal.fire({
-      title: 'Good job!',
-      text: '게시글 작성에 성공했습니다.',
-      icon: 'success'
-    }).then(() => {
-      navigate('/');
-    });
   }
 
   return (

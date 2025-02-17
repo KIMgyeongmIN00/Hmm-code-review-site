@@ -38,7 +38,7 @@ export async function getPosts(myId, { language, keyword }) {
 
   const { data, error } = await query;
 
-  if (error) throw error;
+  if (error) return [];
   return data.map((post) => ({
     id: post.id,
     createdAt: post.created_at,
@@ -73,8 +73,7 @@ export async function getMyPosts(userId) {
     )
     .eq('user_id', userId);
 
-  if (error) throw error;
-
+  if (error) return [];
   return data.map((post) => ({
     id: post.id,
     createdAt: post.created_at,
@@ -139,11 +138,7 @@ export async function getPostById(postId, userId) {
     .eq('id', postId)
     .single();
 
-  if (error) throw error;
-
-  if (!data) {
-    throw new Error('Post not found');
-  }
+  if (error || !data) return [];
 
   return {
     id: data.id,
@@ -174,7 +169,7 @@ export async function getPostById(postId, userId) {
  * @param {string} programmingLanguage - 프로그래밍 언어
  * @throws {Error}
  */
-export async function createPost(title, content, programmingLanguage) {
+export async function insertPost(title, content, programmingLanguage) {
   const { error } = await supabase.from('posts').insert({ title, content, programming_language: programmingLanguage });
   if (error) throw error;
 }
