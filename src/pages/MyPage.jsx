@@ -14,12 +14,10 @@ import Swal from 'sweetalert2';
 function MyPage() {
   const { auth, dispatch } = useContext(AuthContext);
 
-  const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    setEmail(auth.email ?? '');
     setNickname(auth.nickname ?? '');
     async function getMyPosts() {
       const { data } = await supabase.from('posts').select('*').eq('user_id', auth.id);
@@ -31,7 +29,7 @@ function MyPage() {
   async function handleUpdateInfo(e) {
     e.preventDefault();
 
-    const { error } = await supabase.from('users').update({ nickname: nickname, email: email }).eq('id', auth.id);
+    const { error } = await supabase.from('users').update({ nickname }).eq('id', auth.id);
     if (error) {
       return Swal.fire({
         title: 'Error!',
@@ -40,7 +38,7 @@ function MyPage() {
         confirmButtonText: '확인'
       });
     }
-    dispatch(onSignIn(auth.id, email, nickname));
+    dispatch(onSignIn(auth.id, auth.email, nickname));
     return Swal.fire({
       title: 'Good job!',
       text: '정보 수정에 성공했습니다.',
@@ -54,7 +52,7 @@ function MyPage() {
         <StAvatar />
         <StForm onSubmit={handleUpdateInfo}>
           <StLabel htmlFor="email">이메일</StLabel>
-          <Input id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <StEmail>{auth.email ?? ''}</StEmail>
           <StLabel htmlFor="nickname">닉네임</StLabel>
           <Input id="nickname" name="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} />
           <StButton type="submit">수정</StButton>
@@ -101,7 +99,10 @@ const StLabel = styled.label`
   font-size: var(--font-size-md);
   font-weight: bold;
 `;
-
+const StEmail = styled.p`
+  font-size: var(--font-size-md);
+  margin-bottom: 20px;
+`;
 const StForm = styled.form`
   display: flex;
   flex-direction: column;
