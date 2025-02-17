@@ -12,12 +12,11 @@ export default function HomePage() {
   useEffect(() => {
     async function getPosts() {
       if (language && language !== '전체') {
-        const { data, error } = await supabase.from('posts').select().eq('programming_language', language);
+        const { data } = await supabase.from('posts').select().eq('programming_language', language);
         setPostList(data);
       } else {
-        const { data, error } = await supabase.from('posts').select();
+        const { data } = await supabase.from('posts').select();
         setPostList(data);
-        return data;
       }
     }
     getPosts();
