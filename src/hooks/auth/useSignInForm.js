@@ -1,5 +1,7 @@
 import AuthContext from '@/contexts/auth/auth.context';
+import { onSignIn } from '@/contexts/auth/auth.reducer';
 import supabase from '@/libs/api/supabase.api';
+import { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,11 +15,19 @@ export default function useSignInForm() {
   const redirectPath = redirectedFrom === '/sign-in' ? '/' : redirectedFrom;
 
   useEffect(() => {
-    if (auth.isSignin) {
-      // TODO: supabase 로그인 및 dispatch() 상태 수정
-      navigate(redirectPath);
-    }
-  }, [auth.isSignin, navigate, redirectPath]);
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((_, session) => {
+      if (session) {
+        dispatch(onSignIn(session.user.id, session.user.user_metadata?.nickname));
+        navigate(redirectPath);
+      } else {
+        dispatch({ type: 'signOut' });
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [auth.isSignin, dispatch, navigate, redirectPath]);
 
   function SignInChangeHandler(e) {
     const { name, value } = e.target;
@@ -37,7 +47,8 @@ export default function useSignInForm() {
     if (error) {
       setSignInErrorMessage('아이디와 비밀번호가 일치하지 않습니다!');
     } else {
-      // todo dispatch 로 로그인 처리해주세요
+      const { data } = await supabase.from('users').select().eq('email', email);
+      dispatch(onSignIn(data[0].id, data[0].nickname));
       navigate(redirectPath);
     }
   }
