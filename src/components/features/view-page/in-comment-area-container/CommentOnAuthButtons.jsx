@@ -2,13 +2,10 @@ import Button from '@commons/Button';
 import styled from 'styled-components';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
-export default function CommentOnAuthButtons() {
+export default function CommentOnAuthButtons({ onDelete }) {
   return (
     <StCommentEditButtonContainer>
-      <StButton $size="sm" $variant="solid" $color="point">
-        <FaEdit />
-      </StButton>
-      <StButton $size="sm" $variant="solid" $color="point">
+      <StButton onClick={onDelete} $size="sm" $variant="solid" $color="point">
         <FaTrashAlt />
       </StButton>
     </StCommentEditButtonContainer>

@@ -2,12 +2,11 @@ import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuthorName } from '@/libs/api/supabase.api';
 
-export default function CommentBoxContainer({ commentProps, authId }) {
-  const [nickname, setNickname] = useState('');
+export default function CommentBoxContainer({ commentProps, authId, onDelete }) {
+  const [nickname, setNickname] = useState([]);
 
   useEffect(() => {
     async function fetchNickname() {
@@ -31,7 +30,7 @@ export default function CommentBoxContainer({ commentProps, authId }) {
       <StCommentContentWrapper>
         <p>{commentProps.content}</p>
       </StCommentContentWrapper>
-      {commentProps.user_id === authId && <CommentOnAuthButtons />}
+      {commentProps.user_id === authId && <CommentOnAuthButtons onDelete={onDelete} />}
     </StCommentBoxContainer>
   );
 }

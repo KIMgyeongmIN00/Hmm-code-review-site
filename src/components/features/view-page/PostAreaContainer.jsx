@@ -34,8 +34,6 @@ export default function PostAreaContainer({
     fetchLikeStatus();
   }, [auth.id, postId]);
 
-  console.log(isLiked);
-
   async function toggleLikeButton() {
     if (isLiked) {
       const { error } = await supabase.from('post_likes').delete().eq('user_id', auth.id).eq('post_id', postId);

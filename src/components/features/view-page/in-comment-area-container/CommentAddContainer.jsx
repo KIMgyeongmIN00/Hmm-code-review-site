@@ -5,7 +5,7 @@ import { useState } from 'react';
 import supabase from '@/libs/api/supabase.api';
 import Swal from 'sweetalert2';
 
-export default function CommentAddContainer({ postId, nickname }) {
+export default function CommentAddContainer({ postId, nickname, onSubmit }) {
   const [content, setContent] = useState('');
 
   async function handleAddCommentFormSubmit(e) {
@@ -19,7 +19,9 @@ export default function CommentAddContainer({ postId, nickname }) {
         confirmButtonText: '확인'
       });
 
-    const addCommentToDB = await supabase.from('comments').insert({ content, post_id: postId });
+    const addCommentToDB = await supabase.from('comments').insert({ content, post_id: postId }).select('*');
+    onSubmit(addCommentToDB.data[0]);
+    setContent('');
     if (addCommentToDB.error) {
       return Swal.fire({
         title: 'Error!',
@@ -30,7 +32,7 @@ export default function CommentAddContainer({ postId, nickname }) {
     }
     return Swal.fire({
       title: 'Good job!',
-      text: '게시글 작성에 성공했습니다.',
+      text: '댓글 작성에 성공했습니다.',
       icon: 'success'
     });
   }

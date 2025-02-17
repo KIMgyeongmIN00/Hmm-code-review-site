@@ -17,10 +17,10 @@ export default function ViewPage() {
     async function fetchData() {
       try {
         const postData = await getPost(id);
-        const commentsData = await getComments(id);
         const authData = await getAuthObj();
         const authNicknameData = await getNicknameWithAuthId(authData);
         const postNicknameData = await getNicknameByUserId(postData?.user_id);
+        const commentsData = await getComments(id);
 
         setYourNickname(authNicknameData || '로그인을 해주세요.');
         setPostInfomation(postData);
@@ -92,6 +92,14 @@ export default function ViewPage() {
 
   if (!postInfomation) return <p>로딩 중...</p>;
 
+  function onSubmitCommentsHandler(comment) {
+    setComments((prev) => [...prev, comment]);
+  }
+
+  function onDeleteCommentsHandler(comment) {
+    setComments((prev) => prev.filter((item) => item.id !== comment.id));
+  }
+
   return (
     <StViewPageContainer>
       <PostAreaContainer
@@ -102,7 +110,14 @@ export default function ViewPage() {
         comments={comments}
       />
       {/* URL의 id값이 있는 DB의 posts 테이블의 row를 props로 내림 */}
-      <CommentAreaContainer comments={comments} postId={id} nickname={yourNickname} authId={authId} />
+      <CommentAreaContainer
+        onSubmit={onSubmitCommentsHandler}
+        onDelete={onDeleteCommentsHandler}
+        comments={comments}
+        postId={id}
+        nickname={yourNickname}
+        authId={authId}
+      />
       {/* 페이지 댓글 상자에 DB에 저장되어 있는 값에 따라 변화하는 값을 임의적으로 표현하기 위해 내린 props */}
     </StViewPageContainer>
   );
