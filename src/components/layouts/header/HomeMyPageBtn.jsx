@@ -2,6 +2,17 @@ import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Button from '@commons/Button';
 import ButtonLink from '@/components/commons/ButtonLink';
+import supabase from '@/libs/api/supabase.api';
+
+const userSignout = async function () {
+  const { error } = await supabase.auth.signOut();
+  //TODO: 로그아웃 에러에 대한 처리
+  if (error) {
+    alert(error);
+  } else {
+    return;
+  }
+};
 
 export default function HeaderMyPageButton() {
   return (
@@ -15,7 +26,9 @@ export default function HeaderMyPageButton() {
           <ButtonLink $variant="ghost" to="/my-page">
             마이 페이지
           </ButtonLink>
-          <Button $variant="ghost">로그 아웃</Button>
+          <Button $variant="ghost" onClick={userSignout}>
+            로그 아웃
+          </Button>
         </StDropdown>
       </StModalBox>
     </StContainer>

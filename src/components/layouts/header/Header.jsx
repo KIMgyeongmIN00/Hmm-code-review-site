@@ -8,7 +8,8 @@ import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
-  let Auth = useContext(AuthContext);
+  const user = useContext(AuthContext);
+
   return (
     <StWrapper>
       <StHeaderContainer>
@@ -17,7 +18,7 @@ export default function Header() {
         </Link>
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
-          {Auth.isSignIn ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
+          {user.auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
       </StHeaderContainer>
     </StWrapper>
