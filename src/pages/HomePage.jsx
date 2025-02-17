@@ -11,9 +11,14 @@ export default function HomePage() {
 
   useEffect(() => {
     async function getPosts() {
-      const { data, error } = await supabase.from('posts').select();
-      setPostList(data);
-      return data;
+      if (language && language !== '전체') {
+        const { data, error } = await supabase.from('posts').select().eq('programming_language', language);
+        setPostList(data);
+      } else {
+        const { data, error } = await supabase.from('posts').select();
+        setPostList(data);
+        return data;
+      }
     }
     getPosts();
   }, [language]);
@@ -24,11 +29,13 @@ export default function HomePage() {
         <HomeLanguageSelector language={language} setLanguage={setLanguage} />
         <HomePostSortRadioGroup />
       </StFilterPanelContainer>
-      {postList.map((post) => (
-        <StPostWrapper key={post.author}>
-          <PostCard postData={post} />
-        </StPostWrapper>
-      ))}
+      {postList.length !== 0
+        ? postList.map((post) => (
+            <StPostWrapper key={post.author}>
+              <PostCard postData={post} />
+            </StPostWrapper>
+          ))
+        : '해당 정보가 없습니다.'}
     </StHomePageContainer>
   );
 }
