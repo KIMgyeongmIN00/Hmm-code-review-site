@@ -5,7 +5,7 @@ import ViewPage from '@pages/view/ViewPage';
 import WritePage from '@pages/write/WritePage';
 import MyPage from '@/pages/MyPage';
 import SignInPage from '@pages/sign-in/SignInPage';
-import SignUpPage from '@pages/sign-in/SignInPage';
+import SignUpPage from '@/pages/sign-up/SignUpPage';
 
 const publicRoutes = [
   {
