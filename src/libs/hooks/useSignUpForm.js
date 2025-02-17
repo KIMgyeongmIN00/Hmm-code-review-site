@@ -22,18 +22,8 @@ export default function useSignUpForm() {
     question: '',
     answer: ''
   });
-  const [isChecked, setIsChecked] = useState({ email: false, password: false });
+  const [isDuplicateChecked, setIsDuplicateChecked] = useState({ email: false, nickname: false });
   const navigate = useNavigate();
-
-  function isValidForm() {
-    for (const key in signUpFormData) {
-      const errorMsg = signUpValidate(key, signUpFormData[key], signUpFormData);
-      if (errorMsg && errorMsg !== '중복 체크를 해주세요.') {
-        return false;
-      }
-    }
-    return true;
-  }
 
   function signUpChangeHandler(e) {
     const { name, value } = e.target;
@@ -42,45 +32,39 @@ export default function useSignUpForm() {
     const errorMsg = signUpValidate(name, value, signUpFormData);
     setErrorMessage((prev) => ({ ...prev, [name]: errorMsg }));
 
-    if (name === 'email' || name === 'nickname') {
-      setIsChecked((prev) => ({ ...prev, [name]: false }));
+    if (name === 'email' || name === 'nickname') setIsDuplicateChecked((prev) => ({ ...prev, [name]: false }));
+  }
+
+  async function checkDuplicate(type) {
+    if (type === 'email') {
+      if (errorMessage.email !== '중복 체크를 해주세요.') return;
+
+      const { data } = await supabase.from('users').select().eq('email', signUpFormData.email);
+      if (data.length !== 0) return setErrorMessage((prev) => ({ ...prev, [type]: '사용 불가능한 이메일 입니다.' }));
+
+      setIsDuplicateChecked((prev) => ({ ...prev, [type]: true }));
+      return setErrorMessage((prev) => ({ ...prev, [type]: '사용가능한 이메일 입니다.' }));
+    }
+
+    if (type === 'nickname') {
+      if (errorMessage.nickname === '최소 2자부터 최대 8자까지 가능합니다.') return;
+
+      const { data } = await supabase.from('users').select().eq('nickname', signUpFormData.nickname);
+      if (data.length !== 0) return setErrorMessage((prev) => ({ ...prev, [type]: '사용 불가능한 닉네임 입니다.' }));
+
+      setIsDuplicateChecked((prev) => ({ ...prev, [type]: true }));
+      return setErrorMessage((prev) => ({ ...prev, [type]: '사용가능한 닉네임 입니다.' }));
     }
   }
 
-  async function signUpCheckDuplicate(name) {
-    if (name === 'email') {
-      const emailErrorMsg = signUpValidate('email', signUpFormData.email, signUpFormData);
-      if (emailErrorMsg !== '중복 체크를 해주세요.') {
-        setErrorMessage((prev) => ({ ...prev, email: emailErrorMsg }));
-        return;
-      }
-
-      const { data } = await supabase.from('users').select().eq('email', signUpFormData.email);
-      if (data.some((users) => users.email === signUpFormData.email)) {
-        setErrorMessage((prev) => ({ ...prev, [name]: '사용 불가능한 이메일 입니다.' }));
-      } else {
-        setIsChecked((prev) => ({ ...prev, [name]: true }));
-        setErrorMessage((prev) => ({ ...prev, [name]: '사용가능한 이메일 입니다.' }));
-      }
-    } else {
-      const nicknameErrorMsg = signUpValidate('nickname', signUpFormData.nickname, signUpFormData);
-      if (nicknameErrorMsg === '최소 2자부터 최대 8자까지 가능합니다.') {
-        setErrorMessage((prev) => ({ ...prev, nickname: nicknameErrorMsg }));
-        return;
-      }
-      const { data } = await supabase.from('users').select().eq('nickname', signUpFormData.nickname);
-      if (data.some((users) => users.nickname === signUpFormData.nickname)) {
-        setErrorMessage((prev) => ({ ...prev, [name]: '사용 불가능한 닉네임 입니다.' }));
-      } else {
-        setIsChecked((prev) => ({ ...prev, [name]: true }));
-        setErrorMessage((prev) => ({ ...prev, [name]: '사용가능한 닉네임 입니다.' }));
-      }
-    }
+  function isValidForm() {
+    for (const key in errorMessage) if (!isDuplicateChecked[key] && errorMessage[key]) return false;
+    return true;
   }
 
   async function signUpSubmitHandler(e) {
     e.preventDefault();
-    // 유효성 검사 (오류가 있는지 확인)
+
     if (!isValidForm()) {
       Swal.fire({
         title: 'Error!',
@@ -102,23 +86,29 @@ export default function useSignUpForm() {
         }
       }
     });
+
     if (error) {
-      Swal.fire({
+      return Swal.fire({
         title: 'Error!',
         text: `회원가입 실패, 입력된 정보를 다시 확인해 주세요!`,
         icon: 'error',
         confirmButtonText: '확인'
       });
-      return;
     }
     Swal.fire({
       title: '성공!',
       text: '회원가입 성공! 자동으로 로그인됩니다.',
       icon: 'success',
       confirmButtonText: '확인'
-    });
-    navigate('/sign-in');
+    }).then(() => navigate('/'));
   }
 
-  return { signUpFormData, errorMessage, isChecked, signUpSubmitHandler, signUpChangeHandler, signUpCheckDuplicate };
+  return {
+    signUpFormData,
+    errorMessage,
+    isDuplicateChecked,
+    signUpSubmitHandler,
+    signUpChangeHandler,
+    checkDuplicate
+  };
 }

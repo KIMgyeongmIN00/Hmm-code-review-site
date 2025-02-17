@@ -16,7 +16,7 @@ import useGetQuestions from '@/libs/hooks/useGetQuestions';
 import useSignUpForm from '@/libs/hooks/useSignUpForm';
 
 export default function SignUpForm() {
-  const { signUpFormData, errorMessage, isChecked, signUpSubmitHandler, signUpChangeHandler, signUpCheckDuplicate } =
+  const { signUpFormData, errorMessage, isDuplicateChecked, signUpSubmitHandler, signUpChangeHandler, checkDuplicate } =
     useSignUpForm();
   const [question, setQuestion] = useState();
   const { questions } = useGetQuestions();
@@ -45,16 +45,11 @@ export default function SignUpForm() {
             value={signUpFormData.email}
             onChange={signUpChangeHandler}
           />
-          <StDuplicateButton
-            onClick={(e) => {
-              e.preventDefault();
-              signUpCheckDuplicate('email');
-            }}
-          >
+          <StDuplicateButton type="button" onClick={() => checkDuplicate('email')}>
             중복체크
           </StDuplicateButton>
         </div>
-        {errorMessage.email && <StMessage $isValid={isChecked.email}>{errorMessage.email}</StMessage>}
+        {errorMessage.email && <StMessage $isValid={isDuplicateChecked.email}>{errorMessage.email}</StMessage>}
       </StEmailNickNameWrapper>
 
       {/* 비밀번호 입력 */}
@@ -97,17 +92,11 @@ export default function SignUpForm() {
             value={signUpFormData.nickname}
             onChange={signUpChangeHandler}
           />
-          <StDuplicateButton
-            onClick={(e) => {
-              e.preventDefault();
-              signUpCheckDuplicate('nickname');
-            }}
-            disabled={signUpFormData.nickname.length > 8}
-          >
+          <StDuplicateButton type="button" onClick={() => checkDuplicate('nickname')}>
             중복체크
           </StDuplicateButton>
         </div>
-        {errorMessage.nickname && <StMessage $isValid={isChecked.nickname}>{errorMessage.nickname}</StMessage>}
+        {errorMessage.nickname && <StMessage $isValid={isDuplicateChecked.nickname}>{errorMessage.nickname}</StMessage>}
       </StEmailNickNameWrapper>
 
       {/* 질문 선택 */}
