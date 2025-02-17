@@ -21,7 +21,6 @@ export default function HomePage() {
       } else {
         const { data } = await supabase.from('posts').select();
         const sortedPosts = await sortPosts(data, sort);
-        console.log(sortedPosts);
         setPostList(sortedPosts);
       }
     }
@@ -36,7 +35,7 @@ export default function HomePage() {
       </StFilterPanelContainer>
       {postList.length !== 0
         ? postList.map((post) => (
-            <StPostWrapper key={post.author}>
+            <StPostWrapper key={post.id}>
               <PostCard postData={post} />
             </StPostWrapper>
           ))
