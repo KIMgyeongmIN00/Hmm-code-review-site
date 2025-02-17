@@ -6,6 +6,7 @@ import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
 import AuthContext from '@/contexts/auth/auth.context';
+import debounce from '@libs/utils/debounce';
 
 export default function Header() {
   const [searchWord, setSearchWord] = useState('');
@@ -13,6 +14,7 @@ export default function Header() {
 
   const handleSearchValue = function (e) {
     setSearchWord(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
