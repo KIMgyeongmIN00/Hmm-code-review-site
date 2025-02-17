@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Button from '@/components/commons/Button';
 import { Link } from 'react-router-dom';
-import useSignUpForm from '@/hooks/auth/useSignUpForm';
 import Input from '@/components/commons/Input';
 import SelectBox from '@/components/commons/SelectBox';
 import SignUpInput from './SignUpInput';
@@ -13,13 +12,14 @@ import {
   MdOutlinePrivateConnectivity
 } from 'react-icons/md';
 import { useState } from 'react';
-import fetchQuestions from '@/hooks/auth/useQuestions';
+import useQuestions from '@/libs/hooks/useQuestions';
+import useSignUpForm from '@/libs/hooks/useSignUpForm';
 
 export default function SignUpForm() {
   const { signUpFormData, errorMessage, isChecked, signUpSubmitHandler, signUpChangeHandler, signUpCheckDuplicate } =
     useSignUpForm();
   const [question, setQuestion] = useState();
-  const { questions } = fetchQuestions();
+  const { questions } = useQuestions();
   const formattedQuestions = questions.map((question) => ({
     id: question.id,
     name: question.question
