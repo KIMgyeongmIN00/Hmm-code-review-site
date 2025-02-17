@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { MdFavorite, MdFavoriteBorder, MdChatBubbleOutline, MdOutlinePerson } from 'react-icons/md';
 import AuthContext from '@/contexts/auth/auth.context';
 import { getLikes, getComments, getAuthorName } from '@libs/api/supabase.api';
+import formatDate from '@/utils/format.Date';
 
 export default function PostCard({ postData: postData }) {
   const [likes, setLikes] = useState([]);
@@ -55,18 +56,6 @@ export default function PostCard({ postData: postData }) {
     </StPostContainer>
   );
 }
-
-const formatDate = function (createAt) {
-  const date = new Date(createAt);
-
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours();
-  const min = date.getMinutes();
-
-  return `${year}년 ${month}월 ${day}일 ${hour}시 ${min}분`;
-};
 
 const StPostContainer = styled(Link)`
   cursor: pointer;
