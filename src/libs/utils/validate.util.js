@@ -1,4 +1,4 @@
-export default function signUpValidate(name, value, form) {
+export function signUpValidate(name, value, form) {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
   switch (name) {
