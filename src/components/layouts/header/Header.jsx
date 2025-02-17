@@ -1,13 +1,15 @@
+import { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
 import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
 import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
-
-let isAuth = true;
+import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
+  let isAuth = useReducer(AuthContext);
+  console.log(isAuth);
   return (
     <StWrapper>
       <StHeaderContainer>
