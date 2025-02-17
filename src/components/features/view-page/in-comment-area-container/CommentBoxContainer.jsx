@@ -21,7 +21,7 @@ export default function CommentBoxContainer({ commentProps, authId }) {
     fetchNickname();
   }, []);
 
-  console.log(nickname);
+  // console.log(nickname);
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
@@ -32,10 +32,6 @@ export default function CommentBoxContainer({ commentProps, authId }) {
         <p>{commentProps.content}</p>
       </StCommentContentWrapper>
       {commentProps.user_id === authId && <CommentOnAuthButtons />}
-      <StCommentLikeContainer>
-        <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-        {/* <p>{commentProps.id를 외부키로 받아와 좋아요 수 호출}</p> */}
-      </StCommentLikeContainer>
     </StCommentBoxContainer>
   );
 }

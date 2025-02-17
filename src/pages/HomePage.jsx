@@ -6,10 +6,13 @@ import PostCard from '@commons/PostCard';
 import supabase from '@libs/api/supabase.api';
 import { getLikes } from '@libs/api/supabase.api';
 import { getComments } from '@/libs/api/supabase.api';
+import { useContext } from 'react';
+import AuthContext from '@/contexts/auth/auth.context';
 
 export default function HomePage() {
   const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
+  const { auth } = useContext(AuthContext);
   const [sort, setSort] = useState('latest');
 
   useEffect(() => {
