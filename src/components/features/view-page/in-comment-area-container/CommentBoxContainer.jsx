@@ -8,15 +8,15 @@ export default function CommentBoxContainer({ commentProps }) {
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{commentProps.Nickname}</h3>
+        {/* <h3>{commentProps.user_id를 외부키로 받아와 닉네임 호출}</h3> */}
       </StCommentWriterContainer>
       <StCommentContentWrapper>
-        <p>{commentProps.Contents}</p>
+        <p>{commentProps.content}</p>
       </StCommentContentWrapper>
       {commentProps.IsAuth && <CommentOnAuthButtons />}
       <StCommentLikeContainer>
         <StLikeButton activeIcon={MdFavoriteBorder} inActiveIcon={MdFavorite} />
-        <p>{commentProps.Likes}</p>
+        {/* <p>{commentProps.id를 외부키로 받아와 좋아요 수 호출}</p> */}
       </StCommentLikeContainer>
     </StCommentBoxContainer>
   );

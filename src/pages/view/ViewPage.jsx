@@ -53,21 +53,63 @@ export default function ViewPage() {
 
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
+  const [nickname, setNickname] = useState('');
 
   useEffect(() => {
     const fetchPost = async () => {
       const { data, error } = await supabase.from('posts').select('*').eq('id', id).single(); // 게시글 가져오기
-      console.log(data);
 
       if (error) {
-        console.error('Error fetching post:', error);
+        console.error('본문 가져오는데 에러가 발생하였습니다! :', error);
         return;
       }
 
       setPost(data);
     };
 
+    const fetchCommentList = async () => {
+      const { data, error } = await supabase.from('comments').select('*').eq('post_id', id);
+
+      if (error) {
+        console.error('댓글을 가져오는데 에러가 발생하였습니다! :', error);
+        return;
+      }
+
+      setComments(data);
+    };
+
+    const fetchUserNickName = async () => {
+      try {
+        // 로그인한 사용자 정보 가져오기
+        const {
+          data: { user },
+          error: userError
+        } = await supabase.auth.getUser();
+
+        if (userError || !user) {
+          console.error('사용자 정보를 가져오는 데 실패했습니다:', userError);
+          return;
+        }
+
+        // users 테이블에서 nickname 조회
+        const { data, error } = await supabase.from('users').select('nickname').eq('id', user.id).single();
+
+        if (error) {
+          console.error('닉네임을 가져오는 데 실패했습니다:', error);
+          return;
+        }
+
+        setNickname(data?.nickname || '로그인을 해주세요.');
+      } catch (err) {
+        console.error('에러 발생:', err);
+      }
+    };
+
+    fetchUserNickName();
     fetchPost();
+    fetchCommentList();
   }, [id]);
 
   if (!post) return <p>로딩 중...</p>;
@@ -76,7 +118,7 @@ export default function ViewPage() {
     <StViewPageContainer>
       <PostAreaContainer post={post} />
       {/* URL의 id값이 있는 DB의 posts 테이블의 row를 props로 내림 */}
-      {/* <CommentAreaContainer commentProps={commentProps} /> */}
+      <CommentAreaContainer comments={comments} postId={id} nickname={nickname} />
       {/* 페이지 댓글 상자에 DB에 저장되어 있는 값에 따라 변화하는 값을 임의적으로 표현하기 위해 내린 props */}
     </StViewPageContainer>
   );
