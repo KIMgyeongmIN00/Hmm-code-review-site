@@ -2,13 +2,37 @@ import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
 import IconButton from '@commons/IconButton';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function CommentBoxContainer({ commentProps, authId }) {
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    async function fetchNickname() {
+      try {
+        const nicknameData = await getNickname(commentProps);
+        setNickname(nicknameData);
+      } catch (error) {
+        console.errer('닉네임 배치에 실패하였습니다.', error);
+      }
+    }
+    fetchNickname();
+  }, []);
+
+  async function getNickname(commentProps) {
+    const { data, error } = await supabase.from('users').select('nickname').eq('id', commentProps.id).single();
+    if (error) {
+      console.errer('댓글창의 닉네임을 가져오는 데 실패했습니다.', error);
+      return '';
+    }
+    return data?.nickname;
+  }
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        {/* <h3>{commentProps.user_id를 외부키로 받아와 닉네임 호출}</h3> */}
+        <h3>{nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
         <p>{commentProps.content}</p>

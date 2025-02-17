@@ -38,7 +38,7 @@ export default function PostAreaContainer({ postInfomation, postNickname, authId
           <p>{postInfomation.created_at}</p>
         </StCommentToggleButtonContainer>
       </StPostToggleButtonContainer>
-      {postInfomation.id === authId && <PostOnAuthButtons />}
+      {postInfomation.user_id === authId && <PostOnAuthButtons />}
     </StPostAreaContainer>
   );
 }
