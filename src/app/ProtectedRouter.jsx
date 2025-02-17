@@ -7,13 +7,11 @@ function ProtectedRouter() {
   const { auth } = useContext(AuthContext);
   const { pathname } = useLocation();
 
-  const shouldRedirect = !['/', '/code/view'].some((path) => pathname.startsWith(path));
-
-  if (!auth.isSignin && shouldRedirect) {
+  if (!auth.isSignin) {
     return <Navigate to="/sign-in" replace state={{ redirectedFrom: pathname }} />;
   }
 
-  return <Outlet />;
+  return <RootLayout />;
 }
 
 export default ProtectedRouter;

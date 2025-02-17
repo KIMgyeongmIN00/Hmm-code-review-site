@@ -7,11 +7,9 @@ export default function RootLayout() {
   return (
     <>
       <Header />
-      <ProtectedRouter>
-        <StOutletWrapper>
-          <Outlet />
-        </StOutletWrapper>
-      </ProtectedRouter>
+      <StOutletWrapper>
+        <Outlet />
+      </StOutletWrapper>
     </>
   );
 }
