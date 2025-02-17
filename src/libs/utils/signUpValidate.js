@@ -12,7 +12,7 @@ export default function signUpValidate(name, value, form) {
       return value === form.password ? '' : '입력하신 비밀번호와 일치하지 않습니다.';
     }
     case 'nickname': {
-      return value.length > 8 ? '최대 8자까지 가능합니다.' : '중복체크를 해주세요.';
+      return value.length > 8 || value.length <= 1 ? '최소 2자부터 최대 8자까지 가능합니다.' : '중복 체크를 해주세요.';
     }
     case 'answer': {
       return value.length >= 12 ? '최대 12자까지 가능합니다.' : '';
