@@ -2,7 +2,6 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_HMM_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_HMM_SUPABASE_ANON_KEY;
-
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Post의 좋아요 정보 불러오기
