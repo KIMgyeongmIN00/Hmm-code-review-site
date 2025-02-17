@@ -1,30 +1,29 @@
-import Button from '@/components/commons/Button';
-import Input from '@/components/commons/Input';
-import PostCard from '@/components/commons/PostCard';
-import AuthContext from '@/contexts/auth/auth.context';
-import { saveUserInfo } from '@/contexts/auth/auth.reducer';
-import supabase from '@/libs/api/supabase.api';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
+import Button from '@/components/commons/Button';
+import Input from '@/components/commons/Input';
+import PostCard2 from '@/components/commons/PostCard2';
+import AuthContext from '@/contexts/auth/auth.context';
+import { saveUserInfo } from '@/contexts/auth/auth.reducer';
+import { getMyPosts } from '@/libs/api/post.api';
+import supabase from '@/libs/api/supabase.api';
 
 function MyPage() {
   const { auth, dispatch } = useContext(AuthContext);
 
   const [nickname, setNickname] = useState('');
-  const [list, setList] = useState([]);
+  const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
     setNickname(auth.nickname ?? '');
-    async function getMyPosts() {
-      const { data } = await supabase.from('posts').select('*').eq('user_id', auth.id);
-      setList(data || []);
+    async function fetchMyPost() {
+      const data2 = await getMyPosts(auth.id);
+      setMyPosts(data2);
     }
-    getMyPosts();
-  }, [auth]);
+    fetchMyPost();
+  }, [auth.id, auth.nickname]);
 
   async function handleUpdateInfo(e) {
     e.preventDefault();
@@ -51,18 +50,16 @@ function MyPage() {
       <StUserInfoContainer>
         <StAvatar />
         <StForm onSubmit={handleUpdateInfo}>
-          <StLabel htmlFor="email">이메일</StLabel>
-          <StEmail>{auth.email ?? ''}</StEmail>
-          <StLabel htmlFor="nickname">닉네임</StLabel>
+          <label htmlFor="email">이메일</label>
+          <Input disabled value={auth.email} />
+          <label htmlFor="nickname">닉네임</label>
           <Input id="nickname" name="nickname" value={nickname} onChange={(e) => setNickname(e.target.value)} />
           <StButton type="submit">수정</StButton>
         </StForm>
       </StUserInfoContainer>
       <StPostContainer>
-        {list.map((post) => (
-          <StPostWrapper key={post.id}>
-            <PostCard postData={post} />
-          </StPostWrapper>
+        {myPosts.map((post) => (
+          <PostCard2 key={post.id} {...post} />
         ))}
       </StPostContainer>
     </StMyPageContainer>
@@ -95,18 +92,13 @@ const StAvatar = styled(MdOutlinePerson)`
   cursor: pointer;
 `;
 
-const StLabel = styled.label`
-  font-size: var(--font-size-md);
-  font-weight: bold;
-`;
-const StEmail = styled.p`
-  font-size: var(--font-size-md);
-  margin-bottom: 20px;
-`;
 const StForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  > label {
+    font-weight: bold;
+  }
 `;
 
 const StButton = styled(Button)`
@@ -115,14 +107,11 @@ const StButton = styled(Button)`
   right: 1rem;
 `;
 
-const StPostWrapper = styled.div`
-  width: 100%;
-  margin: 10px 0 10px 0;
-  padding-right: 20px;
-  box-sizing: border-box;
-`;
-
 const StPostContainer = styled.div`
   margin-top: 20px;
+  > * {
+    box-sizing: border-box;
+    margin-bottom: 10px 0;
+  }
 `;
 export default MyPage;
