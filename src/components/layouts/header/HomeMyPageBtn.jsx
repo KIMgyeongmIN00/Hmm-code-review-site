@@ -44,6 +44,7 @@ const StDropdown = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   gap: 4px;
 `;
 
