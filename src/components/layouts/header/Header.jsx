@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
@@ -9,6 +9,7 @@ import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
   const [searchWord, setSearchWord] = useState('');
+  const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
 
   const handleSearchValue = function (e) {
@@ -18,6 +19,7 @@ export default function Header() {
   const handleIconClick = function () {
     if (searchWord.trim() !== '') {
       console.log(searchWord);
+      navigate(`/?search=${encodeURIComponent(searchWord)}`);
     }
   };
 
@@ -25,6 +27,7 @@ export default function Header() {
     if (e.key === 'Enter') {
       if (searchWord.trim() !== '') {
         console.log(searchWord);
+        navigate(`/?search=${encodeURIComponent(searchWord)}`);
       }
     }
   };

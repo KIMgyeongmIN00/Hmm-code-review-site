@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
 import HomePostSortRadioGroup from '@features/home/HomePostSortRadioGroup';
@@ -11,6 +12,10 @@ export default function HomePage() {
   const [language, setLanguage] = useState('');
   const [postList, setPostList] = useState([]);
   const [sort, setSort] = useState('latest');
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get('search') || '';
+  console.log(search);
 
   useEffect(() => {
     async function getPosts() {
