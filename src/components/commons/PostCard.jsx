@@ -30,30 +30,28 @@ export default function PostCard({ postData: postData }) {
   const isLikeActive = likes.includes(id);
 
   return (
-    <StPostLink to={`/code/view/${postData.id}`}>
-      <StPostContainer>
-        <StPostTitle>{postData.title}</StPostTitle>
-        <StPostMeta>
-          {postData.programming_language}·{formatDate(postData.created_at)}
-        </StPostMeta>
-        <StIconsContainer>
+    <StPostContainer to={`/code/view/${postData.id}`}>
+      <StPostTitle>{postData.title}</StPostTitle>
+      <StPostMeta>
+        {postData.programming_language}·{formatDate(postData.created_at)}
+      </StPostMeta>
+      <StIconsContainer>
+        <div>
+          <StAuthorIcon />
+          <StIconLabel>{author}</StIconLabel>
+        </div>
+        <div>
           <div>
-            <StAuthorIcon />
-            <StIconLabel>{author}</StIconLabel>
+            <StCommentIcon />
+            <StIconLabel>{likes.length}</StIconLabel>
           </div>
           <div>
-            <div>
-              <StCommentIcon />
-              <StIconLabel>{likes.length}</StIconLabel>
-            </div>
-            <div>
-              {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
-              <StIconLabel>{comments.length}</StIconLabel>
-            </div>
+            {isLikeActive ? <StActiveLikeIcon /> : <StNotActiveLikeIcon />}
+            <StIconLabel>{comments.length}</StIconLabel>
           </div>
-        </StIconsContainer>
-      </StPostContainer>
-    </StPostLink>
+        </div>
+      </StIconsContainer>
+    </StPostContainer>
   );
 }
 
@@ -93,12 +91,7 @@ async function getAuthorName(authorId) {
   return data[0];
 }
 
-const StPostLink = styled(Link)`
-  display: block;
-  width: 100%;
-`;
-
-const StPostContainer = styled.div`
+const StPostContainer = styled(Link)`
   cursor: pointer;
   border: 1px solid var(--color-border);
   border-radius: var(--round-lg);
