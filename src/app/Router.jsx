@@ -2,9 +2,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from '@layouts/RootLayout';
 import HomePage from '@pages/HomePage';
 import ViewPage from '@pages/view/ViewPage';
-import SigninPage from '@pages/sign-in/SignInPage';
 import WritePage from '@pages/write/WritePage';
 import MyPage from '@/pages/MyPage';
+import SignInPage from '@pages/sign-in/SignInPage';
+import SignUpPage from '@pages/sign-in/SignInPage';
 
 const publicRoutes = [
   {
@@ -31,7 +32,11 @@ const publicRoutes = [
   },
   {
     path: '/sign-in',
-    element: <SigninPage />
+    element: <SignInPage />
+  },
+  {
+    path: '/sign-up',
+    element: <SignUpPage />
   }
 ];
 

@@ -1,11 +1,11 @@
 import Input from '@/components/commons/Input';
 import styled from 'styled-components';
 
-export default function SignUpInput({ labelName, name, inputType, placeholder, inputWidth, iconImage }) {
+export default function SignUpInput({ labelName, inputType, ...props }) {
   return (
     <StSignUpInput>
       <label>{labelName}: </label>
-      <Input name={name} type={inputType} placeholder={placeholder} width={inputWidth} icon={iconImage} required />
+      <Input type={inputType} {...props} required />
     </StSignUpInput>
   );
 }

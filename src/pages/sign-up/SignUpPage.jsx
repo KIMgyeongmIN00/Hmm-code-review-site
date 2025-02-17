@@ -12,9 +12,9 @@ import SignUpInput from './SignUpInput';
 import SelectBox from '@/components/commons/SelectBox';
 import { useState } from 'react';
 import Input from '@/components/commons/Input';
+import useSignUpForm from '@/hooks/auth/useSignUpForm';
 
 export default function SignUpPage() {
-  const [question, setQuestion] = useState('');
   const navigate = useNavigate();
   const inputWidth = '374px';
 
@@ -26,41 +26,42 @@ export default function SignUpPage() {
           <label>아이디: </label>
           <div>
             <Input name="email" type="text" placeholder="이메일을 입력해주세요" width="280px" icon={MdEmail} required />
-            <StDuplicateButton type="submit" $color="point" $size="lg" $round="md">
-              아이디 중복체크
+            <StDuplicateButton $color="point" $size="lg" $round="md">
+              중복체크
             </StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
 
         <SignUpInput
           labelName="비밀번호"
+          name="password"
           inputType="password"
           placeholder="비밀번호를 입력해주세요"
-          inputWidth={inputWidth}
-          iconImage={MdOutlinePrivateConnectivity}
+          $inputWidth={inputWidth}
+          $iconImage={MdOutlinePrivateConnectivity}
         />
 
         <SignUpInput
           labelName="비밀번호 확인"
-          inputType="text"
+          inputType="password"
           placeholder="비밀번호를 다시 입력해주세요"
-          inputWidth={inputWidth}
-          iconImage={MdOutlinePrivateConnectivity}
+          $inputWidth={inputWidth}
+          $iconImage={MdOutlinePrivateConnectivity}
         />
 
         <StEmailNickNameWrapper>
           <label>닉네임: </label>
           <div>
             <Input
-              name="nickName"
+              name="nickname"
               type="text"
               placeholder="닉네임을 입력해주세요"
               width="280px"
               icon={MdOutlinePersonOutline}
               required
             />
-            <StDuplicateButton type="submit" $color="point" $size="lg" $round="md">
-              닉네임 중복체크
+            <StDuplicateButton $color="point" $size="lg" $round="md">
+              중복체크
             </StDuplicateButton>
           </div>
         </StEmailNickNameWrapper>
@@ -68,8 +69,6 @@ export default function SignUpPage() {
         <StSelectWrapper>
           <label>질문: </label>
           <SelectBox
-            value={question}
-            onChange={setQuestion} // 선택 시 input 값 변경
             options={[
               { id: 0, name: '내 보물 1호는?' },
               { id: 1, name: '내가 졸업한 초등학교는?' },
@@ -84,17 +83,17 @@ export default function SignUpPage() {
 
         <SignUpInput
           labelName="질문 응답"
+          name="answer"
           inputType="text"
           placeholder="질문에 대한 답을 입력해주세요"
-          inputWidth={inputWidth}
-          iconImage={MdOutlineChat}
+          $inputWidth={inputWidth}
+          $iconImage={MdOutlineChat}
         />
 
         <StSignUpButton type="submit" $color="point" $size="lg" $round="lg">
           <MdDoneOutline />
           회원가입
         </StSignUpButton>
-
         <Link to="/signIn" className="custom-link">
           이미 회원가입을 하셨나요?
         </Link>
