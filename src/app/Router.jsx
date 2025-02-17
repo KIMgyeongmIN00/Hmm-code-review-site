@@ -12,8 +12,6 @@ import AuthContext from '@/contexts/auth/auth.context';
 
 function Routes() {
   const { auth } = useContext(AuthContext);
-  console.log(`🚀 - Router.jsx:15 - Routes - auth:`, auth);
-
   const NotAuthenticatedRoutes = [
     {
       path: '/',
