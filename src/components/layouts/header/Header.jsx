@@ -1,21 +1,26 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import HomeMyPageBtn from '@layouts/header/HomeMyPageBtn';
-import HomeAuthBtn from '@layouts/header/HomeAuthBtn';
 import { MdOutlineSearch } from 'react-icons/md';
 import Input from '@commons/Input';
-
-let isAuth = true;
+import HeaderMyPageButton from '@layouts/header/HomeMyPageBtn';
+import HeaderAuthBtn from '@layouts/header/HomeAuthBtn';
+import AuthContext from '@/contexts/auth/auth.context';
 
 export default function Header() {
+  const { auth } = useContext(AuthContext);
+
   return (
     <StWrapper>
-      <StContainer>
-        <img src="/image/logo.png" />
+      <StHeaderContainer>
+        <Link to="/">
+          <img src="/image/logo.png" alt="로고 이미지" />
+        </Link>
         <div>
           <Input icon={MdOutlineSearch} placeholder="검색어를 입력해 주세요." />
-          {isAuth ? <HomeMyPageBtn /> : <HomeAuthBtn />}
+          {auth.isSignin ? <HeaderMyPageButton /> : <HeaderAuthBtn />}
         </div>
-      </StContainer>
+      </StHeaderContainer>
     </StWrapper>
   );
 }
@@ -25,7 +30,7 @@ const StWrapper = styled.div`
   border-bottom: 1px solid var(--color-main-light);
 `;
 
-const StContainer = styled.div`
+const StHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,7 +39,8 @@ const StContainer = styled.div`
   height: 80px;
   margin: auto;
 
-  > img {
+  img {
+    cursor: pointer;
     width: 80px;
     height: 60px;
   }

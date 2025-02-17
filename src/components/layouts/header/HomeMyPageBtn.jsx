@@ -1,16 +1,34 @@
 import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import Button from '@commons/Button';
+import ButtonLink from '@/components/commons/ButtonLink';
+import supabase from '@/libs/api/supabase.api';
 
-export default function HomeMyPageBtn() {
+const userSignout = async function () {
+  const { error } = await supabase.auth.signOut();
+  //TODO: 로그아웃 에러에 대한 처리
+  if (error) {
+    alert(error);
+  } else {
+    return;
+  }
+};
+
+export default function HeaderMyPageButton() {
   return (
     <StContainer>
       <StMypageIcon />
       <StModalBox>
         <StDropdown>
-          <Button $variant="ghost">글 작성</Button>
-          <Button $variant="ghost">마이 페이지</Button>
-          <Button $variant="ghost">로그 아웃</Button>
+          <ButtonLink $variant="ghost" to="/write">
+            글 작성
+          </ButtonLink>
+          <ButtonLink $variant="ghost" to="/my-page">
+            마이 페이지
+          </ButtonLink>
+          <Button $variant="ghost" onClick={userSignout}>
+            로그 아웃
+          </Button>
         </StDropdown>
       </StModalBox>
     </StContainer>
@@ -39,6 +57,7 @@ const StDropdown = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   gap: 4px;
 `;
 

@@ -9,7 +9,9 @@ export default function SigninPage() {
   const { signInState, signInErrorMessage, SignInChangeHandler, signInSubmitHandler } = useSignInForm();
   return (
     <StContainer>
-      <img src="/image/logo.png" />
+      <Link to="/">
+        <StImg src="/image/logo.png" />
+      </Link>
       <StSignInForm onSubmit={signInSubmitHandler}>
         <StErrorMessage $show={!!signInErrorMessage}>{signInErrorMessage || ''}</StErrorMessage>
 
@@ -45,7 +47,7 @@ export default function SigninPage() {
           <MdDoneOutline />
           로그인
         </StSignInButton>
-        <Link to="/"> 회원가입이 아직인가요? </Link>
+        <Link to="/sign-up">회원가입이 아직인가요?</Link>
       </StSignInForm>
     </StContainer>
   );
@@ -56,17 +58,13 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  top: var(--height-sm);
   width: 700px;
   height: 880px;
   margin: 0 auto;
-  border: 2px solid var(--color-border);
-
-  > img {
-    width: 400px;
-    height: 280px;
-  }
+  border: 1px solid var(--color-point);
 `;
-
 const StSignInForm = styled.form`
   display: flex;
   justify-content: space-evenly;
@@ -74,6 +72,9 @@ const StSignInForm = styled.form`
   flex-direction: column;
   margin: 50px;
   height: 400px;
+  > a {
+    color: var(--color-point-dark);
+  }
 `;
 
 const StErrorMessage = styled.p`
@@ -84,6 +85,13 @@ const StErrorMessage = styled.p`
   visibility: ${(show) => (show ? 'visible' : 'hidden')};
 `;
 
+const StImg = styled.img`
+  width: 400px;
+  height: 280px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const StSignInButton = styled(Button)`
   text-align: center;
   line-height: normal;
