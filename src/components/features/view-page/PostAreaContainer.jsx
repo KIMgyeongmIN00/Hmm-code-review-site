@@ -3,49 +3,10 @@ import styled from 'styled-components';
 import IconButton from '@commons/IconButton';
 import PostOnAuthButtons from '@features/view-page/in-post-area-container/PostOnAuthButtons';
 import MDEditor from '@uiw/react-md-editor';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { useState } from 'react';
-import supabase from '@/libs/api/supabase.api';
-import AuthContext from '@/contexts/auth/auth.context';
+import { usePostLike } from '@/hooks/view-page/usePostLike';
 
-export default function PostAreaContainer({
-  postId,
-  postInfomation,
-  postNickname,
-  authId,
-  likeCount = [],
-  comments = []
-}) {
-  const { auth } = useContext(AuthContext);
-  const [isLiked, setIsLiked] = useState(false);
-  const [postLikeCount, setPostLikeCount] = useState(likeCount.length);
-
-  useEffect(() => {
-    async function fetchLikeStatus() {
-      const { data } = await supabase.from('post_likes').select().eq('user_id', auth.id).eq('post_id', postId);
-      setIsLiked(data.length > 0);
-    }
-    async function fetchLikeCounts() {
-      const { data } = await supabase.from('post_likes').select().eq('post_id', postId);
-      setPostLikeCount(data?.length || 0);
-    }
-    fetchLikeCounts();
-    fetchLikeStatus();
-  }, [auth.id, postId]);
-
-  async function toggleLikeButton() {
-    if (isLiked) {
-      const { error } = await supabase.from('post_likes').delete().eq('user_id', auth.id).eq('post_id', postId);
-      if (error) console.log(error);
-      setPostLikeCount(postLikeCount - 1);
-    } else {
-      const { error } = await supabase.from('post_likes').insert([{ user_id: auth.id, post_id: postId }]);
-      if (error) console.log(error);
-      setPostLikeCount(postLikeCount + 1);
-    }
-    setIsLiked(!isLiked);
-  }
+export default function PostAreaContainer({ postId, postInfomation, postNickname, authId, comments = [], onDelete }) {
+  const { isLiked, likeCount, toggleLike } = usePostLike(postId, authId);
 
   return (
     <StPostAreaContainer>
@@ -66,19 +27,19 @@ export default function PostAreaContainer({
       <StPostToggleButtonContainer>
         <StPostLikeButtonContainer>
           <StLikeButton
-            onClick={toggleLikeButton}
+            onClick={toggleLike}
             isActive={isLiked}
             activeIcon={MdFavorite}
             inActiveIcon={MdFavoriteBorder}
           />
-          <p>{postLikeCount}</p>
+          <p>{likeCount}</p>
         </StPostLikeButtonContainer>
         <StCommentIconContainer>
           <StCommentIcon size={26} />
           <p>{comments?.length}</p>
         </StCommentIconContainer>
       </StPostToggleButtonContainer>
-      {postInfomation.user_id === authId && <PostOnAuthButtons />}
+      {postInfomation.user_id === authId && <PostOnAuthButtons onDelete={onDelete} />}
     </StPostAreaContainer>
   );
 }

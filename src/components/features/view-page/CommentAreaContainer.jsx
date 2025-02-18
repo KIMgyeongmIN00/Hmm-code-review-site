@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import CommentAddContainer from '@features/view-page/in-comment-area-container/CommentAddContainer';
 import CommentBoxContainer from '@features/view-page/in-comment-area-container/CommentBoxContainer';
-import { useEffect } from 'react';
-import supabase, { getComments } from '@/libs/api/supabase.api';
-import { useState } from 'react';
+import supabase from '@/libs/api/supabase.api';
 
 export default function CommentAreaContainer({ postId, nickname, authId, comments, onSubmit, onDelete }) {
   return (

@@ -1,31 +1,16 @@
-import { MdFavoriteBorder, MdFavorite, MdOutlinePerson } from 'react-icons/md';
-import IconButton from '@commons/IconButton';
+import { MdOutlinePerson } from 'react-icons/md';
 import styled from 'styled-components';
 import CommentOnAuthButtons from '@features/view-page/in-comment-area-container/CommentOnAuthButtons';
-import { useEffect, useState } from 'react';
-import { getAuthorName } from '@/libs/api/supabase.api';
+import { useFetchNickname } from '@/hooks/view-page/useFetchNickname';
 
 export default function CommentBoxContainer({ commentProps, authId, onDelete }) {
-  const [nickname, setNickname] = useState([]);
+  const nickname = useFetchNickname(commentProps.user_id);
 
-  useEffect(() => {
-    async function fetchNickname() {
-      try {
-        const nicknameData = await getAuthorName(commentProps.user_id);
-        setNickname(nicknameData || '작성자 불명');
-      } catch (error) {
-        console.log('닉네임 배치에 실패하였습니다.', error);
-      }
-    }
-    fetchNickname();
-  }, []);
-
-  // console.log(nickname);
   return (
     <StCommentBoxContainer>
       <StCommentWriterContainer>
         <StPersonIcon size={30} />
-        <h3>{nickname.nickname}</h3>
+        <h3>{nickname}</h3>
       </StCommentWriterContainer>
       <StCommentContentWrapper>
         <p>{commentProps.content}</p>
@@ -36,7 +21,6 @@ export default function CommentBoxContainer({ commentProps, authId, onDelete }) 
 }
 
 const StCommentBoxContainer = styled.div`
-  /* box-shadow: 0px 0px 8px var(--color-main-light); */
   border: 1px solid var(--color-border);
   border-radius: var(--round-md);
   background-color: var(--color-point-light);
@@ -78,21 +62,4 @@ const StCommentContentWrapper = styled.div`
   justify-content: center;
   padding: 18px 16px 18px 16px;
   margin: 0px 12px 0px 12px;
-`;
-
-const StCommentLikeContainer = styled.div`
-  padding: 0px 10px 10px 10px;
-  grid-area: 3/8/4/9;
-  justify-self: center;
-  text-align: center;
-`;
-
-const StLikeButton = styled(IconButton)`
-  font-size: 28px;
-  background-color: var(--color-trans);
-  border: none;
-  color: var(--color-red);
-  &:hover {
-    background-color: var(--color-trans);
-  }
 `;
