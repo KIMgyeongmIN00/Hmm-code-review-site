@@ -9,6 +9,38 @@
 
 <br/>
 
+## 📑 페이지 구성
+| 페이지 | 경로 | 설명 |
+| --- | --- | --- |
+| 홈 | `/` | 메인 홈화면 |
+| 게시글 보기 | `/code/view/:id` | 선택한 코드 상세 보기 |
+| 게시글 작성 | `/write` | 새로운 글 작성 페이지 (로그인 필요) |
+| 마이페이지 | `/my-page` | 사용자 개인 페이지 (로그인 필요) |
+| 로그인 | `/sign-in` | 사용자 로그인 페이지 |
+| 회원가입 | `/sign-up` | 새로운 사용자 등록 페이지 |
+
+### 홈 화면
+![ezgif com-video-to-gif-converter (6)](https://github.com/user-attachments/assets/a1799232-f51d-4d7c-bade-162485276624)
+
+### 게시글 보기
+![스크린샷 2025-02-18 오후 12 13 06](https://github.com/user-attachments/assets/6df81a84-eeb4-4727-8c59-62f50ff25998)
+
+### 게시글 작성
+![스크린샷 2025-02-18 오후 12 12 36](https://github.com/user-attachments/assets/dc20ebeb-82e2-4c6f-bb3f-af8ba1ab451f)
+
+### 마이 페이지
+![스크린샷 2025-02-18 오후 12 12 48](https://github.com/user-attachments/assets/cbfecb6d-4884-4e83-9e39-46fe7f5274cd)
+
+### 로그인 페이지
+![스크린샷 2025-02-18 오후 12 20 46](https://github.com/user-attachments/assets/3f10812b-84dc-43e5-af2e-be3ab32d92f4)
+
+### 회원가입 페이지
+![스크린샷 2025-02-18 오후 12 20 51](https://github.com/user-attachments/assets/c2386e26-cbd9-47be-a555-bd95a86b4652)
+
+
+<br/>
+<br/>
+
 ## ⚙ 주요 기능
 
 - 코드 공유 및 리뷰: Markdown 기반의 에디터를 통해 코드와 설명을 쉽게 작성하고 공유할 수 있습니다.
@@ -26,7 +58,7 @@
 
 #### **Frontend** <br/>
 
-&emsp; <img src="https://img.shields.io/badge/React_18.3.1-087ea4?style=for-the-badge&logo=React&logoColor=white" alt="React"/> <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white" alt="TypeScript"/> <img src="https://img.shields.io/badge/Yarn_1.22.22-514C87.svg?style=for-the-badge&logo=Yarn&logoColor=white" alt="Yarn"/> <img src="https://img.shields.io/badge/Styled_Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" alt="styled-component"/>
+&emsp; <img src="https://img.shields.io/badge/React_18.3.1-087ea4?style=for-the-badge&logo=React&logoColor=white" alt="React"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=000" alt="TypeScript"/> <img src="https://img.shields.io/badge/Yarn_1.22.22-514C87.svg?style=for-the-badge&logo=Yarn&logoColor=white" alt="Yarn"/> <img src="https://img.shields.io/badge/Styled_Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" alt="styled-component"/>
 
 <br/>
 <br/>
@@ -120,7 +152,7 @@
 <br/>
 <br/>
 
-## 프로젝트 실행
+## 📍 프로젝트 실행
 ```sh
 $ git clone https://github.com/KIMgyeongmIN00/Hmm-code-review-site
 $ cd Hmm-code-review-site
