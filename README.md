@@ -168,5 +168,5 @@ $ pnpm dev
 
 #### [<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" /> 피그마 Link](https://www.figma.com/design/rW5I2sDtCNNy4hdCD8zy5C/%ED%9D%90%EC%9D%8C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-(%EC%BD%94%EB%93%9C-%EB%A6%AC%EB%B7%B0-%ED%94%8C%EB%9E%AB%ED%8F%BC)?node-id=0-1&p=f&t=PBg0of6CNe1IEEsa-0)
 #### [<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion" /> 노션 Link](https://teamsparta.notion.site/2-_-I-1802dc3ef5148132be2cd3ab726d5384)
-#### 배포된 링크 : [추가 예정...]()
+#### 배포된 링크 : [HMM...](https://www.hmm-code.shop/)
 #### KPT 회고 : [추가 예정...]()
