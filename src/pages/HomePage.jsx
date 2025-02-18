@@ -26,6 +26,12 @@ export default function HomePage() {
   }, [auth.id, language, searchWord]);
 
   useEffect(() => {
+    if (searchWord) return;
+    setSort('latest');
+    setLanguage(null);
+  }, [searchWord]);
+
+  useEffect(() => {
     setPosts((prev) => getSortedPosts(prev, sort));
   }, [sort]);
 
@@ -39,6 +45,7 @@ export default function HomePage() {
         {posts.map((post) => (
           <PostCard key={post.id} {...post} />
         ))}
+        {posts.length === 0 && <p>해당 정보가 없습니다.</p>}
       </StPostListContainer>
     </StHomePageContainer>
   );
@@ -62,6 +69,9 @@ const StPostListContainer = styled.div`
   > * {
     height: 100px;
     margin: 10px 0;
+  }
+  > p {
+    text-align: center;
   }
 `;
 
