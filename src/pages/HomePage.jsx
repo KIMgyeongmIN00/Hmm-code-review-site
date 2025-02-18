@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import PostCard from '@commons/PostCard';
 import HomeLanguageSelector from '@features/home/HomeLanguageSelector';
@@ -10,12 +10,15 @@ import { getPosts } from '@api/post.api';
 export default function HomePage() {
   const [searchParams] = useSearchParams();
   const searchWord = searchParams.get('search') || null;
+  const renderHome = searchParams.get('render') || null;
 
   const [language, setLanguage] = useState(null);
   const [sort, setSort] = useState('latest');
 
   const [posts, setPosts] = useState([]);
   const { auth } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPosts() {
@@ -34,6 +37,13 @@ export default function HomePage() {
   useEffect(() => {
     setPosts((prev) => getSortedPosts(prev, sort));
   }, [sort]);
+
+  useEffect(() => {
+    if (!renderHome) return;
+    navigate('/');
+    setLanguage(null);
+    setSort('latest');
+  }, [renderHome]);
 
   return (
     <StHomePageContainer>

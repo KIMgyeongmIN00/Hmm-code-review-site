@@ -25,7 +25,7 @@ export default function Header() {
 
   const handleLogoClick = function (e) {
     e.preventDefault();
-    navigate('/');
+    navigate('/?render=yes');
   };
 
   return (
