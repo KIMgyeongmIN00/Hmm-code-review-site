@@ -43,7 +43,7 @@ export default function HomePage() {
     navigate('/');
     setLanguage(null);
     setSort('latest');
-  }, [renderHome]);
+  }, [navigate, renderHome]);
 
   return (
     <StHomePageContainer>
