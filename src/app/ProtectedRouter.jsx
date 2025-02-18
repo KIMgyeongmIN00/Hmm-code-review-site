@@ -1,12 +1,10 @@
-import AuthContext from '@contexts/auth/auth.context';
-import { useContext } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 function ProtectedRouter() {
-  const { auth } = useContext(AuthContext);
   const { pathname } = useLocation();
+  const token = localStorage.getItem('sb-lcygdiufbrqstxmyqxmz-auth-token');
 
-  if (!auth.isSignin) {
+  if (!token) {
     return <Navigate to="/sign-in" replace state={{ redirectedFrom: pathname }} />;
   }
 

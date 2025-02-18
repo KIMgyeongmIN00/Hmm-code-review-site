@@ -109,8 +109,10 @@ const StButton = styled(Button)`
 
 const StPostContainer = styled.div`
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   > * {
     box-sizing: border-box;
-    margin-bottom: 10px 0;
   }
 `;
